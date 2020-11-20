@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema(
     {
-        productname: {type: String, required: true, default: "product"},
+        productName: {type: String, required: true, default: "product"},
         price: {type: Number, required: true, default: 0},
         customisation: {
         ribbon: {enum: ["black", "white"]},

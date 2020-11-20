@@ -2,18 +2,19 @@ const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-// TO BE DETERMINED
+
+// TO BE UPDATED IF NEEDED for CHANGES
 const userSchema = new Schema(
   {
-    firstname: {type: String, required: true},
-    lastname: {type: String, required: true},
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
     username: {type: String, required: true, unique: true},
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     address: {type: String, required: true},
     phone: Number,
     cart: [
-            {cartitem: 
+            {cartItem: 
               {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Product",
@@ -21,7 +22,7 @@ const userSchema = new Schema(
             count: Number 
             }
     ],
-    wishlist: [
+    wishList: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
@@ -30,6 +31,7 @@ const userSchema = new Schema(
 
   }
 );
+
 
 userSchema.pre(
   'save',
@@ -41,6 +43,7 @@ userSchema.pre(
   }
 );
 
+
 userSchema.methods.isValidPassword = async function(password) {
   const user = this;
   const compare = await bcrypt.compare(password, user.password);
@@ -48,5 +51,7 @@ userSchema.methods.isValidPassword = async function(password) {
   return compare;
 }
 
+
 const User = mongoose.model("User", userSchema);
+
 module.exports = User;
