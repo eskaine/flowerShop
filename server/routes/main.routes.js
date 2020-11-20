@@ -59,7 +59,7 @@ router.put("/:profileid/edit", async (req, res) => {
         );
         res.sendStatus(200).json({message: "data updated"});
     } catch (error) {
-        res.status(404).json({message: "user not found"});
+        res.status(404).json({message: "edit failed"});
     }
 });
 
