@@ -6,12 +6,12 @@ const { Schema } = mongoose;
 // TO BE UPDATED IF NEEDED for CHANGES
 const userSchema = new Schema(
   {
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
+    firstName: String,
+    lastName: String,
     username: {type: String, required: true, unique: true},
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    address: {type: String, required: true},
+    address: String,
     phone: Number,
     cart: [
             {cartItem: 
