@@ -1,6 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Container, Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
+import {
+  Container,
+  Nav,
+  Navbar,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -26,12 +33,12 @@ function Navibar() {
               <FontAwesomeIcon icon={faHeart} />
             </NavLink>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="primary">
-              <NavLink to="/register">Register</NavLink>
-            </Button>
-            <Button variant="secondary">
-              <NavLink to="/login">Login</NavLink>
-            </Button>
+            <NavLink to="/register">
+              <Button variant="primary">register</Button>
+            </NavLink>
+            <NavLink to="/login">
+              <Button variant="secondary">Login</Button>
+            </NavLink>
           </Form>
         </Navbar.Collapse>
       </Container>
