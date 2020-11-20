@@ -1,6 +1,6 @@
 import React from "react";
 import  {BrowserRouter} from "react-router-dom";
-import Navbar from "./components/Navbar";
+import NaviBar from "./components/NaviBar";
 import MainRoutes from "./components/MainRoutes";
 import Footer from "./components/Footer";
 
@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 function App() {
 	return (
 		<BrowserRouter>
-			<Navbar />
+			<NaviBar />
 			<MainRoutes />
 			<Footer />
 		</BrowserRouter>
