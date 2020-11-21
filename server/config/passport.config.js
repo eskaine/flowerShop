@@ -21,7 +21,7 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
-      passReqToCallback: true
+      passReqToCallback: true,
     },
     async (req, email, password, done) => {
       try {
@@ -34,7 +34,6 @@ passport.use(
   )
 );
 
-
 passport.use(
   "login",
   new LocalStrategy(
@@ -43,7 +42,6 @@ passport.use(
       passwordField: "password",
     },
     async (email, password, done) => {
-      console.log('email', email);
       try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -54,7 +52,6 @@ passport.use(
         if (!validate) {
           return done(null, false);
         }
-      console.log('email2', user);
 
         return done(null, user);
       } catch (error) {
@@ -71,21 +68,10 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     },
     async (token, done) => {
-      console.log("jwt stra", token)
       try {
-        // let user = await User.findOne({id: token.sub})
-       
-        //   if (user) {
-              return done(null, token);
-          // } else {
-          //     return done(null, false);
-              // or you could create a new account
-          // }
-      //  return done(null, token.id);
+        return done(null, token);
       } catch (error) {
-        console.log(error);
         done(error, false);
-
       }
     }
   )
