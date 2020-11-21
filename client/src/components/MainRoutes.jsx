@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 import Home from "./contents/Home";
 import Product from "./contents/Product";
 import Login from "./contents/Login";
@@ -10,7 +10,7 @@ import WishList from "./contents/private/WishList";
 
 function MainRoutes() {
   return (
-    <Container>
+    <Container className="border px-0 mt-5">
     <Switch>
       <Route exact path="/">
         <Home />
@@ -22,7 +22,7 @@ function MainRoutes() {
         <Login />
       </Route>
       // Individual Product
-      <Route exact path="/products/:productName">
+      <Route exact path="/products/:productName/:productId">
         <Product />
       </Route>
       <Route exact path="/cart">

@@ -6,6 +6,8 @@ const productSchema = new Schema(
     {
         productName: {type: String, required: true, default: "product"},
         price: {type: Number, required: true, default: 0},
+        img_url: String,
+        desc: String,
         customisation: {
         ribbon: {enum: ["black", "white"]},
         wrap: {enum:["brown", "black", "pink"]}
