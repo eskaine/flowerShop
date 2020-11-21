@@ -12,9 +12,10 @@ router.get("/products", async (req, res) => {
 
     try {
         let products = await Product.find();
-        res.sendStatus(200).json({products});
+        console.log("products",products)
+        res.status(200).json({products});
     } catch (error) {
-        res.status(400).json({message: "request failed"});
+        res.sendStatus(400);
     }
 });
 
@@ -31,7 +32,7 @@ router.get("/:profileid", async (req, res) => {
         let userProfile = await User.findById(profileid);
         res.sendStatus(200).json({userProfile});
     } catch (error) {
-        res.status(404).json({message: "user not found"});
+        res.sendStatus(400);
     }
 });
 
@@ -57,9 +58,9 @@ router.put("/:profileid/edit", async (req, res) => {
                   }
             }
         );
-        res.sendStatus(200).json({message: "data updated"});
+        res.sendStatus(200);
     } catch (error) {
-        res.status(404).json({message: "edit failed"});
+        res.sendStatus(400);
     }
 });
 
