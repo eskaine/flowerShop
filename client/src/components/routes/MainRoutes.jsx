@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container, Col } from "react-bootstrap";
-import Home from "./contents/Home";
-import Product from "./contents/Product";
-import Login from "./contents/Login";
-import Register from "./contents/Register";
-import Cart from "./contents/private/Cart";
-import WishList from "./contents/private/WishList";
+import Home from "../contents/Home";
+import Product from "../contents/Product";
+import Login from "../contents/Login";
+import Register from "../contents/Register";
+import Cart from "../contents/private/Cart";
+import WishList from "../contents/private/WishList";
 
 function MainRoutes() {
   return (

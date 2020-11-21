@@ -2,9 +2,30 @@
 ## TechStack
 - React
 - React Bootstrap
+- Redux
 - MongoDB
 - axios
 - express
+
+## Team Breakdown
+
+Due to the team composition, instead of splitting roles between frontend or backend, roles are breakdown by nature of the tasks. For example, authentication on both the front and back will be done by one person. 
+
+### Deborah
+    - Team Lead / Lead Designer
+        - Team Management
+        - Frontend / CSS
+
+### Eskaine
+    - Tech Lead / Assistant Designer
+        - Project/Data Structure
+        - CSS
+
+### Tyrone
+    - Support Engineer
+        - Features
+        - Data Pulling
+        - Frontend Layout
 
 ## Wireframes
 ###### Homepage

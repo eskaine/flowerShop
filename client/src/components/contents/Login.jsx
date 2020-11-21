@@ -1,22 +1,17 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { Container, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import {useSelector, useDispatch} from 'react-redux';
-import {isAuth}  from '../../actions/actions';
+import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Container, Form, Button } from "react-bootstrap";
+import { isAuth }  from '../../actions/actions';
 
 function Login() {
+    const dispatch = useDispatch();
     const [toRedirect, setToRedirect] = useState(false);
     const [ form, setForm ] = useState({
         email: '',
         password: ''
     });
-
-    const dispatch = useDispatch();
-
-    const newState = useSelector(state => {
-        console.log("store 2", state);
-      });
 
     function changeHandler(e) {
         setForm({...form, [e.target.name]: e.target.value});
@@ -24,8 +19,7 @@ function Login() {
 
     async function submitHandler(e) {
         e.preventDefault();
-        let res = await axios.post(process.env.REACT_APP_ACCOUNT + "/login", form);
-        console.log(res);
+        let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
         if(res.status === 200) {
             localStorage.setItem('token', res.data.token);
             setToRedirect(true);

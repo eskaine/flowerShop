@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { Container, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Container, Form, Button } from "react-bootstrap";
+import { isAuth }  from '../../actions/actions';
 
 function Register() {
+    const dispatch = useDispatch();
     const [toRedirect, setToRedirect] = useState(false);
     const [ form, setForm ] = useState({
         username: '',
@@ -17,17 +20,11 @@ function Register() {
 
     async function submitHandler(e) {
         e.preventDefault();
-        let res = await axios.post(process.env.REACT_APP_ACCOUNT + "/register", form, {
-          transformResponse: [function (data) {
-            // Do whatever you want to transform the data
-            console.log("tres", data);
-            return data;
-          }],
-        });
-        console.log(res);
+        let res = await axios.post(process.env.REACT_APP_ACC + "/register", form);
         if(res.status === 200) {
             localStorage.setItem('token', res.data.token);
             setToRedirect(true);
+            dispatch(isAuth());
         }
     }
 

@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 import Axios from "axios";
 
 function Home() {
+    console.log('home token', localStorage.getItem('token'));
 const [products, setProducts] = useState([])
 
 useEffect(() => {
