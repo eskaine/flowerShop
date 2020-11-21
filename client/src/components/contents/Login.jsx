@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -28,7 +28,8 @@ function Login() {
     }
 
   return (
-    <Container>
+    <Fragment>
+      
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
@@ -43,7 +44,9 @@ function Login() {
         </Button>
       </Form>
       { toRedirect && <Redirect to="/" /> }
-    </Container>
+    </Fragment>
+     
+
   );
 }
 
