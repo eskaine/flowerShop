@@ -3,7 +3,7 @@ const express = require("express");
 const passport = require('passport');
 const cors = require("cors");
 const app = express();
-const User = require("./models/user.models")
+const User = require("./models/user.models");
 
 require("./config/mongo.config");
 require("./config/passport.config");
@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 
-app.use("/", require("./routes/main.routes"));//added "/temp" this to standardised it
 app.use('/auth', require("./routes/auth.routes"));
 app.post("/", async(req,res)=>{
   let data = new User(req.body)

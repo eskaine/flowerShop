@@ -36,9 +36,7 @@ router.post("/register", async (req, res, next) => {
  */
 
 router.post("/login", async (req, res, next) => {
-  console.log(req.body);
   passport.authenticate("login", async (err, user, info) => {
-    console.log('post process', user, info);
     try {
       if (err || !user) {
         return next(err);
@@ -46,7 +44,6 @@ router.post("/login", async (req, res, next) => {
 
       req.logIn(user, async (error) => {
         if (error) return next(error);
-        console.log('post process 2', user, error);
         const token = await createToken({ id: user._id });
         res.status(200).json({ token });
       });
