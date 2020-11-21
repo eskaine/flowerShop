@@ -1,0 +1,19 @@
+// Default: Mobile
+
+// Variables
+$primaryColor: red;
+$secondaryColor: blue;
+
+// Tablet
+@media only screen and (max-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+// Desktop
+@media only screen and (max-width: 1024px) {
+  body {
+    background-color: lightblue;
+  }
+}
