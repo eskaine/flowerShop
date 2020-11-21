@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Row, Col, Container, Card, CardDeck} from "react-bootstrap";
 import {Link} from "react-router-dom"
-import Axios from "axios";
+import axios from "axios";
 
 function Home() {
 const [products, setProducts] = useState([])
@@ -13,7 +13,7 @@ useEffect(() => {
 async function getProducts(){
     try {
         //note: always include "REACT_APP_XXXX" before custom name, its a react rule
-        let response = await Axios.get(process.env.REACT_APP_API_URL+`/temp/products`)
+        let response = await axios.get(process.env.REACT_APP_PRODUCTS)
         setProducts(response.data.products);
         
     }catch (error){
@@ -21,7 +21,6 @@ async function getProducts(){
     }
 }
 
-console.log(products)
 
     return (
        

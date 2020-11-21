@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 
 function Register() {
@@ -18,7 +18,7 @@ function Register() {
     }
 
   return (
-    <Container>
+    <Fragment>
       <Form>
       <Form.Group controlId="formUsername">
         <Form.Label>Username</Form.Label>
@@ -36,7 +36,7 @@ function Register() {
         Register
       </Button>
       </Form>
-    </Container>
+    </Fragment>
   );
 }
 

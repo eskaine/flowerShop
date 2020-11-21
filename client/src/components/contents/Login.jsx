@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 
 function Login() {
@@ -17,7 +17,8 @@ function Login() {
     }
 
   return (
-    <Container>
+    <Fragment>
+      
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
@@ -31,7 +32,7 @@ function Login() {
           Login
         </Button>
       </Form>
-    </Container>
+    </Fragment>
   );
 }
 

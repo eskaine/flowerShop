@@ -1,32 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {Row, Col, Container, Card, Form, Image, Button} from "react-bootstrap";
-import Axios from "axios";
-
+import {Row, Col, Container, Card, Form, Image, Button, Select} from "react-bootstrap";
+import axios from "axios";
+import {decode} from "jsonwebtoken";
 
 function Product() {
     const [productData, setProductData] = useState([])
+    const [ribbons, setRibbons] = useState([])
+    const [wraps, setWraps] = useState([])
+    const [cart, setCart] = useState({})
     let {productId} = useParams();
+    console.log(productId)//gets the current product id
 
-
-useEffect(() => {
+useEffect(()=>{
     getProducts();
-    
 },[])
 
 
 async function getProducts(){
     try {
         //note: always include "REACT_APP_XXXX" before custom name, its a react rule
-        let response = await Axios.get(process.env.REACT_APP_API_URL+`/temp/products`)
-        let product = response.data.products.find((el)=>(el._id == productId))
-        setProductData(product)
+        let response = await axios.get(process.env.REACT_APP_PRODUCTS);
+        let product = response.data.products.find((el)=>(el._id == productId));
+        setProductData(product);
+        setRibbons(product.customisation.ribbon);
+        setWraps(product.customisation.wrap);
     }catch (error){
         console.log(error)
     }
 }
 
-console.log(productData)
+
+function changeHandler(e){
+    setCart((cart)=>({...cart,[e.target.name]: e.target.value}));
+}
+
+async function addToCart(){
+    try {
+        
+        // await axios.put(process.env.REACT_APP_PRODUCTS)
+    } catch (error){
+
+    }
+}
+
+
+console.log(addToCart)
 
     return (
         <Row>
@@ -44,6 +63,7 @@ console.log(productData)
                     </Card.Text>
                 </Card.Body>
                 </Card>
+                <Form.Group>
                 <Form inline>
                 <Form.Control
                     as="select"
@@ -51,10 +71,14 @@ console.log(productData)
                     id="inlineFormCustomSelectPref"
                     custom
                     name="ribbon"
+                    onChange={changeHandler}
                     >
-                    <option value="0">Choose a ribbon</option>
-                    <option value="{productData.customisation.ribbon[0]}">Black</option>
-                    <option value="{productData.customisation.ribbon[1]}">White</option>
+                    <option>Choose a ribbon</option>
+                    {ribbons.map((ribbon,index)=>(
+                        <option 
+                        value={ribbon}
+                        >{ribbon}</option>
+                    ))}
                 </Form.Control>
                 <Form.Control
                     as="select"
@@ -62,18 +86,33 @@ console.log(productData)
                     id="inlineFormCustomSelectPref"
                     custom
                     name="wrap"
+                    onChange={changeHandler}
                     >
-                    <option value="0">Choose a wrap</option>
-                    <option value="{productData.customisation.wrap[0]}">Brown</option>
-                    <option value="{productData.customisation.wrap[1]}">Black</option>
-                    <option value="{productData.customisation.wrap[2]}">Pink</option>
+                    <option>Choose a wrap</option>
+                    {wraps.map((wrap,index)=>(
+                        <option 
+                        value={wrap}
+                        >{wrap}</option>
+                    ))}
                 </Form.Control>
-                
                 </Form>
                 <Form inline>
-                <Button className="mx-2">Add to Cart</Button>
-                <Form.Control className="mx-2" type="Number" placeholder="quantity" />
+                
+                <Form.Control 
+                className="mx-2" 
+                type="Number" 
+                name="count" 
+                placeholder="Quantity" 
+                onChange={changeHandler}
+                />
+                
+                
+                <Button 
+                className="mx-2"
+                onClick={addToCart}
+                >Add to Cart</Button>
                 </Form>
+                </Form.Group>
             </Col>
         </Row>
     )
