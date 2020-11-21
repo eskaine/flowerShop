@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const passport = require('passport');
+const passport = require("passport");
+const createToken = require("../auth/auth");
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
+
 //TO UPDATE
 
 /**
@@ -12,28 +14,18 @@ require("dotenv").config();
  * @returns sucessful sign up
  */
 
+router.post("/register", async (req, res, next) => {
+  passport.authenticate(
+    "register",
+    { session: false },
+    async (err, user, info) => {
+      if (err) res.sendStatus(403);
 
-router.post(
-    "/signup",
-  
-    async (req, res, next) => {
-      passport.authenticate(
-        "signup",
-        { session: false },
-        async (err, user, info) => {
-          const body = { _id: user._id, email: user.email };//not sure if this works, but standardised to login
-          const token = await jwt.sign({ user: body }, process.env.SECRET);
-  
-          res.status(200).json({
-            message: "Signup successful",
-            user: user,
-            token,
-          });
-        }
-      )(req, res, next);
+      const token = await createToken({ id: user._id });
+      res.status(200).json({ token });
     }
-  );
-
+  )(req, res, next);
+});
 
 /**
  * @method POST to log in
@@ -43,30 +35,22 @@ router.post(
  * @returns sucessful sign up
  */
 
-router.post('/login', async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {
-        try {
-          if (err || !user) {
-            const error = new Error('An error occurred.');
-
-            return next(error);
-          }
-
-          req.login(user, { session: false }, async (error) => {//false session to opt out using seesion and using token instead
-              if (error) return next(error);
-
-              const body = { _id: user._id, email: user.email };//this is payload, and in the payload, userID and UserEmail are stored
-              const token = jwt.sign({ user: body }, process.env.SECRET);//encrypt/encode the payload body using Sign
-
-              return res.json({ token });//send the token down to webpage
-            }
-          );
-        } catch (error) {
-          return next(error);
-        }
+router.post("/login", async (req, res, next) => {
+  passport.authenticate("login", async (err, user, info) => {
+    try {
+      if (err || !user) {
+        return next(err);
       }
-    )(req, res, next);
-  }
-);
+
+      req.logIn(user, async (error) => {
+        if (error) return next(error);
+        const token = await createToken({ id: user._id });
+        res.status(200).json({ token });
+      });
+    } catch (err) {
+      return next(err);
+    }
+  })(req, res, next);
+});
 
 module.exports = router;
