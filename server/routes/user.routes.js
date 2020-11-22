@@ -40,7 +40,6 @@ router.put("/:userid/:productid", async (req, res) => {
         // console.log("userid,productid", userid, productid);
         let product = await Product.findById(productid)
         totalPrice = product.price * Number(count);
-
         // console.log("type of count" , typeof Number (count))
         let user = await User.findById(userid);
         // console.log("user = ", user)
@@ -75,6 +74,8 @@ router.put("/:userid/:productid", async (req, res) => {
         res.sendStatus(400);
     }
 })
+
+
 /**
  * @GET get Cart items
  */
@@ -97,7 +98,7 @@ router.get("/:userid/cart", async (req, res) => {
 
 
 /**
- * @PUT update quantity in cart
+ * @PUT update quantity in cart via $Pull Operator (quantity =0) /$Set Operator (quantity>0)
  */
 router.put("/cart/userid/updateCart", async (req, res) => {
     console.log(req.body)
@@ -105,11 +106,11 @@ router.put("/cart/userid/updateCart", async (req, res) => {
     try {
         let { userid, cartid, count } = req.body;
         console.log("userid", userid, "productid", cartid, "count", count)
-        let user = await User.findById(userid) 
-        let cart = user.cart.find((cart)=>(cart._id.equals(cartid)))
+        let user = await User.findById(userid)
+        let cart = user.cart.find((cart) => (cart._id.equals(cartid)))
         let product = await Product.findById(cart.cartItem)
         let totalPrice = product.price * count
-        if (count >= 1 ){
+        if (count >= 1) {
             await User.findOneAndUpdate(
                 {
                     "_id": userid,
@@ -124,8 +125,9 @@ router.put("/cart/userid/updateCart", async (req, res) => {
         } else if (count <= 0) {
             await User.findByIdAndUpdate(userid,
                 {
-                    $pull: {cart:{_id: cartid}
- 
+                    $pull: {
+                        cart: { _id: cartid }
+
                     }
                 }
 
@@ -138,16 +140,18 @@ router.put("/cart/userid/updateCart", async (req, res) => {
 
 })
 
+
 /**
- * @PUT delete quantity in cart
+ * @PUT delete quantity in cart via $pull operator
  */
-router.put("/cart/userid/removeFromCart", async (req,res)=>{
-    
+router.put("/cart/userid/removeFromCart", async (req, res) => {
+
     try {
-        let {cartid,userid} = req.body;
+        let { cartid, userid } = req.body;
         await User.findByIdAndUpdate(userid,
             {
-                $pull: {cart:{_id: cartid}
+                $pull: {
+                    cart: { _id: cartid }
 
                 }
             }
@@ -158,4 +162,6 @@ router.put("/cart/userid/removeFromCart", async (req,res)=>{
         res.sendStatus(400);
     }
 })
+
+
 module.exports = router;

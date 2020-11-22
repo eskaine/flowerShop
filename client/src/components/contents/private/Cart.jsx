@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect, Div } from "react";
+import React, { useState, Fragment, useEffect} from "react";
 import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
 import axios from "axios";
 import { decode } from "jsonwebtoken";
@@ -23,9 +23,8 @@ function Cart() {
     }
 
     async function updateQuantity(){
-        // console.log("hello")
-        try{
 
+        try{
             let response = await axios.put(process.env.REACT_APP_USER + `/cart/userid/updateCart`, quantity)
             getCart();
         }catch (error){
@@ -62,10 +61,6 @@ function Cart() {
     useEffect(() => {
         getCart();
     }, [])
-
-
-
-
 
 
     return (
