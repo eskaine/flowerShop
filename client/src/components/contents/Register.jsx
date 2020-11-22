@@ -25,7 +25,7 @@ function Register({ auth }) {
 
   return (
     <Fragment>
-      <Form>
+      <Form onSubmit={submitHandler}>
       <Form.Group controlId="formUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
