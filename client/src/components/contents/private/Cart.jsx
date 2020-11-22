@@ -1,7 +1,175 @@
-import React from 'react';
+import React, { useState, Fragment, useEffect, Div } from "react";
+import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
+import axios from "axios";
+import { decode } from "jsonwebtoken";
+
 
 function Cart() {
-    //EVERYTHING from here on is my past code
+    const [displayCart, setDisplayCart] = useState([])
+    const [quantity, setQuantity] = useState({})
+
+    async function getCart() {
+
+        try {
+            let token = localStorage.getItem("token");
+            let user = decode(token);
+            let userid = user.id;
+            let response = await axios.get(process.env.REACT_APP_USER + `/${userid}/cart`)
+            console.log(response.data.userCart)
+            setDisplayCart(response.data.userCart)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function changeHandler(e){
+        setQuantity((quantity)=>({...quantity,"id": e.target.id, [e.target.name]: e.target.value}))
+        console.log(quantity)
+    }
+
+
+    async function updateQuantity(){
+        try{
+            let token = localStorage.getItem("token");
+            let user = decode(token);
+            let userid = user.id;
+            console.log(userid)
+            let response = await axios.put(process.env.REACT_APP_USER + `/${userid}/updateCart`, quantity)
+            console.log(response)
+        }catch (error){
+            console.log(error)
+        }
+        
+    }
+
+    async function removeItem(){
+        console.log("remover here")
+    }
+
+    useEffect(() => {
+        getCart();
+    }, [])
+
+
+
+
+
+
+    return (
+        <Fragment>
+            <Row className="no-gutters">
+                <Col md={8} className="border">
+                    CART
+                    {displayCart.map((cart,index)=>(
+                        <Row className="no-gutters">
+                            <Col md={6} className="border">
+                                <Image src={cart.cartItem.img_url} fluid/>
+                            </Col>
+                            <Col md={6} className="border">
+                                <Card>
+                                    <Card.Title>
+                                        {cart.cartItem.productName}
+                                    </Card.Title>
+                                    <Card.Body>
+                                    <Card.Text>
+                                    {cart.cartItem.desc}
+                                    </Card.Text>
+                                    <Card.Text>
+                                    Quantity : {cart.count} <br/>
+                                    Total Price : {cart.totalPrice} <br/>
+                                    Ribbon : {cart.ribbon} <br/>
+                                    Wrap : {cart.wrap}
+                                    </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <Form inline>
+                                            <Form.Control 
+                                            type="Number" 
+                                            name="count"
+                                            id={cart._id}
+                                            placeholder={cart.count} 
+                                            onChange={changeHandler}
+                                            />
+                                            <Button
+                                            onClick={updateQuantity}
+                                            >Update cart</Button>
+                                            <Button
+                                            onClick={removeItem}
+                                            >Remove from Cart</Button>
+                                        </Form>
+                                        
+                                    </Card.Footer>
+                                </Card>
+                                
+                            </Col>
+
+                        </Row>
+                    ))}
+                </Col>
+                <Col md={4} className="border">
+                    <Button>Check Out</Button>
+                    <Button>Continue Browsing</Button>
+                </Col>
+            </Row>
+        </Fragment>
+    )
+};
+
+export default Cart;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//EVERYTHING from here on is my past code
     // function Cart({cart,setcart}) {
 
     //     let sum =0;
@@ -58,21 +226,3 @@ function Cart() {
     //         setcart(updatedCart)
         
     //     }
-
-
-
-
-
-
-
-
-
-
-    return (
-        <div>
-            Cart
-        </div>
-    )
-};
-
-export default Cart;
