@@ -9,7 +9,7 @@ import Register from "../contents/Register";
 import Cart from "../contents/private/Cart";
 import WishList from "../contents/private/WishList";
 
-function MainRoutes({ auth }) {
+function MainRoutes() {
   return (
     <Container className="border px-0 mt-5">
     <Switch>
@@ -19,14 +19,21 @@ function MainRoutes({ auth }) {
       <Route exact path="/products">
         <AllProducts />
       </Route>
+      <Route exact path="/products/:productName">
+        <Product />
+      </Route>
       <Route exact path="/register">
-        <Register auth={auth} />
+        <Register />
       </Route>
       <Route exact path="/login">
+<<<<<<< HEAD
         <Login auth={auth} />
       </Route>
       <Route exact path="/products/:productName/:productId">
         <Product />
+=======
+        <Login />
+>>>>>>> 5e8e6c56612d6adb52181db1174ade360144b283
       </Route>
       <Route exact path="/cart">
         <Cart />

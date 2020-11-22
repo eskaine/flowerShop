@@ -143,6 +143,11 @@ router.put("/cart/userid/updateCart", async (req, res) => {
 
 /**
  * @PUT delete quantity in cart via $pull operator
+ * ********************************************
+ * @UPDATE 
+ * @PUT -> @DELETE
+ * router.delete("/:userid/cart", ...
+ * ********************************************
  */
 router.put("/cart/userid/removeFromCart", async (req, res) => {
 

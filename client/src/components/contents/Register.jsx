@@ -1,9 +1,13 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Form, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux';
+import { Container, Form, Button } from "react-bootstrap";
+import { isAuth }  from '../../actions/actions';
 
-function Register({ auth }) {
+function Register() {
+    const dispatch = useDispatch();
+    const authState = useSelector(state => state.user.token);
     const [ form, setForm ] = useState({
         username: '',
         email: '',
@@ -18,19 +22,19 @@ function Register({ auth }) {
         e.preventDefault();
         let res = await axios.post(process.env.REACT_APP_ACC + "/register", form);
         if(res.status === 200) {
-            localStorage.setItem('token', res.data.token);
-            auth.setIsAuth(true);
+          let token = res.data.token;
+          dispatch(isAuth(token));
         }
     }
 
   return (
-    <Fragment>
+    <Container>
       <Form onSubmit={submitHandler}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
-      </Form.Group>
-      <Form.Group controlId="formEmail">
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
+        </Form.Group>
+        <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
         </Form.Group>
@@ -42,8 +46,8 @@ function Register({ auth }) {
             Register
         </Button>
       </Form>
-      { auth.isAuth && <Redirect to="/" /> }
-    </Fragment>
+      { authState && <Redirect to="/" /> }
+    </Container>
   );
 }
 
