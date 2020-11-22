@@ -6,7 +6,6 @@ const persistedState = loadState();
 const store = createStore(rootReducer, persistedState);
 
 store.subscribe(() => {
-    console.log('updating localstorage');
     saveState(store.getState());
 });
 

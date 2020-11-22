@@ -1,67 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { withRouter } from "react-router-dom";
 import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
 import axios from "axios";
-import { decode } from "jsonwebtoken";
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart }  from '../../actions/actions';
 
 function Product(props) {
-    console.log('proprops', props);
-    const [productData, setProductData] = useState({})
-    const [cart, setCart] = useState({})
-    let { productId } = useParams();
-    console.log(productId)//gets the current product id
-    //let {ribbon,wrap} = productData.customisation ? productData.customisation : {ribbon:[], wrap:[]};
+    const dispatch = useDispatch();
+    const {product} = props.location.state;
+    const { ribbon, wrap } = product.customisation;
+    const userid = useSelector(state => state.user.id);
+    const [custom, setCustom] = useState({})
 
-
-    async function getProducts() {
+    async function pushToCart(e) {
+        e.stopPropagation();
         try {
-            //note: always include "REACT_APP_XXXX" before custom name, its a react rule
-            let response = await axios.get(process.env.REACT_APP_PRODUCTS);
-            console.log("respor", response);
-            let product = response.data.products.find((el) => (el._id == productId));
-            setProductData(product);
+            let payload = { ...custom, id: product._id };
+            dispatch(addToCart(payload));
+            // tyrone, please update the axios
+           let data = await axios.put(process.env.REACT_APP_USER + `/${userid}/${product._id}`, custom);
         } catch (error) {
             console.log(error)
         }
     }
-
-
-    async function addToCart() {
-
-        try {
-            let token = localStorage.getItem("token");
-            let user = decode(token);
-            let userid = user.id;
-            let data = await axios.put(process.env.REACT_APP_USER + `/${userid}/${productId}`, cart)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
 
     function changeHandler(e) {
-        setCart((cart) => ({ ...cart, [e.target.name]: e.target.value }));
+        setCustom((custom) => ({ ...custom, [e.target.name]: e.target.value }));
     }
 
-   
-    useEffect(() => {
-        getProducts();
-    }, [])
-
-console.log(productData)
     return (
         <Row>
             <Col md={6}>
-                {/* <Image src={productData.img_url} fluid /> */}
+                <Image src={product.img_url} fluid />
             </Col>
             <Col md={6}>
                 <Card>
                     <Card.Body>
                         <Card.Title>
-                            {productData.productName}
+                            {product.productName}
                         </Card.Title>
                         <Card.Text>
-                            {productData.desc}
+                            {product.desc}
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -76,12 +55,12 @@ console.log(productData)
                             onChange={changeHandler}
                         >
                             <option>Choose a ribbon</option>
-                            {/* {ribbon.map((ribbon, index) => (
+                            {ribbon.map((ribbon, index) => (
                                 <option
                                     key={index}
                                     value={ribbon}
                                 >{ribbon}</option>
-                            ))} */}
+                            ))}
                         </Form.Control>
                         <Form.Control
                             as="select"
@@ -92,12 +71,12 @@ console.log(productData)
                             onChange={changeHandler}
                         >
                             <option>Choose a wrap</option>
-                            {/* {wrap.map((wrap, index) => (
+                            {wrap.map((wrap, index) => (
                                 <option
                                     key={index}
                                     value={wrap}
                                 >{wrap}</option>
-                            ))} */}
+                            ))}
                         </Form.Control>
                     </Form>
                     <Form inline>
@@ -113,7 +92,7 @@ console.log(productData)
 
                         <Button
                             className="mx-2"
-                            onClick={addToCart}
+                            onClick={pushToCart}
                         >Add to Cart</Button>
                     </Form>
                 </Form.Group>
@@ -122,4 +101,4 @@ console.log(productData)
     )
 };
 
-export default Product;
+export default withRouter(Product);

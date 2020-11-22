@@ -5,12 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Button } from "react-bootstrap";
 import { isAuth }  from '../../actions/actions';
 
-
 function Register() {
     const dispatch = useDispatch();
     const authState = useSelector(state => state.user.token);
-
-    // const [toRedirect, setToRedirect] = useState(false);
     const [ form, setForm ] = useState({
         username: '',
         email: '',
