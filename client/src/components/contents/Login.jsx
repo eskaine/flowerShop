@@ -1,12 +1,9 @@
 import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { Container, Form, Button } from "react-bootstrap";
-import { isAuth }  from '../../actions/actions';
+import { Form, Button } from "react-bootstrap";
 
-function Login() {
-    const dispatch = useDispatch();
+function Login({ setIsAuth }) {
     const [toRedirect, setToRedirect] = useState(false);
     const [ form, setForm ] = useState({
         email: '',
@@ -23,7 +20,7 @@ function Login() {
         if(res.status === 200) {
             localStorage.setItem('token', res.data.token);
             setToRedirect(true);
-            dispatch(isAuth());
+            setIsAuth(true);
         }
     }
 
