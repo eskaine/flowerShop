@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
-const createToken = require("../auth/auth");
+const {createToken} = require("../auth/auth");
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
 
@@ -15,6 +15,7 @@ require("dotenv").config();
  */
 
 router.post("/register", async (req, res, next) => {
+  console.log(req.body)
   passport.authenticate(
     "register",
     { session: false },
