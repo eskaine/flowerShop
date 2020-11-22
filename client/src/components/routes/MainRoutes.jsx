@@ -22,7 +22,7 @@ function MainRoutes({ auth }) {
         <Login auth={auth} />
       </Route>
       // Individual Product
-      <Route exact path="/products/:productName/:productId">
+      <Route exact path="/products/:productName">
         <Product />
       </Route>
       <Route exact path="/cart">

@@ -1,9 +1,15 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { Form, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux';
+import { Container, Form, Button } from "react-bootstrap";
+import { isAuth }  from '../../actions/actions';
 
-function Login({ auth }) {
+
+function Login() {
+    const dispatch = useDispatch();
+    const authState = useSelector(state => state.user.token);
+    // const [toRedirect, setToRedirect] = useState(false);
     const [ form, setForm ] = useState({
         email: '',
         password: ''
@@ -17,14 +23,12 @@ function Login({ auth }) {
         e.preventDefault();
         let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
         if(res.status === 200) {
-            localStorage.setItem('token', res.data.token);
-            auth.setIsAuth(true);
+          let token = res.data.token;
+            dispatch(isAuth(token));
         }
     }
-
   return (
-    <Fragment>
-      
+    <Container>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
@@ -38,10 +42,8 @@ function Login({ auth }) {
           Login
         </Button>
       </Form>
-      { auth.isAuth && <Redirect to="/" /> }
-    </Fragment>
-     
-
+      { authState && <Redirect to="/" /> }
+    </Container>
   );
 }
 

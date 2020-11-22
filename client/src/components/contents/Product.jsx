@@ -4,12 +4,13 @@ import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
 import axios from "axios";
 import { decode } from "jsonwebtoken";
 
-function Product() {
+function Product(props) {
+    console.log('proprops', props);
     const [productData, setProductData] = useState({})
     const [cart, setCart] = useState({})
     let { productId } = useParams();
     console.log(productId)//gets the current product id
-    let {ribbon,wrap} = productData.customisation ? productData.customisation : {ribbon:[], wrap:[]};
+    //let {ribbon,wrap} = productData.customisation ? productData.customisation : {ribbon:[], wrap:[]};
 
 
     async function getProducts() {
@@ -51,7 +52,7 @@ console.log(productData)
     return (
         <Row>
             <Col md={6}>
-                <Image src={productData.img_url} fluid />
+                {/* <Image src={productData.img_url} fluid /> */}
             </Col>
             <Col md={6}>
                 <Card>
@@ -75,12 +76,12 @@ console.log(productData)
                             onChange={changeHandler}
                         >
                             <option>Choose a ribbon</option>
-                            {ribbon.map((ribbon, index) => (
+                            {/* {ribbon.map((ribbon, index) => (
                                 <option
                                     key={index}
                                     value={ribbon}
                                 >{ribbon}</option>
-                            ))}
+                            ))} */}
                         </Form.Control>
                         <Form.Control
                             as="select"
@@ -91,12 +92,12 @@ console.log(productData)
                             onChange={changeHandler}
                         >
                             <option>Choose a wrap</option>
-                            {wrap.map((wrap, index) => (
+                            {/* {wrap.map((wrap, index) => (
                                 <option
                                     key={index}
                                     value={wrap}
                                 >{wrap}</option>
-                            ))}
+                            ))} */}
                         </Form.Control>
                     </Form>
                     <Form inline>
