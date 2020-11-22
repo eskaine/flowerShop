@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { findById } = require("../models/product.models");
 const Product = require("../models/product.models");
 const User = require("../models/user.models");
 
@@ -24,28 +25,6 @@ async function addToCart(body, params) {
 }
 
 /**
- * @PUT update quantity in cart
- */
-router.put("/:userid/cart", async (req,res)=>{
-    console.log("haahh")
-
-    try{
-        let {userid} = req.params.userid;
-        let {count,id}= req.body;
-        let user = await User.findById(userid)
-        console.log(user)
-
-        console.log("lol",req.body)
-    res.sendStatus(200)
-    }catch (error) {
-        res.status(400).json({message: "yeap"});
-    }
-    
-})
-
-
-
-/**
  * @PUT put items into cart
  * @if statement
  * @if Level1 : if blank cart(undefined) pust to array function
@@ -53,8 +32,7 @@ router.put("/:userid/cart", async (req,res)=>{
  * @if Level3 : if cartItem id is same BUT ribbon and wrap IS NOT SAME as item's carts wrap and ribbon, then push to cart
  */
 
-// push to cart
-router.put("/:userid/pushToCart/:productid", async (req, res) => {
+router.put("/:userid/:productid", async (req, res) => {
     try {
         let { count, ribbon, wrap } = req.body;
         let { userid, productid } = req.params;
@@ -118,11 +96,66 @@ router.get("/:userid/cart", async (req, res) => {
 })
 
 
-// router.put("/:userid/updateCart", async (req, res) => {
-// console.log("hello")
-// })
-//http://localhost:8888/user/5fb91228bc5bab3a182aaa49/updateCart
-//update Cart
+/**
+ * @PUT update quantity in cart
+ */
+router.put("/cart/userid/updateCart", async (req, res) => {
+    console.log(req.body)
 
+    try {
+        let { userid, cartid, count } = req.body;
+        console.log("userid", userid, "productid", cartid, "count", count)
+        let user = await User.findById(userid) 
+        let cart = user.cart.find((cart)=>(cart._id.equals(cartid)))
+        let product = await Product.findById(cart.cartItem)
+        let totalPrice = product.price * count
+        if (count >= 1 ){
+            await User.findOneAndUpdate(
+                {
+                    "_id": userid,
+                    "cart._id": cartid,
+                },
+                {
+                    $set: {
+                        "cart.$.count": count,
+                        "cart.$.totalPrice": totalPrice
+                    }
+                });
+        } else if (count <= 0) {
+            await User.findByIdAndUpdate(userid,
+                {
+                    $pull: {cart:{_id: cartid}
+ 
+                    }
+                }
 
+            )
+        }
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(400);
+    }
+
+})
+
+/**
+ * @PUT delete quantity in cart
+ */
+router.put("/cart/userid/removeFromCart", async (req,res)=>{
+    
+    try {
+        let {cartid,userid} = req.body;
+        await User.findByIdAndUpdate(userid,
+            {
+                $pull: {cart:{_id: cartid}
+
+                }
+            }
+
+        )
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(400);
+    }
+})
 module.exports = router;

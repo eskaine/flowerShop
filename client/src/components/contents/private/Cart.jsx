@@ -22,30 +22,42 @@ function Cart() {
         }
     }
 
-    function changeHandler(e){
-        setQuantity((quantity)=>({...quantity,"id": e.target.id, [e.target.name]: e.target.value}))
-        console.log(quantity)
-    }
-
-
     async function updateQuantity(){
         // console.log("hello")
         try{
-            let token = localStorage.getItem("token");
-            let user = decode(token);
-            let userid = user.id;
-            console.log(process.env)
-            let response = await axios.put(process.env.REACT_APP_USER + `/${userid}/updateCart`, quantity)
-            console.log(response)
+
+            let response = await axios.put(process.env.REACT_APP_USER + `/cart/userid/updateCart`, quantity)
+            getCart();
         }catch (error){
             console.log(error)
         }
         
     }
 
-    async function removeItem(){
-        console.log("remover here")
+    
+    async function removeItem(e){
+        try{
+            let token = localStorage.getItem("token");
+            let user = decode(token);
+            let userid = user.id;
+            let data = {"cartid":e.target.id, userid}
+            console.log(data)
+            let response = await axios.put(process.env.REACT_APP_USER + `/cart/userid/removeFromCart`, data)
+            getCart();
+        }catch (error){
+
+        }
     }
+
+    
+    function changeHandler(e){
+        let token = localStorage.getItem("token");
+        let user = decode(token);
+        let userid = user.id;
+        setQuantity((quantity)=>({...quantity,"cartid": e.target.id, [e.target.name]: e.target.value, userid}))
+        console.log(quantity)
+    }
+
 
     useEffect(() => {
         getCart();
@@ -95,6 +107,7 @@ function Cart() {
                                             onClick={updateQuantity}
                                             >Update cart</Button>
                                             <Button
+                                            id={cart._id}
                                             onClick={removeItem}
                                             >Remove from Cart</Button>
                                         </Form>
