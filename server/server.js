@@ -22,7 +22,7 @@ app.post("/", async(req,res)=>{
 // app.use('/user', passport.authenticate('jwt', { session: false }), require("./routes/user.routes"));
 
 // app.use('test', require("./routes/test.routes"));
-
+console.log(String("5fb8aa738f923c2e7c17a9e9").toString('base64'))
 
 app.get("*", (req, res) => {
   res.sendStatus(404);

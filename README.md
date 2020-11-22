@@ -2,7 +2,6 @@
 ## TechStack
 - React
 - React Bootstrap
-- Redux
 - MongoDB
 - axios
 - express
@@ -18,14 +17,14 @@ Due to the team composition, instead of splitting roles between frontend or back
 
 ### Eskaine
     - Tech Lead / Assistant Designer
-        - Project/Data Structure
+        - Codebase Structuring
         - CSS
 
 ### Tyrone
-    - Support Engineer
+    - Main Engineer
         - Features
-        - Data Pulling
-        - Frontend Layout
+        - Data Population
+        - Basic Frontend Layout
 
 ## Wireframes
 ###### Homepage
