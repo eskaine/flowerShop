@@ -12,18 +12,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-import {useSelector} from 'react-redux';
-
 function Navibar() {
-
-  const newState = useSelector(state => {
-    console.log("store", state);
-  });
   return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="#home">
-          <NavLink to="/">flowerPower</NavLink>
+          <NavLink to="/">FlowerShop</NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

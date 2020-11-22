@@ -15,7 +15,6 @@ require("dotenv").config();
  */
 
 router.post("/register", async (req, res, next) => {
-  console.log(req.body)
   passport.authenticate(
     "register",
     { session: false },

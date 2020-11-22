@@ -16,6 +16,7 @@ function Product() {
         try {
             //note: always include "REACT_APP_XXXX" before custom name, its a react rule
             let response = await axios.get(process.env.REACT_APP_PRODUCTS);
+            console.log("respor", response);
             let product = response.data.products.find((el) => (el._id == productId));
             setProductData(product);
         } catch (error) {

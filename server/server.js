@@ -26,8 +26,6 @@ app.post("/", async(req,res)=>{
 
 // app.use('test', require("./routes/test.routes"));
 
-app.use('/', require("./routes/main.routes"));
-
 app.get("*", (req, res) => {
   res.sendStatus(404);
 });
