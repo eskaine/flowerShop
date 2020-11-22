@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 
+app.use('/', require("./routes/main.routes"));
 app.use('/auth', require("./routes/auth.routes"));
 app.post("/", async(req,res)=>{
   let data = new User(req.body)
@@ -23,6 +24,7 @@ app.post("/", async(req,res)=>{
 
 // app.use('test', require("./routes/test.routes"));
 
+app.use('/', require("./routes/main.routes"));
 
 app.get("*", (req, res) => {
   res.sendStatus(404);
