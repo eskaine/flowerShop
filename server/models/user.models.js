@@ -8,19 +8,22 @@ const userSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    username: {type: String, required: true, unique: true},
+    username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     address: String,
     phone: Number,
     cart: [
-            {cartItem: 
-              {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Product",
-              }, 
-            count: Number 
-            }
+      {
+        cartItem: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        count: Number,
+        totalPrice: Number,
+        ribbon: String,
+        wrap: String,
+      }
     ],
     wishList: [
       {
@@ -35,7 +38,7 @@ const userSchema = new Schema(
 
 userSchema.pre(
   'save',
-  async function(next) {
+  async function (next) {
     const hash = await bcrypt.hash(this.password, 10);
 
     this.password = hash;
@@ -44,7 +47,7 @@ userSchema.pre(
 );
 
 
-userSchema.methods.isValidPassword = async function(password) {
+userSchema.methods.isValidPassword = async function (password) {
   const user = this;
   const compare = await bcrypt.compare(password, user.password);
 

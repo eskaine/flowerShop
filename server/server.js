@@ -15,6 +15,8 @@ app.use(passport.initialize());
 app.use(cors());
 
 app.use('/auth', require("./routes/auth.routes"));
+app.use('/products', require("./routes/products.routes"));
+app.use('/user', require("./routes/user.routes"));
 app.post("/", async(req,res)=>{
   let data = new User(req.body)
   await data.save()

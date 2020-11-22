@@ -3,7 +3,7 @@ import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Container, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { isAuth }  from '../../actions/actions';
 
 function Register() {
