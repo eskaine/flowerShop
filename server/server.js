@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 
+app.use('/', require("./routes/main.routes"));
 app.use('/auth', require("./routes/auth.routes"));
 app.post("/", async(req,res)=>{
   let data = new User(req.body)
@@ -22,7 +23,6 @@ app.post("/", async(req,res)=>{
 // app.use('/user', passport.authenticate('jwt', { session: false }), require("./routes/user.routes"));
 
 // app.use('test', require("./routes/test.routes"));
-console.log(String("5fb8aa738f923c2e7c17a9e9").toString('base64'))
 
 app.get("*", (req, res) => {
   res.sendStatus(404);
