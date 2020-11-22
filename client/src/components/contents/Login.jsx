@@ -3,8 +3,7 @@ import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 
-function Login({ setIsAuth }) {
-    const [toRedirect, setToRedirect] = useState(false);
+function Login({ auth }) {
     const [ form, setForm ] = useState({
         email: '',
         password: ''
@@ -19,8 +18,7 @@ function Login({ setIsAuth }) {
         let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
         if(res.status === 200) {
             localStorage.setItem('token', res.data.token);
-            setToRedirect(true);
-            setIsAuth(true);
+            auth.setIsAuth(true);
         }
     }
 
@@ -40,7 +38,7 @@ function Login({ setIsAuth }) {
           Login
         </Button>
       </Form>
-      { toRedirect && <Redirect to="/" /> }
+      { auth.isAuth && <Redirect to="/" /> }
     </Fragment>
      
 

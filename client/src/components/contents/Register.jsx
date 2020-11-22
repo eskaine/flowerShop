@@ -3,8 +3,7 @@ import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 
-function Register({ setIsAuth }) {
-    const [toRedirect, setToRedirect] = useState(false);
+function Register({ auth }) {
     const [ form, setForm ] = useState({
         username: '',
         email: '',
@@ -20,8 +19,7 @@ function Register({ setIsAuth }) {
         let res = await axios.post(process.env.REACT_APP_ACC + "/register", form);
         if(res.status === 200) {
             localStorage.setItem('token', res.data.token);
-            setToRedirect(true);
-            setIsAuth(true);
+            auth.setIsAuth(true);
         }
     }
 
@@ -44,7 +42,7 @@ function Register({ setIsAuth }) {
             Register
         </Button>
       </Form>
-      { toRedirect && <Redirect to="/" /> }
+      { auth.isAuth && <Redirect to="/" /> }
     </Fragment>
   );
 }

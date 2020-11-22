@@ -15,7 +15,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<NaviBar />
-			<MainRoutes setIsAuth={setIsAuth} />
+			<MainRoutes auth={{isAuth, setIsAuth}} />
 			<Footer />
 		</BrowserRouter>
 	);

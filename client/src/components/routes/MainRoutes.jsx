@@ -8,7 +8,7 @@ import Register from "../contents/Register";
 import Cart from "../contents/private/Cart";
 import WishList from "../contents/private/WishList";
 
-function MainRoutes({ setIsAuth }) {
+function MainRoutes({ auth }) {
   return (
     <Container className="border px-0 mt-5">
     <Switch>
@@ -16,10 +16,10 @@ function MainRoutes({ setIsAuth }) {
         <Home />
       </Route>
       <Route exact path="/register">
-        <Register setIsAuth={setIsAuth} />
+        <Register auth={auth} />
       </Route>
       <Route exact path="/login">
-        <Login setIsAuth={setIsAuth} />
+        <Login auth={auth} />
       </Route>
       // Individual Product
       <Route exact path="/products/:productName/:productId">
