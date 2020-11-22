@@ -1,23 +1,16 @@
-import React, {useState, useEffect} from "react";
-import  {BrowserRouter} from "react-router-dom";
+import React, {Fragment, useState, useEffect} from "react";
 import NaviBar from "./components/NaviBar";
 import MainRoutes from "./components/routes/MainRoutes";
 import Footer from "./components/Footer";
 import "./styles/styles.scss";
 
 function App() {
-	const [isAuth, setIsAuth] = useState(false);
-
-	useEffect(() => {
-		console.log("auth state", isAuth);
-	}, [isAuth]);
-
 	return (
-		<BrowserRouter>
+		<Fragment>
 			<NaviBar />
-			<MainRoutes auth={{isAuth, setIsAuth}} />
+			<MainRoutes />
 			<Footer />
-		</BrowserRouter>
+		</Fragment>
 	);
 }
 
