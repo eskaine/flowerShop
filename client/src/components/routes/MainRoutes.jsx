@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import AllProducts from "../contents/AllProducts";
 import Home from "../contents/Home";
 import Product from "../contents/Product";
 import Login from "../contents/Login";
@@ -14,6 +15,9 @@ function MainRoutes({ auth }) {
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route exact path="/products">
+        <AllProducts />
       </Route>
       <Route exact path="/register">
         <Register auth={auth} />
