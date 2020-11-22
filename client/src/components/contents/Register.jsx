@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { isAuth }  from '../../actions/actions';
 
 function Register() {
@@ -29,24 +29,38 @@ function Register() {
 
   return (
     <Container>
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
-        </Form.Group>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control name="password" type="password" value={form.password} placeholder="Password" onChange={changeHandler} />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-            Register
-        </Button>
-      </Form>
-      { authState && <Redirect to="/" /> }
+      <Row>
+      <Col md={6} s={12}
+        style={{
+          height: '60vh',
+          backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`
+        }}
+          >
+              <div className="text-center m-5">
+                  <h3>Sign Up</h3>
+              </div>
+      </Col>
+      <Col md={6} s={12}>
+        <Form onSubmit={submitHandler} >
+          <Form.Group controlId="formUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
+          </Form.Group>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
+          </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control name="password" type="password" value={form.password} placeholder="Password" onChange={changeHandler} />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+              Register
+          </Button>
+        </Form>
+        {/* { authState && <Redirect to="/" /> } */}
+      </Col>
+      </Row>
     </Container>
   );
 }

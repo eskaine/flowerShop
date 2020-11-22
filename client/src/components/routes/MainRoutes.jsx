@@ -8,6 +8,7 @@ import Login from "../contents/Login";
 import Register from "../contents/Register";
 import Cart from "../contents/private/Cart";
 import WishList from "../contents/private/WishList";
+import UserProfile from "../contents/private/UserProfile";
 
 function MainRoutes() {
   return (
@@ -22,18 +23,14 @@ function MainRoutes() {
       <Route exact path="/products/:productName">
         <Product />
       </Route>
+      <Route exact path="/account/:username">
+        <UserProfile />
+      </Route>
       <Route exact path="/register">
         <Register />
       </Route>
       <Route exact path="/login">
-<<<<<<< HEAD
-        <Login auth={auth} />
-      </Route>
-      <Route exact path="/products/:productName/:productId">
-        <Product />
-=======
         <Login />
->>>>>>> 5e8e6c56612d6adb52181db1174ade360144b283
       </Route>
       <Route exact path="/cart">
         <Cart />
