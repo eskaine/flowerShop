@@ -25,7 +25,6 @@ function MainRoutes({ auth }) {
       <Route exact path="/login">
         <Login auth={auth} />
       </Route>
-      // Individual Product
       <Route exact path="/products/:productName/:productId">
         <Product />
       </Route>

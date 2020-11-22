@@ -27,6 +27,7 @@ function Cart() {
         try{
             let response = await axios.put(process.env.REACT_APP_USER + `/cart/userid/updateCart`, quantity)
             getCart();
+            console.log(response);
         }catch (error){
             console.log(error)
         }
@@ -43,6 +44,7 @@ function Cart() {
             console.log(data)
             let response = await axios.put(process.env.REACT_APP_USER + `/cart/userid/removeFromCart`, data)
             getCart();
+            console.log(response);
         }catch (error){
 
         }

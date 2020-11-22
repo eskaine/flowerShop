@@ -30,7 +30,7 @@ function AllProducts() {
             <Row className="d-flex justify-content-center no-gutters">
                 {products.map((product, index) => (
 
-                    <Col md={3} className="mx-0 my-2">
+                    <Col key={index} md={3} className="mx-0 my-2">
                         <Link
                             style={{ textDecoration: 'none', color: "black" }}
                             to={`/products/${product.productName}/${product._id}`}

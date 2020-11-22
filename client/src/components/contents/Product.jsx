@@ -17,7 +17,7 @@ function Product() {
             //note: always include "REACT_APP_XXXX" before custom name, its a react rule
             let response = await axios.get(process.env.REACT_APP_PRODUCTS);
             console.log("respor", response);
-            let product = response.data.products.find((el) => (el._id == productId));
+            let product = response.data.products.find((el) => (el._id === productId));
             setProductData(product);
         } catch (error) {
             console.log(error)
@@ -32,6 +32,7 @@ function Product() {
             let user = decode(token);
             let userid = user.id;
             let data = await axios.put(process.env.REACT_APP_USER + `/${userid}/${productId}`, cart)
+            console.log(data);
         } catch (error) {
             console.log(error)
         }
