@@ -29,11 +29,12 @@ function Cart() {
 
 
     async function updateQuantity(){
+        // console.log("hello")
         try{
             let token = localStorage.getItem("token");
             let user = decode(token);
             let userid = user.id;
-            console.log(userid)
+            console.log(process.env)
             let response = await axios.put(process.env.REACT_APP_USER + `/${userid}/updateCart`, quantity)
             console.log(response)
         }catch (error){

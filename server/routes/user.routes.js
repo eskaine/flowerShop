@@ -24,7 +24,29 @@ async function addToCart(body, params) {
 }
 
 /**
- * @PUT put into cart
+ * @PUT update quantity in cart
+ */
+router.put("/:userid/cart", async (req,res)=>{
+    console.log("haahh")
+
+    try{
+        let {userid} = req.params.userid;
+        let {count,id}= req.body;
+        let user = await User.findById(userid)
+        console.log(user)
+
+        console.log("lol",req.body)
+    res.sendStatus(200)
+    }catch (error) {
+        res.status(400).json({message: "yeap"});
+    }
+    
+})
+
+
+
+/**
+ * @PUT put items into cart
  * @if statement
  * @if Level1 : if blank cart(undefined) pust to array function
  * @if Level2 : if cartItem id is same AND ribbon and wrap same as item's carts wrap, then update price and count,
@@ -32,7 +54,7 @@ async function addToCart(body, params) {
  */
 
 // push to cart
-router.put("/:userid/:productid", async (req, res) => {
+router.put("/:userid/pushToCart/:productid", async (req, res) => {
     try {
         let { count, ribbon, wrap } = req.body;
         let { userid, productid } = req.params;
@@ -75,7 +97,9 @@ router.put("/:userid/:productid", async (req, res) => {
         res.sendStatus(400);
     }
 })
-
+/**
+ * @GET get Cart items
+ */
 router.get("/:userid/cart", async (req, res) => {
     try {
         let user = await User.findById(req.params.userid).populate(
@@ -94,20 +118,11 @@ router.get("/:userid/cart", async (req, res) => {
 })
 
 
+// router.put("/:userid/updateCart", async (req, res) => {
+// console.log("hello")
+// })
+//http://localhost:8888/user/5fb91228bc5bab3a182aaa49/updateCart
 //update Cart
-router.put("/:userid/updateCart", async (req,res)=>{
-    try{
-        let {userid} = req.params.userid;
-        let {count,id}= req.body;
-        let user = await User.findById(userid)
-        console.log(user)
 
-        console.log("lol",req.body)
-    res.sendStatus(200)
-    }catch (error) {
-        res.sendStatus(400);
-    }
-    
-})
 
 module.exports = router;
