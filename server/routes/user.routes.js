@@ -26,7 +26,7 @@ router.get("/profile/:userid", async (req, res) => {
         let userDetails = await User.findOne({ _id: req.params.userid },
             "firstName lastName username email password address phone"
         )
-        console.log(userDetails)
+
         res.status(200).json({ userDetails })
     } catch (error) {
         res.sendStatus(400)
@@ -73,11 +73,11 @@ router.put("/profile/:userid/password", async (req,res)=>{
         let userid = req.params.userid;
         let dbpassword = await User.findOne({_id: userid},"password");
         let result = await bcrypt.compare(oldPassword, dbpassword.password);
-        // console.log(result)
+
 
         if(result) {
             let hash = await bcrypt.hash(newPassword,10);
-            // console.log(hash)
+
             await User.findByIdAndUpdate(userid,
                 {
                     $set: {
@@ -269,15 +269,13 @@ router.put("/cart/userid/updateCart", async (req, res) => {
  * ***************************************************************
  */
 
-
  /**
   * @GET USER PROFILE WISHLIST
   */
-
 router.get("/wishlist/:userid",async (req,res)=>{
     console.log("hello wishlist here")
     try {
-        let wishList = await User.findOne({ _id: req.params.userid },"wishList")
+        let wishList = await User.findOne({ _id: req.params.userid },"wishList").populate("wishList");
         res.status(200).json(wishList)
     }catch(error) {
         res.sendStatus(400);
@@ -286,14 +284,57 @@ router.get("/wishlist/:userid",async (req,res)=>{
 
 
  /**
-  * @POST TO WISHLIST
+  * @POST PUSH TO WISHLIST
   */
-
   router.post("/wishlist/:userid", async (req,res)=>{
+    try {
+        console.log("hellow add wishlist here")
+        let productid = req.body.productid;
+        let userid = req.params.userid;
+        
+        let user = await User.findById(userid);
+        let item = user.wishList.find((el) => el._id.equals(productid))
+        console.log(user,item)
+        console.log(productid,userid)
+        if (item === undefined) {
 
+            await User.findByIdAndUpdate(userid,
+                {
+                    $push: {
+                        wishList: productid
+                    }
+                })
+            res.sendStatus(200)
+        } else if (item._id.equals(productid)) {
+            res.sendStatus(400)
+        } 
+        
+    }catch (error){
+        res.sendStatus(400)
+    }
   })
 
 
+ /**
+  * @PUT REMOVE FROM WISHLIST
+  */
+  router.put("/wishlist/:userid/remove", async (req,res)=>{
+    try {
+
+        let wishListid = req.body.wishListid;
+        let userid = req.params.userid;
+        console.log(wishListid,userid)
+        await User.findByIdAndUpdate(userid,
+                {
+                    $pull: {
+                        wishList: wishListid
+                    }
+                })
+        res.sendStatus(200)       
+    }catch (error){
+        res.sendStatus(400)
+    }
+  })
 module.exports = router;
 
 
