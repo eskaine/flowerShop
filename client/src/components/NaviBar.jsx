@@ -31,13 +31,18 @@ function Navibar() {
         className="justify-content-end bg-light p-2"
       >
         <div className="container-fluid">
-          <div className="mr-auto nav-link nav-item">
-            <div
-              id="sidebarCollapse"
-              onClick={sidebarHandler}
-            >
-              <FontAwesomeIcon icon={faBars} />
+          <div className="mr-auto d-flex">
+            <div className="nav-link nav-item">
+              <div
+                id="sidebarCollapse"
+                onClick={sidebarHandler}
+              >
+                <FontAwesomeIcon icon={faBars} />          
+              </div>
             </div>
+              <NavLink to="/" className="nav-link nav-item logo">
+              <span>mumsworkshop</span>
+              </NavLink>
           </div>
 
 
@@ -64,7 +69,6 @@ function Navibar() {
             </Fragment>
           )}
 
-          {/* ----------- SHOW BEFORE LOGGIN IN ----------- */}
           {token ? (
             ""
           ) : (
