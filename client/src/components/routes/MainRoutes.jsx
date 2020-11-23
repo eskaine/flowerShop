@@ -6,9 +6,7 @@ import Home from "../contents/Home";
 import Product from "../contents/Product";
 import Login from "../contents/Login";
 import Register from "../contents/Register";
-import Cart from "../contents/private/Cart";
-import WishList from "../contents/private/WishList";
-import UserProfile from "../contents/private/UserProfile";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function MainRoutes() {
   return (
@@ -17,27 +15,19 @@ function MainRoutes() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/products">
-        <AllProducts />
-      </Route>
-      <Route exact path="/products/:productName">
-        <Product />
-      </Route>
-      <Route exact path="/account/:username">
-        <UserProfile />
-      </Route>
       <Route exact path="/register">
         <Register />
       </Route>
       <Route exact path="/login">
         <Login />
       </Route>
-      <Route exact path="/cart">
-        <Cart />
+      <Route exact path="/products">
+        <AllProducts />
       </Route>
-      <Route exact path="/wishlist">
-        <WishList />
+      <Route exact path="/products/:productName">
+        <Product />
       </Route>
+      <ProtectedRoutes />
     </Switch>
     </Container>
   );
