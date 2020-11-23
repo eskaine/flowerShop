@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt")
  * 
  */
 
+
 /**
  * @functions USER PROFILES
  * ***************************************************************
@@ -20,7 +21,7 @@ const bcrypt = require("bcrypt")
  * @findOne find by userid and return only specific keys to model obj.
  */
 router.get("/profile/:userid", async (req, res) => {
-    // console.log("hello")
+
     try {
         let userDetails = await User.findOne({ _id: req.params.userid },
             "firstName lastName username email password address phone"
@@ -34,45 +35,61 @@ router.get("/profile/:userid", async (req, res) => {
 
 
 /**
- * @POST USER PROFILE UPDATES
+ * @PUT USER PROFILE UPDATES
  * @findOne find by userid and return only specific keys to model obj if not null.
  */
+router.put("/profile/:userid", async (req, res) => {
+    console.log('new updata', req.body);
 
-router.post("/profile/:userid", async (req, res) => {
-    console.log("hello its me")
     try {
 
         let objForUpdate= {}
 
         if(req.body.firstName) objForUpdate.firstName = req.body.firstName;
         if(req.body.lastName)  objForUpdate.lastName  = req.body.lastName;
-        if(req.body.username)  objForUpdate.username  = req.body.username;
         if(req.body.email)     objForUpdate.email     = req.body.email;
-        if(req.body.password)  objForUpdate.password  = bcrypt.hashSync(req.body.password, 10) 
         if(req.body.address)   objForUpdate.address   = req.body.address;
         if(req.body.phone)     objForUpdate.phone     = req.body.phone;
 
         objForUpdate = { $set: objForUpdate }
         
-        await User.update({_id: req.params.userid}, objForUpdate)
-        
-        res.sendStatus(200)
+        let updatedData = await User.findByIdAndUpdate({_id: req.params.userid}, objForUpdate, {new: true});
+        console.log(updatedData);
+        res.status(200).json({ updatedData })
     } catch (error) {
         res.sendStatus(400)
     }
 })
 
-
 /**
- * @POST USER PROFILES
+ * @PUT USER PROFILE PASSWORD UPDATE
+ * @findOne find by userid and return only specific keys to model obj if not null.
  */
 
-router.get("/profile/:userid", async (req, res) => {
-    console.log("hello")
+router.put("/profile/:userid/password", async (req,res)=>{
     try {
-        let user = await User.findById(req.params.userid)
-        res.status(200).json({ user })
-    } catch (error) {
+
+        let {oldPassword, newPassword} = req.body;
+        let userid = req.params.userid;
+        let dbpassword = await User.findOne({_id: userid},"password");
+        let result = await bcrypt.compare(oldPassword, dbpassword.password);
+        // console.log(result)
+
+        if(result) {
+            let hash = await bcrypt.hash(newPassword,10);
+            // console.log(hash)
+            await User.findByIdAndUpdate(userid,
+                {
+                    $set: {
+                        password: hash
+                    }
+                }
+            )
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(403)
+        }
+    }catch (error){
         res.sendStatus(400)
     }
 })
@@ -246,13 +263,48 @@ router.put("/cart/userid/updateCart", async (req, res) => {
 
 
 
+
 /**
- * @functions CART
+ * @functions WISHLIST
  * ***************************************************************
  */
 
 
+ /**
+  * @GET USER PROFILE WISHLIST
+  */
 
+router.get("/wishlist/:userid",async (req,res)=>{
+    console.log("hello wishlist here")
+    try {
+        let wishList = await User.findOne({ _id: req.params.userid },"wishList")
+        res.status(200).json(wishList)
+    }catch(error) {
+        res.sendStatus(400);
+    }
+})
+
+
+ /**
+  * @POST TO WISHLIST
+  */
+
+  router.post("/wishlist/:userid", async (req,res)=>{
+
+  })
 
 
 module.exports = router;
+
+
+
+
+// router.get("/profile/:userid", async (req, res) => {
+//     console.log("hello")
+//     try {
+//         let user = await User.findById(req.params.userid)
+//         res.status(200).json({ user })
+//     } catch (error) {
+//         res.sendStatus(400)
+//     }
+// })
