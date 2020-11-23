@@ -52,8 +52,8 @@ router.put("/profile/:userid", async (req, res) => {
 
         objForUpdate = { $set: objForUpdate }
         
-        await User.update({_id: req.params.userid}, objForUpdate);
-        let updatedData = await User.findById(req.params.userid);
+        let updatedData = await User.findByIdAndUpdate({_id: req.params.userid}, objForUpdate, {new: true});
+    
         res.status(200).json({ updatedData })
     } catch (error) {
         res.sendStatus(400)
