@@ -18,7 +18,9 @@ function UserProfile() {
 
     async function fetch() {
         try {
+            console.log(user);
             let res = await axios.get(process.env.REACT_APP_USER + `/profile/${user.id}`, authHeader(user.token));
+            console.log(res.data);
             if(res.status === 200) {
                 setForm({...form, ...res.data.userDetails});
             }
