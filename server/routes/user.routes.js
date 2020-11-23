@@ -39,6 +39,7 @@ router.get("/profile/:userid", async (req, res) => {
  * @findOne find by userid and return only specific keys to model obj if not null.
  */
 router.put("/profile/:userid", async (req, res) => {
+    console.log('new updata', req.body);
 
     try {
 
@@ -53,7 +54,7 @@ router.put("/profile/:userid", async (req, res) => {
         objForUpdate = { $set: objForUpdate }
         
         let updatedData = await User.findByIdAndUpdate({_id: req.params.userid}, objForUpdate, {new: true});
-    
+        console.log(updatedData);
         res.status(200).json({ updatedData })
     } catch (error) {
         res.sendStatus(400)

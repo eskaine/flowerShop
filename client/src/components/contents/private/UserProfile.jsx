@@ -11,16 +11,21 @@ function UserProfile() {
         lastname: '',
         username: '',
         email: '',
-        password: '',
         address: '',
-        contact: ''
+        phone: ''
+    });
+
+    const [ passwords, setPasswords ] = useState({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
     });
 
     async function fetch() {
         try {
             console.log(user);
             let res = await axios.get(process.env.REACT_APP_USER + `/profile/${user.id}`, authHeader(user.token));
-            console.log(res.data);
+            console.log(res);
             if(res.status === 200) {
                 setForm({...form, ...res.data.userDetails});
             }
@@ -33,12 +38,27 @@ function UserProfile() {
         setForm({...form, [e.target.name]: e.target.value});
     }
 
+    function pChangeHandler(e) {
+        setPasswords({...form, [e.target.name]: e.target.value});
+    }
+
     async function submitHandler(e){
         e.preventDefault();
         try {
-            let res = await axios.post(process.env.REACT_APP_USER + `/profile/${user.id}`, form, authHeader(user.token));
+            let res = await axios.put(process.env.REACT_APP_USER + `/profile/${user.id}`, form, authHeader(user.token));
             if(res.status === 200) {
                 setForm({...form, ...res.data.userDetails});
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    async function passwordHandler(e){
+        e.preventDefault();
+        try {
+            let res = await axios.put(process.env.REACT_APP_USER + `/profile/${user.id}/password`, passwords, authHeader(user.token));
+            if(res.status === 200) {
             }
         } catch (err) {
             console.error(err);
@@ -60,23 +80,22 @@ function UserProfile() {
                 <Col md={6} s={12}>
                     <h3 className="formLabel">Profile</h3>
                         <Form.Label>Username: {form.username}</Form.Label>
-                    <Form>
-                        {/* PLEASE UPDATE FORM SUBMIT */}
+                    <Form onSubmit={passwordHandler}>
                         <Form.Group controlId="formPassword">
                             <Form.Label>Old Password</Form.Label>
-                            <Form.Control name="password" type="password" placeholder="Old Password" onChange={changeHandler} />
+                            <Form.Control name="oldPassword" type="password" value={passwords.oldPassword} placeholder="Old Password" onChange={pChangeHandler} />
                         </Form.Group>
                         <Row>
                             <Col md={6}>
                                 <Form.Group controlId="formPassword">
                                     <Form.Label>New Password</Form.Label>
-                                    <Form.Control name="password" type="password" placeholder="New Password" onChange={changeHandler} />
+                                    <Form.Control name="newPassword" type="password" value={passwords.newPassword} placeholder="New Password" onChange={pChangeHandler} />
                                 </Form.Group>
                             </Col>
                             <Col md={6}>
                                 <Form.Group controlId="formPassword">
                                     <Form.Label>Confirm New Password</Form.Label>
-                                    <Form.Control name="password" type="password" placeholder="Confirm New Password" onChange={changeHandler} />
+                                    <Form.Control name="confirmPassword" type="password" value={passwords.confirmPassword} placeholder="Confirm New Password" onChange={pChangeHandler} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -103,7 +122,7 @@ function UserProfile() {
                     </Form.Group>
                     <Form.Group controlId="formPhone">
                         <Form.Label>Contact No.</Form.Label>
-                        <Form.Control name="contact" type="number" value={form.contact} placeholder="Contact Number" onChange={changeHandler} />
+                        <Form.Control name="phone" type="number" value={form.phone} placeholder="Contact Number" onChange={changeHandler} />
                     </Form.Group>
                     <Button id="submit-btn" type="submit">
                         Update

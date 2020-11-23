@@ -5,7 +5,7 @@ export function productUrl(str) {
 export function authHeader(token) {
     return {
         headers: {
-            "x-auth-token": token
+            "Authorization": `Bearer ${token}`
           }
     }
 }
