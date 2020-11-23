@@ -58,14 +58,13 @@ function Cart() {
     getCart();
   }, []);
 
-  console.log(displayCart);
   return (
     <Fragment>
       <Row className="no-gutters">
         <Col md={8} className="border">
           CART
           {displayCart.map((cart, index) => (
-            <Row className="no-gutters">
+            <Row key={index} className="no-gutters">
               <Col md={6} className="border">
                 <Image src={cart.cartItem.img_url} fluid />
               </Col>
