@@ -2,11 +2,12 @@ import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button } from "react-bootstrap";
 import axios from "axios";
 import { loadState } from "../../../helpers/localStorage";
+import { useSelector } from 'react-redux';
 
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
-  const { user } = loadState();
+  const user = useSelector(state => state.user);
 
   async function getCart() {
     try {
@@ -37,7 +38,7 @@ function Cart() {
       let data = { cartid: e.target.id, userid: user.id };
       console.log(data);
       let response = await axios.delete(
-        process.env.REACT_APP_USER + `/cart/userid/removeFromCart`,
+        process.env.REACT_APP_USER + `/userid/cart`,
         data
       );
       getCart();
