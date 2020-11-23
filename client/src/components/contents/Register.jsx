@@ -58,7 +58,7 @@ function Register() {
               Register
           </Button>
         </Form>
-        {/* { authState && <Redirect to="/" /> } */}
+        { authState && <Redirect to="/" /> }
       </Col>
       </Row>
     </Container>

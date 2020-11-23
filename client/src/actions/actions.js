@@ -24,3 +24,15 @@ export const removeFromCart = () => {
         type: "REMOVE_FROM_CART"
     }
 }
+
+export const disableSidebar = () => {
+    return {
+        type: "DISABLE_SIDEBAR"
+    }
+}
+
+export const enableSidebar = () => {
+    return {
+        type: "ENABLE_SIDEBAR"
+    }
+}

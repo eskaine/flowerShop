@@ -7,6 +7,7 @@ import { isAuth }  from '../../actions/actions';
 
 function Login() {
     const dispatch = useDispatch();
+    const authState = useSelector(state => state.user.token);
     const [ form, setForm ] = useState({
         email: '',
         password: ''
@@ -19,6 +20,7 @@ function Login() {
     async function submitHandler(e) {
         e.preventDefault();
         let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
+        console.log(res);
         if(res.status === 200) {
           let token = res.data.token;
             dispatch(isAuth(token));
@@ -53,6 +55,7 @@ function Login() {
           </Form>
         </Col>
       </Row>
+        { authState && <Redirect to="/" /> }
     </Container>
   );
 }
