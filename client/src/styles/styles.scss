@@ -3,17 +3,158 @@
 // Variables
 $primaryColor: red;
 $secondaryColor: blue;
+$paleYellow: #fffef9;
+$pastelPink: #ffebec;
+$lightBrown: #b49987;
+$grayBrown: #585b56;
+$gray: #1b2326;
+
+$titleFont: 'Lato', sans-serif;
+$bodyFont: 'Roboto', sans-serif;
+
+body {
+  color: $gray;
+  font-family: $bodyFont;
+  background-color: $paleYellow;
+}
+
+.container-fluid {
+  background-color: $pastelPink;
+}
+
+.container-fluid:children {
+  color: $lightBrown;
+}
+
+#navi-bar {
+  color: $lightBrown;
+  text-decoration: none;
+}
+
+#submit-btn {
+  color: $paleYellow;
+  text-decoration: none;
+  background-color: $lightBrown;
+  border: none;
+  border-radius: 0;
+}
+
+#submit-btn:hover {
+  color: $gray;
+  background: $pastelPink;
+  transition: all 0.5s;
+}
+
+
+#navi-bar div.nav-link:hover, {
+  color: $gray;
+  background: $paleYellow;
+  transition: all 0.5s;
+}
+
+#sidebar {
+  margin-left: -320px;
+  min-width: 320px;
+  max-width: 320px;
+  background-color: $pastelPink !important;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: 0;
+}
+
+a, a:hover, a:focus {
+  color: $lightBrown;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#sidebar a {
+  width: 320px;
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+#sidebar a:hover {
+  color: $gray;
+  background: $paleYellow;
+}
+
+.container {
+  border: none !important;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  opacity: 0;
+  transition: all 3s ease-in-out;
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.card {
+  height: 25rem;
+}
+
+.card-img-top {
+  margin: 5px auto;
+  height: 240px; 
+  width: 240px;
+}
+
 
 // Tablet
 @media only screen and (max-width: 768px) {
+
   body {
-    background-color: lightblue;
+    font-size: 0.8rem;
+  }
+
+  #sidebar {
+    margin-left: -260px;
+    min-width: 260px;
+    max-width: 260px;
+    font-size: 0.7rem;
+  }
+
+  #navi-bar {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    margin: 0 auto 1 auto;
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  .card-img-top {
+    margin: 2px auto;
+    height: 200px;
+    width: 200px;
   }
 }
 
 // Desktop
 @media only screen and (max-width: 1024px) {
-  body {
-    background-color: lightblue;
+  .card-img-top {
+    margin: 5px auto;
+    height: 220px;
+    width: 220px;
   }
 }
