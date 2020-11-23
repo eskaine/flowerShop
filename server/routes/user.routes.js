@@ -20,7 +20,6 @@ const bcrypt = require("bcrypt")
  * @findOne find by userid and return only specific keys to model obj.
  */
 router.get("/profile/:userid", async (req, res) => {
-    // console.log("hello")
     try {
         let userDetails = await User.findOne({ _id: req.params.userid },
             "firstName lastName username email password address phone"
@@ -39,14 +38,12 @@ router.get("/profile/:userid", async (req, res) => {
  */
 
 router.post("/profile/:userid", async (req, res) => {
-    console.log("hello its me")
     try {
 
         let objForUpdate= {}
 
         if(req.body.firstName) objForUpdate.firstName = req.body.firstName;
         if(req.body.lastName)  objForUpdate.lastName  = req.body.lastName;
-        if(req.body.username)  objForUpdate.username  = req.body.username;
         if(req.body.email)     objForUpdate.email     = req.body.email;
         if(req.body.password)  objForUpdate.password  = bcrypt.hashSync(req.body.password, 10) 
         if(req.body.address)   objForUpdate.address   = req.body.address;
@@ -54,11 +51,11 @@ router.post("/profile/:userid", async (req, res) => {
 
         objForUpdate = { $set: objForUpdate }
         
-        await User.update({_id: req.params.userid}, objForUpdate)
-        
+        let update = await User.update({_id: req.params.userid}, objForUpdate)
+        console.log("update", update);
         res.sendStatus(200)
     } catch (error) {
-        res.sendStatus(400)
+        res.sendStatus(403)
     }
 })
 

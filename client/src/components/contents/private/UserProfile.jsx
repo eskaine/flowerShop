@@ -19,7 +19,9 @@ function UserProfile() {
     async function fetch() {
         try {
             let res = await axios.get(process.env.REACT_APP_USER + `/profile/${user.id}`, authHeader(user.token));
-            console.log('form data', res.data);
+            if(res.status === 200) {
+                setForm({...form, ...res.data.userDetails});
+            }
         } catch (err) {
             console.error(err);
         }
@@ -29,10 +31,13 @@ function UserProfile() {
         setForm({...form, [e.target.name]: e.target.value});
     }
 
-    async function submitHandler(){
+    async function submitHandler(e){
+        e.preventDefault();
         try {
             let res = await axios.post(process.env.REACT_APP_USER + `/profile/${user.id}`, form, authHeader(user.token));
-            console.log('form data', res.data);
+            if(res.status === 200) {
+                setForm({...form, ...res.data.userDetails});
+            }
         } catch (err) {
             console.error(err);
         }
@@ -53,6 +58,10 @@ function UserProfile() {
                 <Col md={6} s={12}>
                     <Form onSubmit={submitHandler}>
                     <h3 className="formLabel">Profile</h3>
+                    <Form.Group controlId="formUsername">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control name="username" type="text" value={form.username} disabled />
+                    </Form.Group>
                     <Form.Group controlId="formFirstname">
                         <Form.Label>First Name:</Form.Label>
                         <Form.Control name="firstname" type="text" value={form.firstname} placeholder="First Name" onChange={changeHandler} />
@@ -60,11 +69,7 @@ function UserProfile() {
                     <Form.Group controlId="formLastname">
                         <Form.Label>Last Name:</Form.Label>
                         <Form.Control name="lastname" type="text" value={form.lastname} placeholder="Last Name" onChange={changeHandler} />
-                    </Form.Group>
-                    <Form.Group controlId="formUsername">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
-                    </Form.Group>
+                    </Form.Group>  
                     <Form.Group controlId="formEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
@@ -78,11 +83,11 @@ function UserProfile() {
                         <Form.Control name="address" type="text" value={form.address} placeholder="Address" onChange={changeHandler} />
                     </Form.Group>
                     <Form.Group controlId="formPhone">
-                        <Form.Label>Contact Number</Form.Label>
-                        <Form.Control name="phone" type="number" value={form.contact} placeholder="Contact Number" onChange={changeHandler} />
+                        <Form.Label>Contact No.</Form.Label>
+                        <Form.Control name="contact" type="number" value={form.contact} placeholder="Contact Number" onChange={changeHandler} />
                     </Form.Group>
                     <Button id="submit-btn" type="submit">
-                        Update Profile
+                        Update
                     </Button>
                     </Form>
                 </Col>
