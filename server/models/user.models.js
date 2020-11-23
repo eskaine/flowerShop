@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-
 // TO BE UPDATED IF NEEDED for CHANGES
 const userSchema = new Schema(
   {
