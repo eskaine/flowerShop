@@ -33,17 +33,24 @@ body {
   font-family: $logoFont;
 }
 
+
 #navi-bar {
   margin: 0;
   color: $lightBrown;
   text-decoration: none;
   font-family: $navFont;
   font-weight: bold;
-  div.nav-link:hover {
+  div.nav-link {
+    &:hover {
     color: $gray;
     background: $paleYellow;
     transition: all 0.5s;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    }
+    a:hover {
+      box-shadow: none;
+    }
   }
   .logo {
     font-size: 26px;
@@ -79,8 +86,13 @@ body {
   left: 0;
   z-index: 9999;
   transition: all 0.3s;
-  a {
+  .nav-link {
     margin-left: 0.5rem;
+  }
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -88,10 +100,9 @@ body {
   margin-left: 0;
 }
 
-a{
+a {
   color: $grayBrown;
-  &:hover,
-  &:focus {
+  &:hover {
     color: $lightBrown;
     text-decoration: none;
     transition: all 0.3s;
