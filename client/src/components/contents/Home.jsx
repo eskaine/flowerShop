@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { saveState, loadState } from '../../helpers/localStorage';
+// import { saveState, loadState } from '../../helpers/localStorage';
 
 
 function Home() {
