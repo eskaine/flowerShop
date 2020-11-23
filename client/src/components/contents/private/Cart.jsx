@@ -8,6 +8,7 @@ function Cart() {
   const [quantity, setQuantity] = useState({});
   const user = useSelector(state => state.user); 
 
+
   async function getCart() {
     try {
       let response = await axios.get(
@@ -36,8 +37,8 @@ function Cart() {
     try {
       let data = { cartid: e.target.id, userid: user.id };
       console.log(data);
-      let response = await axios.put(
-        process.env.REACT_APP_USER + `/cart/userid/removeFromCart`,
+      let response = await axios.delete(
+        process.env.REACT_APP_USER + `/userid/cart`,
         data
       );
       getCart();
