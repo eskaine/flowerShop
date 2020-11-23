@@ -5,7 +5,7 @@ import { saveState, loadState } from '../../helpers/localStorage';
 
 
 function Home() {
-    console.log("home state", loadState());
+    // console.log("home state", loadState());
     return (
         <div>
             <Carousel>
