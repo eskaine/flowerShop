@@ -10,7 +10,7 @@ function Product(props) {
     const {product} = props.location.state;
     const { ribbon, wrap } = product.customisation;
     const userid = useSelector(state => state.user.id);
-    const [custom, setCustom] = useState({})
+    const [custom, setCustom] = useState({count: 1})
 
     async function pushToCart(e) {
         e.stopPropagation();
@@ -45,10 +45,10 @@ function Product(props) {
                     </Card.Body>
                 </Card>
                 <Form.Group>
-                    <Form inline>
+                    <Form className="mt-3" inline>
                         <Form.Control
                             as="select"
-                            className="my-1 mr-sm-2"
+                            className="my-1 mr-sm-2 options"
                             id="inlineFormCustomSelectPref"
                             custom
                             name="ribbon"
@@ -64,7 +64,7 @@ function Product(props) {
                         </Form.Control>
                         <Form.Control
                             as="select"
-                            className="my-1 mr-sm-2"
+                            className="my-1 mr-sm-2 options"
                             id="inlineFormCustomSelectPref"
                             custom
                             name="wrap"
@@ -80,22 +80,22 @@ function Product(props) {
                         </Form.Control>
                     </Form>
                     <Form inline>
-
+    {/* -------------------- UPDATED THIS PART, min is one, set default value to 1 -------------------- */}
                         <Form.Control
-                            className="mx-2"
+                            className="mx-2 options"
                             type="Number"
                             name="count"
-                            min={0}
+                            min={1}
                             max={20}
-                            placeholder="Quantity"
+                            value={custom.count}
                             onChange={changeHandler}
                         />
 
 
-                        <Button
-                            className="mx-2"
-                            onClick={pushToCart}
-                        >Add to Cart</Button>
+                        <Button id="submit-btn" className="ml-3"
+                            onClick={pushToCart}>
+                            Add To Cart
+                        </Button>
                     </Form>
                 </Form.Group>
             </Col>

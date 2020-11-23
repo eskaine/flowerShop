@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col, Image } from 'react-bootstrap';
 import { authHeader } from '../../../helpers/func';
 
 function UserProfile() {
@@ -51,9 +51,10 @@ function UserProfile() {
     return (
         <Container>
             <Row>
-                <Col md={6} s={12}
-                    style={{backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`}}
+                <Col md={6} s={12} id="profile"
+                    // style={{backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`}}
                     >
+                        <Image src="https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg" fluid/>
                 </Col>
                 <Col md={6} s={12}>
                     <h3 className="formLabel">Profile</h3>
