@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingCart,
@@ -11,8 +11,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { enableSidebar, isNotAuth } from "../actions/actions";
 
-// update function args
-function Navibar({ toggleNav }) {
+function Navibar() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
 
@@ -41,7 +40,7 @@ function Navibar({ toggleNav }) {
             </div>
           </div>
 
-          {/* ----------- SHOW AFTER LOGGIN IN ----------- */}
+
           {token && (
             <Fragment>
               <div className="nav-link nav-item">
