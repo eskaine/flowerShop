@@ -55,7 +55,7 @@ function Navibar({ toggleNav }) {
                 </NavLink>
               </div>
               <div className="nav-link nav-item">
-                <NavLink to="/account/:username">
+                <NavLink to="/profile">
                   <FontAwesomeIcon icon={faUser} />
                 </NavLink>
               </div>
