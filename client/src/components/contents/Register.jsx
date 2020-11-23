@@ -36,12 +36,10 @@ function Register() {
           backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`
         }}
           >
-              <div className="text-center m-5">
-                  <h3>Sign Up</h3>
-              </div>
       </Col>
       <Col md={6} s={12}>
         <Form onSubmit={submitHandler} >
+          <h3 className="formLabel">Register</h3>
           <Form.Group controlId="formUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control name="username" type="text" value={form.username} placeholder="Username" onChange={changeHandler} />
