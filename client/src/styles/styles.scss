@@ -116,6 +116,10 @@ a:focus {
   border: none !important;
 }
 
+.formLabel {
+  color: $lightBrown;
+}
+
 .overlay {
   display: none;
   position: fixed;
