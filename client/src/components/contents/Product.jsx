@@ -85,6 +85,8 @@ function Product(props) {
                             className="mx-2"
                             type="Number"
                             name="count"
+                            min={0}
+                            max={20}
                             placeholder="Quantity"
                             onChange={changeHandler}
                         />
