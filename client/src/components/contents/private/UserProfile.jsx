@@ -58,12 +58,33 @@ function UserProfile() {
                     >
                 </Col>
                 <Col md={6} s={12}>
-                    <Form onSubmit={submitHandler}>
                     <h3 className="formLabel">Profile</h3>
-                    <Form.Group controlId="formUsername">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control name="username" type="text" value={form.username} disabled />
-                    </Form.Group>
+                        <Form.Label>Username: {form.username}</Form.Label>
+                    <Form>
+                        {/* PLEASE UPDATE FORM SUBMIT */}
+                        <Form.Group controlId="formPassword">
+                            <Form.Label>Old Password</Form.Label>
+                            <Form.Control name="password" type="password" placeholder="Old Password" onChange={changeHandler} />
+                        </Form.Group>
+                        <Row>
+                            <Col md={6}>
+                                <Form.Group controlId="formPassword">
+                                    <Form.Label>New Password</Form.Label>
+                                    <Form.Control name="password" type="password" placeholder="New Password" onChange={changeHandler} />
+                                </Form.Group>
+                            </Col>
+                            <Col md={6}>
+                                <Form.Group controlId="formPassword">
+                                    <Form.Label>Confirm New Password</Form.Label>
+                                    <Form.Control name="password" type="password" placeholder="Confirm New Password" onChange={changeHandler} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Button id="submit-btn" type="submit">
+                            Change Password
+                        </Button>
+                    </Form>
+                    <Form onSubmit={submitHandler}>
                     <Form.Group controlId="formFirstname">
                         <Form.Label>First Name:</Form.Label>
                         <Form.Control name="firstname" type="text" value={form.firstname} placeholder="First Name" onChange={changeHandler} />
@@ -75,10 +96,6 @@ function UserProfile() {
                     <Form.Group controlId="formEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
-                    </Form.Group>
-                    <Form.Group controlId="formPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control name="password" type="password" value={form.password} placeholder="Password" onChange={changeHandler} />
                     </Form.Group>
                     <Form.Group controlId="formAddress">
                         <Form.Label>Address</Form.Label>

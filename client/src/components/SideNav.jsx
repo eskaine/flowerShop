@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {
     Navbar,
     Row,
@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 function SideNav(props) {
     const dispatch = useDispatch();
     const navOpen = useSelector((state) => state.navToggle);
+    const auth = useSelector((state) => state.user)
     // const { toggleNav, open } = props;
     let classes;
 
@@ -31,8 +32,9 @@ function SideNav(props) {
             id="sidebar"
             bg="light" 
             className={classes}>
+            <p className="mt-3 mb-0">Welcome to</p>
         <Row style={{width: '100%'}}>
-            <p className="m-3">Welcome to Flower Power</p>
+            <h4 className="logo ml-3 mt-0">mumsworkshop</h4>
             <div className="nav-link nav-item ml-auto" onClick={sidebarHandler}>
               <FontAwesomeIcon icon={faArrowLeft} />
           </div>
@@ -54,8 +56,8 @@ function SideNav(props) {
         <div style={{height: '2rem'}} />
 
 
-        { isAuth && 
-        <>
+        { auth ?  
+        <Fragment>
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
@@ -81,14 +83,13 @@ function SideNav(props) {
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
-                to="/logout" >
+                to="/" >
                     Logout
             </NavLink>
         </Row>
-        </> }
-       
-       { isAuth ? "" : 
-       <>
+        </Fragment> 
+       : 
+       <Fragment>
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
@@ -103,7 +104,7 @@ function SideNav(props) {
                     Login
             </NavLink>
         </Row>
-        </> }
+        </Fragment> }
     </Navbar>
 
     )
