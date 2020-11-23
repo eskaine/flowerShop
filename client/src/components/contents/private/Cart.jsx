@@ -36,7 +36,7 @@ function Cart() {
     try {
       let data = { cartid: e.target.id, userid: user.id };
       console.log(data);
-      let response = await axios.put(
+      let response = await axios.delete(
         process.env.REACT_APP_USER + `/cart/userid/removeFromCart`,
         data
       );

@@ -3,7 +3,11 @@ const { findById } = require("../models/product.models");
 const Product = require("../models/product.models");
 const User = require("../models/user.models");
 
-
+/**
+ * 
+ * @param {*} body 
+ * @param {*} params 
+ */
 
 async function addToCart(body, params) {
     let { count, ribbon, wrap } = body;
