@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap';
 // import { saveState, loadState } from '../../helpers/localStorage';
 
@@ -22,16 +23,18 @@ function Home() {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
-                    <img
-                    className="d-block w-100"
-                    src="https://media.karousell.com/media/photos/products/2018/08/11/wedding_bouquet__fresh_and_dried_flowers_1533925063_d3ac757c_progressive.jpg"
-                    alt="Third slide"
-                    style={{height: '80vh', objectFit: 'cover'}}
-                    />
-                    <Carousel.Caption>
-                    <h3>Browse Our Catalogue</h3>
-                    <p>Link here i guess</p>
-                    </Carousel.Caption>
+                    <Link to="/products">
+                        <img
+                        className="d-block w-100"
+                        src="https://media.karousell.com/media/photos/products/2018/08/11/wedding_bouquet__fresh_and_dried_flowers_1533925063_d3ac757c_progressive.jpg"
+                        alt="Third slide"
+                        style={{height: '80vh', objectFit: 'cover'}}
+                        />
+                        <Carousel.Caption>
+                        <h3>Browse Our Catalogue</h3>
+                        <p>Link here i guess</p>
+                        </Carousel.Caption>
+                    </Link>
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
                     <img

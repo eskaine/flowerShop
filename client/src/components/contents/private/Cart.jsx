@@ -36,8 +36,8 @@ function Cart() {
   async function removeItem(e) {
     try {
       let data = { cartid: e.target.id, userid: user.id };
-      console.log(data);
-      let response = await axios.delete(
+      console.log("data:",data);
+      let response = await axios.put(
         process.env.REACT_APP_USER + `/userid/cart`,
         data
       );
@@ -62,14 +62,14 @@ function Cart() {
   return (
     <Fragment>
       <Row className="no-gutters">
-        <Col md={8} className="border">
-          CART
+        <Col md={8}>
+          Your Cart
           {displayCart.map((cart, index) => (
             <Row key={index} className="no-gutters">
-              <Col md={6} className="border">
-                <Image src={cart.cartItem.img_url} fluid />
+              <Col md={6}>
+                <Image src={cart.cartItem.img_url} fluid className="img-thumbnail" />
               </Col>
-              <Col md={6} className="border">
+              <Col md={6}>
                 <Card>
                   <Card.Title>{cart.cartItem.productName}</Card.Title>
                   <Card.Body>

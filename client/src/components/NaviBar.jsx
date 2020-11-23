@@ -6,8 +6,8 @@ import {
   faShoppingCart,
   faBars,
   faUser,
+  faHeart
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { enableSidebar, isNotAuth } from "../actions/actions";
 

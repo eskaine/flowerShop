@@ -118,6 +118,32 @@ async function addToCart(body, params) {
         })
 }
 
+/**
+ * @DELETE
+ * router.delete("/:userid/cart", ...
+ * delete quantity in cart via $pull operator
+ */
+router.put("/userid/cart", async (req, res) => {
+    console.log("HALO");
+    console.log(req.body);
+    try {
+        let { cartid, userid } = req.body;
+        await User.findByIdAndUpdate(userid,
+            {
+                $pull: {
+                    cart: { _id: cartid }
+
+                }
+            }
+
+        )
+        res.sendStatus(200)
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400);
+    }
+})
+
 
 /**
  * @PUT put items into cart
@@ -235,29 +261,7 @@ router.put("/cart/userid/updateCart", async (req, res) => {
 })
 
 
-/**
- * @DELETE items from Cart
- * router.delete("/:userid/cart", ...
- * delete quantity in cart via $pull operator
- */
-router.delete("/userid/cart", async (req, res) => {
-    console.log("hello")
-    try {
-        let { cartid, userid } = req.body;
-        await User.findByIdAndUpdate(userid,
-            {
-                $pull: {
-                    cart: { _id: cartid }
 
-                }
-            }
-
-        )
-        res.sendStatus(200)
-    } catch (error) {
-        res.sendStatus(400);
-    }
-})
 
 
 /**
