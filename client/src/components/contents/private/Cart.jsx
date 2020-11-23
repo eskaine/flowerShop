@@ -1,12 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button } from "react-bootstrap";
 import axios from "axios";
-import { loadState } from "../../../helpers/localStorage";
 
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
-  // const { user } = loadState() ?;
   const user = null;
 
   async function getCart() {

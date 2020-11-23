@@ -1,21 +1,46 @@
-import React, {useState} from 'react';
-import { Container, Form, Button, Row, Col, Jumbotron } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { authHeader } from '../../../helpers/func';
 
 function UserProfile() {
-
+    const user = useSelector(state => state.user);
     const [ form, setForm ] = useState({
+        firstname:  '',
+        lastname: '',
         username: '',
         email: '',
-        password: ''
+        password: '',
+        address: '',
+        contact: ''
     });
+
+    async function fetch() {
+        try {
+            let res = await axios.get(process.env.REACT_APP_USER + `/profile/${user.id}`, authHeader(user.token));
+            console.log('form data', res.data);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     function changeHandler(e) {
         setForm({...form, [e.target.name]: e.target.value});
     }
 
     async function submitHandler(){
-        // fill in function here
+        try {
+            let res = await axios.post(process.env.REACT_APP_USER + `/profile/${user.id}`, form, authHeader(user.token));
+            console.log('form data', res.data);
+        } catch (err) {
+            console.error(err);
+        }
     }
+
+    useEffect(() => {
+        fetch();
+    }, []);
 
 
     return (
@@ -24,12 +49,10 @@ function UserProfile() {
                 <Col md={6} s={12}
                     style={{backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`}}
                     >
-                        <div className="text-center m-5">
-                            <h3>Update Your Profile</h3>
-                        </div>
                 </Col>
                 <Col md={6} s={12}>
                     <Form onSubmit={submitHandler}>
+                    <h3 className="formLabel">Profile</h3>
                     <Form.Group controlId="formFirstname">
                         <Form.Label>First Name:</Form.Label>
                         <Form.Control name="firstname" type="text" value={form.firstname} placeholder="First Name" onChange={changeHandler} />
@@ -56,7 +79,7 @@ function UserProfile() {
                     </Form.Group>
                     <Form.Group controlId="formPhone">
                         <Form.Label>Contact Number</Form.Label>
-                        <Form.Control name="phone" type="number" value={form.phone} placeholder="Contact Number" onChange={changeHandler} />
+                        <Form.Control name="phone" type="number" value={form.contact} placeholder="Contact Number" onChange={changeHandler} />
                     </Form.Group>
                     <Button id="submit-btn" type="submit">
                         Update Profile
