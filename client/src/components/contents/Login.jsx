@@ -7,6 +7,7 @@ import { isAuth }  from '../../actions/actions';
 
 function Login() {
     const dispatch = useDispatch();
+    const authState = useSelector(state => state.user.token);
     const [ form, setForm ] = useState({
         email: '',
         password: ''
@@ -19,6 +20,7 @@ function Login() {
     async function submitHandler(e) {
         e.preventDefault();
         let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
+        console.log(res);
         if(res.status === 200) {
           let token = res.data.token;
             dispatch(isAuth(token));
@@ -33,12 +35,10 @@ function Login() {
             backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`
           }}
             >
-                <div className="text-center m-5">
-                    <h3>Log In</h3>
-                </div>
         </Col>
         <Col md={6} s={12}>
           <Form onSubmit={submitHandler}>
+            <h3 className="formLabel">Log In</h3>
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
@@ -53,6 +53,7 @@ function Login() {
           </Form>
         </Col>
       </Row>
+        { authState && <Redirect to="/" /> }
     </Container>
   );
 }

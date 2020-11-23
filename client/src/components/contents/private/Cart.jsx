@@ -1,13 +1,13 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button } from "react-bootstrap";
 import axios from "axios";
-import { loadState } from "../../../helpers/localStorage";
 import { useSelector } from 'react-redux';
 
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state.user); 
+
 
   async function getCart() {
     try {
@@ -65,7 +65,7 @@ function Cart() {
         <Col md={8} className="border">
           CART
           {displayCart.map((cart, index) => (
-            <Row className="no-gutters">
+            <Row key={index} className="no-gutters">
               <Col md={6} className="border">
                 <Image src={cart.cartItem.img_url} fluid />
               </Col>

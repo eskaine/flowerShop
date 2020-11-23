@@ -5,20 +5,26 @@ import {
   } from "react-bootstrap";
   import { NavLink } from "react-router-dom";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faBars, faUser, faArrowLeft, faCalculator } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { isAuth } from '../actions/actions'
+import { isAuth, disableSidebar } from '../actions/actions'
+import { useSelector, useDispatch } from "react-redux";
 
 function SideNav(props) {
-    const { toggleNav, open } = props;
+    const dispatch = useDispatch();
+    const navOpen = useSelector((state) => state.navToggle);
+    // const { toggleNav, open } = props;
     let classes;
 
-    if (open) {
+    function sidebarHandler(){
+        dispatch(disableSidebar());
+    }
+
+    if (navOpen) {
         classes = "d-flex flex-column align-items-start wrapper active"
     } else {
         classes = "d-flex flex-column align-items-start wrapper"
     }
-
 
     return (
         <Navbar 
@@ -27,18 +33,18 @@ function SideNav(props) {
             className={classes}>
         <Row style={{width: '100%'}}>
             <p className="m-3">Welcome to Flower Power</p>
-            <div className="nav-link nav-item ml-auto" onClick={() => {toggleNav(false)}}>
+            <div className="nav-link nav-item ml-auto" onClick={sidebarHandler}>
               <FontAwesomeIcon icon={faArrowLeft} />
           </div>
         </Row>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/" >
                     Home
             </NavLink>
         </Row>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/products" >
@@ -50,14 +56,14 @@ function SideNav(props) {
 
         { isAuth && 
         <>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/cart" >
                      <FontAwesomeIcon className="mx-2" icon={faShoppingCart} />Cart
             </NavLink>
         </Row>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/wishlist" >
@@ -65,14 +71,14 @@ function SideNav(props) {
             </NavLink>
         </Row>
         <div style={{height: '2rem'}} />
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/account/username" >
                      <FontAwesomeIcon className="mx-2" icon={faUser} />Account
             </NavLink>
         </Row>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/logout" >
@@ -83,14 +89,14 @@ function SideNav(props) {
        
        { isAuth ? "" : 
        <>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/register" >
                     Register
             </NavLink>
         </Row>
-        <Row onClick={() => {toggleNav(false)}}>
+        <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/login" >

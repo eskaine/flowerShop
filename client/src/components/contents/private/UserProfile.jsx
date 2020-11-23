@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Container, Form, Button, Row, Col, Jumbotron } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
 function UserProfile() {
 

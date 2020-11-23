@@ -71,14 +71,11 @@ body {
   left: 0;
   z-index: 9999;
   transition: all 0.3s;
-  .active {
-    margin-left: 0;
-  }
 }
 
-// #sidebar.active {
-//   margin-left: 0;
-// }
+#sidebar.active {
+  margin-left: 0;
+}
 
 a,
 a:hover,
@@ -114,6 +111,10 @@ a:focus {
 
 .container {
   border: none !important;
+}
+
+.formLabel {
+  color: $lightBrown;
 }
 
 .overlay {
