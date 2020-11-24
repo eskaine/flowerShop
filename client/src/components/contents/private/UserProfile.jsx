@@ -3,70 +3,23 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col, Image } from 'react-bootstrap';
 import { authHeader } from '../../../helpers/func';
+import { Link } from 'react-router-dom'
 
 function UserProfile() {
     const user = useSelector(state => state.user);
-    const [ form, setForm ] = useState({
-        firstname:  '',
-        lastname: '',
-        username: '',
-        email: '',
-        address: '',
-        phone: ''
-    });
-
-    const [ passwords, setPasswords ] = useState({
-        oldPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-    });
-
+    const [ info, setInfo ] = useState({});
+   
     async function fetch() {
         try {
-            console.log(user);
             let res = await axios.get(process.env.REACT_APP_USER + `/${user.id}`, authHeader(user.token));
-            console.log(res);
             if(res.status === 200) {
-                setForm({...form, ...res.data.userDetails});
+                // setInfo({res.data.userDetails});
             }
         } catch (err) {
             console.error(err);
         }
     }
 
-    function changeHandler(e) {
-        setForm({...form, [e.target.name]: e.target.value});
-    }
-
-    function pChangeHandler(e) {
-        setPasswords({...passwords, [e.target.name]: e.target.value});
-    }
-
-    async function submitHandler(e){
-        e.preventDefault();
-        try {
-            let res = await axios.put(process.env.REACT_APP_USER + `/${user.id}`, form, authHeader(user.token));
-            if(res.status === 200) {
-                setForm({...form, ...res.data.userDetails});
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    async function passwordHandler(e){
-        e.preventDefault();
-        if(passwords.newPassword !== passwords.confirmPassword) {
-                //to update
-        }
-        try {   
-            let res = await axios.put(process.env.REACT_APP_USER + `/${user.id}/password`, passwords, authHeader(user.token));
-            if(res.status === 200) {
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
     useEffect(() => {
         fetch();
@@ -83,54 +36,47 @@ function UserProfile() {
                 </Col>
                 <Col md={6} s={12}>
                     <h3 className="formLabel">Profile</h3>
-                        <Form.Label>Username: {form.username}</Form.Label>
-                    <Form onSubmit={passwordHandler}>
-                        <Form.Group controlId="formPassword">
-                            <Form.Label>Old Password</Form.Label>
-                            <Form.Control name="oldPassword" type="password" value={passwords.oldPassword} placeholder="Old Password" onChange={pChangeHandler} />
-                        </Form.Group>
-                        <Row>
-                            <Col md={6}>
-                                <Form.Group controlId="formPassword">
-                                    <Form.Label>New Password</Form.Label>
-                                    <Form.Control name="newPassword" type="password" value={passwords.newPassword} placeholder="New Password" onChange={pChangeHandler} />
-                                </Form.Group>
-                            </Col>
-                            <Col md={6}>
-                                <Form.Group controlId="formPassword">
-                                    <Form.Label>Confirm New Password</Form.Label>
-                                    <Form.Control name="confirmPassword" type="password" value={passwords.confirmPassword} placeholder="Confirm New Password" onChange={pChangeHandler} />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Button id="submit-btn" type="submit">
-                            Change Password
-                        </Button>
-                    </Form>
-                    <Form onSubmit={submitHandler}>
+                        <Form.Label>Username: {user.username}</Form.Label><br />
+                        <Link
+                            to={{
+                                pathname: `/profile/editpassword`,
+                                state: { user },
+                            }} >
+                                <Button id="submit-btn">
+                                    Change Password
+                                </Button>
+                            </Link>
+                    
+                    <Form>
                     <Form.Group controlId="formFirstname">
                         <Form.Label>First Name:</Form.Label>
-                        <Form.Control name="firstname" type="text" value={form.firstname} placeholder="First Name" onChange={changeHandler} />
+                        {user.firstname}
                     </Form.Group>
                     <Form.Group controlId="formLastname">
                         <Form.Label>Last Name:</Form.Label>
-                        <Form.Control name="lastname" type="text" value={form.lastname} placeholder="Last Name" onChange={changeHandler} />
+                        {user.lastname}
                     </Form.Group>  
                     <Form.Group controlId="formEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control name="email" type="email" value={form.email} placeholder="Email" onChange={changeHandler} />
+                        {user.email}
                     </Form.Group>
                     <Form.Group controlId="formAddress">
                         <Form.Label>Address</Form.Label>
-                        <Form.Control name="address" type="text" value={form.address} placeholder="Address" onChange={changeHandler} />
+                        {user.address}
                     </Form.Group>
                     <Form.Group controlId="formPhone">
                         <Form.Label>Contact No.</Form.Label>
-                        <Form.Control name="phone" type="number" value={form.phone} placeholder="Contact Number" onChange={changeHandler} />
+                        {user.phone}
                     </Form.Group>
-                    <Button id="submit-btn" type="submit">
-                        Update
-                    </Button>
+                    <Link
+                            to={{
+                                pathname: `/profile/update`,
+                                state: { user },
+                            }} >
+                                <Button id="submit-btn">
+                                    Update Profile
+                                </Button>
+                            </Link>
                     </Form>
                 </Col>
             </Row>
