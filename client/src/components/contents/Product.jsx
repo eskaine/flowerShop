@@ -40,7 +40,8 @@ function Product(props) {
 
         if (custom.wrap && custom.ribbon){
             try {
-                let data = await axiosPost(process.env.REACT_APP_CART + `/${user.id}/${product._id}`, custom, user.token);
+                let url = process.env.REACT_APP_CART + `/${user.id}/${product._id}`;
+                let data = await axiosPost(, custom, user.token);
             } catch (error) {
                 console.log(error);
             }
@@ -54,7 +55,8 @@ function Product(props) {
     }
 
     async function addToWishlist(){
-        let data = await axiosPost(process.env.REACT_APP_WISHLIST+`/${user.id}`, {productid: product._id}, user.token);
+        let url = process.env.REACT_APP_WISHLIST+`/${user.id}`;
+        let data = await axiosPost(url, {productid: product._id}, user.token);
     }
 
     function changeHandler(e) {
