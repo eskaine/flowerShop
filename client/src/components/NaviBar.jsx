@@ -6,7 +6,8 @@ import {
   faShoppingCart,
   faBars,
   faUser,
-  faHeart
+  faHeart,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { enableSidebar, isNotAuth } from "../actions/actions";
@@ -32,15 +33,13 @@ function Navibar() {
       >
         <div className="container-fluid">
           <div className="mr-auto d-flex">
-            <div className="nav-link nav-item">
-              <div
+              <div className="nav-link nav-item"
                 id="sidebarCollapse"
                 onClick={sidebarHandler}
               >
                 <FontAwesomeIcon icon={faBars} />          
               </div>
-            </div>
-              <NavLink to="/" className="nav-link nav-item logo">
+              <NavLink to="/" className="logo">
               <span>mumsworkshop</span>
               </NavLink>
           </div>
@@ -48,24 +47,18 @@ function Navibar() {
 
           {token && (
             <Fragment>
-              <div className="nav-link nav-item" id="hide">
-                <NavLink to="/cart">
+                <NavLink to="/cart" className="nav-link nav-item" id="hide">
                   <FontAwesomeIcon icon={faShoppingCart} /> Cart
                 </NavLink>
-              </div>
-              <div className="nav-link nav-item" id="hide">
-                <NavLink to="/wishlist">
+                <NavLink to="/wishlist" className="nav-link nav-item" id="hide">
                   <FontAwesomeIcon icon={faHeart} /> Wishlist
                 </NavLink>
-              </div>
-              <div className="nav-link nav-item" id="hide">
-                <NavLink to="/profile">
-                  <FontAwesomeIcon icon={faUser} />
+                <NavLink to="/profile" className="nav-link nav-item" id="hide">
+                  <FontAwesomeIcon icon={faUser} /> Account
                 </NavLink>
-              </div>
-              <div className="nav-link nav-item" id="hide" onClick={logoutHandler}>
-                <NavLink to="/">Logout</NavLink>
-              </div>
+                <NavLink to="/" className="nav-link nav-item" id="hide">
+                <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+                </NavLink>
             </Fragment>
           )}
 

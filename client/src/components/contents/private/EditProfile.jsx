@@ -83,7 +83,7 @@ function EditProfile({ setShow }) {
           onChange={changeHandler}
         />
       </Form.Group>
-      <Button id="submit-btn" type="submit">
+      <Button className="button" type="submit">
         Update
       </Button>
     </Form>

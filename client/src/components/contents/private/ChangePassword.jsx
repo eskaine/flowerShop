@@ -50,7 +50,7 @@ function ChangePassword({location}) {
                     </Form.Group>
                 </Col>
             </Row>
-            <Button id="submit-btn" type="submit">
+            <Button className="button" type="submit">
                 Change Password
             </Button>
         </Form>

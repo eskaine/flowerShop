@@ -25,12 +25,10 @@ const User = require("../models/user.models");
   * @POST PUSH TO WISHLIST
   */
   router.post("/:userid", async (req,res)=>{
-      console.log("wl HERE!")
     try {
 
         let productid = req.body.productid;
         let userid = req.params.userid;
-        console.log(productid)
         let user = await User.findById(userid);
         let item = user.wishList.find((el) => el._id.equals(productid))
 
