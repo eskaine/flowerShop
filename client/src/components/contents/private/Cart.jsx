@@ -78,7 +78,9 @@ function Cart() {
               <Container className="my-auto">
                 <Row>
                   <Col xs={12} s={10} md={2} lg={2} >
-                    <Image src={cart.cartItem.img_url} fluid className="cart-img" />
+                    <Row>
+                      <Image src={cart.cartItem.img_url} fluid className="cart-img" />
+                    </Row>
                   </Col>
                   <Col s={10} md={10} lg={10}>
                     <Row className="p-2">
@@ -99,8 +101,8 @@ function Cart() {
                         <p><span className="formLabel">Ribbon:</span> {cart.ribbon}</p>
                         <p><span className="formLabel">Wrapper:</span> {cart.wrap}</p>
                       </Col>
-                      <Col s={8} md={2} lg={2} className="px-1">
-                      <p><span className="formLabel">Price:</span> SGD$ {cart.totalPrice}</p>
+                      <Col s={8} md={2} lg={2}>
+                        <p><span className="formLabel">Price:</span> SGD$ {cart.totalPrice}</p>
                       </Col>
                       <Col s={8} md={2} lg={2}>
                         <p><span className="formLabel">Quantity:</span> {cart.count}</p>
