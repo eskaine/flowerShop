@@ -1,13 +1,16 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap";
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { axiosGet, axiosPut, axiosDel } from "../../../helpers/api";
 
+
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user); 
+
 
   async function getCart() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
@@ -15,18 +18,21 @@ function Cart() {
     setDisplayCart(res.userCart);
   }
 
+  
   async function updateQuantity() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
     let res = await axiosPut(url, quantity, user.token);
     getCart();
   }
 
-  async function removeItem(e) {
+  
+  async function removeItem(e) { 
     let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
     let res = await axiosDel(url, user.token);
     getCart();
   }
 
+        
   function changeHandler(e) {
     setQuantity((quantity) => ({
       ...quantity,
@@ -34,13 +40,14 @@ function Cart() {
       [e.target.name]: e.target.value,
       userid: user.id,
     }));
-    console.log(quantity);
+
   }
 
   useEffect(() => {
     getCart();
   }, []);
 
+  
   return (
     <Fragment>
       <Container>
@@ -69,12 +76,10 @@ function Cart() {
             <Container className="cart-item">
               <Container className="my-auto">
                 <Row>
-                  <Col xs={12} s={10} md={2} lg={2}>
-                    <Image
-                      src={cart.cartItem.img_url}
-                      fluid
-                      className="cart-img"
-                    />
+                  <Col xs={12} s={10} md={2} lg={2} >
+                    <Row>
+                      <Image src={cart.cartItem.img_url} fluid className="cart-img" />
+                    </Row>
                   </Col>
                   <Col s={10} md={10} lg={10}>
                     <Row className="p-2">
@@ -111,11 +116,10 @@ function Cart() {
                           {cart.wrap}
                         </p>
                       </Col>
-                      <Col s={8} md={2} lg={2} className="px-1">
-                        <p>
-                          <span className="formLabel">Price:</span> SGD${" "}
-                          {cart.totalPrice}
-                        </p>
+
+                      <Col s={8} md={2} lg={2}>
+                        <p><span className="formLabel">Price:</span> SGD$ {cart.totalPrice}</p>
+
                       </Col>
                       <Col s={8} md={2} lg={2}>
                         <p>

@@ -57,20 +57,17 @@ function UserProfile() {
         <Col md={6} s={12}>
           <h3 className="formLabel">Profile</h3>
           <div>Username: {user.username}</div>
-          <br />
-
-          <Button id="submit-btn" onClick={() => handleShow(0)}>
-            Change Password
-          </Button>
-          <ul>
-            <li>First Name: {user.firstName}</li>
-            <li>Last Name: {user.lastName}</li>
-            <li>Email: {user.email}</li>
-            <li>Address: {user.address}</li>
-            <li>Contact No.: {user.phone}</li>
-          </ul>
-          <Button id="submit-btn" onClick={() => handleShow(1)}>
+          <div>First Name: {user.firstName}</div>
+          <div>Last Name: {user.lastName}</div>
+          <div>Email: {user.email}</div>
+          <div>Address: {user.address}</div>
+          <div>Contact No.: {user.phone}</div>
+          <Button className="button" onClick={() => handleShow(1)}>
             Update Profile
+          </Button>
+          <br />
+          <Button className="button" onClick={() => handleShow(0)}>
+            Change Password
           </Button>
         </Col>
       </Row>

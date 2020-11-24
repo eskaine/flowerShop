@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import { Navbar, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser, faArrowLeft, faBookOpen, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { disableSidebar } from '../actions/actions'
 import { useSelector, useDispatch } from "react-redux";
@@ -28,25 +28,27 @@ function SideNav() {
             id="sidebar"
             bg="light" 
             className={classes}>
-            <p className="mt-3 mb-0">Welcome to</p>
+            <Row style={{width: '100%'}} className="align-middle mt-3">
+                <p className="mb-0 ml-2">Welcome to</p>
+                <div className="nav-link nav-item ml-auto p-0" onClick={sidebarHandler}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </div>
+            </Row>
         <Row style={{width: '100%'}}>
             <h4 className="logo ml-3 mt-0">mumsworkshop</h4>
-            <div className="nav-link nav-item ml-auto" onClick={sidebarHandler}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
         </Row>
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/" >
-                    Home
+                    <FontAwesomeIcon className="mx-2" icon={faHome} />Home
             </NavLink>
         </Row>
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
                 to="/products" >
-                    Products
+                    <FontAwesomeIcon className="mx-2" icon={faBookOpen} />Products
             </NavLink>
         </Row>
         <div style={{height: '2rem'}} />
@@ -80,7 +82,7 @@ function SideNav() {
             <NavLink
                 className="nav-link nav-item" 
                 to="/" >
-                    Logout
+                    <FontAwesomeIcon className="mx-2" icon={faSignOutAlt} />Logout
             </NavLink>
         </Row>
         </Fragment> 

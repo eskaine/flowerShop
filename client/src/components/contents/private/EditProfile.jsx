@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosPut } from "../../../helpers/api";
@@ -9,12 +9,12 @@ function EditProfile({ setShow }) {
   const user = useSelector((state) => state.user);
 
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    address: "",
-    phone: "",
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    address: user.address,
+    phone: user.phone,
   });
 
   function changeHandler(e) {
@@ -31,9 +31,6 @@ function EditProfile({ setShow }) {
     };
   }
 
-  useEffect(() => {
-    setForm({ ...user });
-  }, []);
   return (
     <Form onSubmit={submitHandler}>
       <Form.Group controlId="formFirstname">
@@ -86,7 +83,7 @@ function EditProfile({ setShow }) {
           onChange={changeHandler}
         />
       </Form.Group>
-      <Button id="submit-btn" type="submit">
+      <Button className="button" type="submit">
         Update
       </Button>
     </Form>

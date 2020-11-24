@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { Container, Form, Button, Row, Col, Image } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
 import { authHeader } from '../../../helpers/func';
 
@@ -50,7 +50,7 @@ function ChangePassword({location}) {
                     </Form.Group>
                 </Col>
             </Row>
-            <Button id="submit-btn" type="submit">
+            <Button className="button" type="submit">
                 Change Password
             </Button>
         </Form>
