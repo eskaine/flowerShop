@@ -10,6 +10,7 @@ function AllProducts() {
   async function getProducts() {
     try {
       let response = await axios.get(process.env.REACT_APP_PRODUCTS);
+      // console.log(response.data);
       setProducts(response.data.products);
     } catch (error) {
       console.log(error);

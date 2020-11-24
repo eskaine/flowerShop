@@ -24,7 +24,7 @@ function UserProfile() {
     async function fetch() {
         try {
             console.log(user);
-            let res = await axios.get(process.env.REACT_APP_USER + `/profile/${user.id}`, authHeader(user.token));
+            let res = await axios.get(process.env.REACT_APP_USER + `/${user.id}`, authHeader(user.token));
             console.log(res);
             if(res.status === 200) {
                 setForm({...form, ...res.data.userDetails});
@@ -45,7 +45,7 @@ function UserProfile() {
     async function submitHandler(e){
         e.preventDefault();
         try {
-            let res = await axios.put(process.env.REACT_APP_USER + `/profile/${user.id}`, form, authHeader(user.token));
+            let res = await axios.put(process.env.REACT_APP_USER + `/${user.id}`, form, authHeader(user.token));
             if(res.status === 200) {
                 setForm({...form, ...res.data.userDetails});
             }
@@ -57,7 +57,7 @@ function UserProfile() {
     async function passwordHandler(e){
         e.preventDefault();
         try {
-            let res = await axios.put(process.env.REACT_APP_USER + `/profile/${user.id}/password`, passwords, authHeader(user.token));
+            let res = await axios.put(process.env.REACT_APP_USER + `/${user.id}/password`, passwords, authHeader(user.token));
             if(res.status === 200) {
             }
         } catch (err) {
