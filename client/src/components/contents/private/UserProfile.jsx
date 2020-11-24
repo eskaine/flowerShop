@@ -39,7 +39,7 @@ function UserProfile() {
     }
 
     function pChangeHandler(e) {
-        setPasswords({...form, [e.target.name]: e.target.value});
+        setPasswords({...passwords, [e.target.name]: e.target.value});
     }
 
     async function submitHandler(e){
@@ -56,7 +56,10 @@ function UserProfile() {
 
     async function passwordHandler(e){
         e.preventDefault();
-        try {
+        if(passwords.newPassword !== passwords.confirmPassword) {
+                //to update
+        }
+        try {   
             let res = await axios.put(process.env.REACT_APP_USER + `/${user.id}/password`, passwords, authHeader(user.token));
             if(res.status === 200) {
             }
