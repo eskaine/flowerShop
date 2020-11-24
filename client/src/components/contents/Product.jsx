@@ -17,6 +17,7 @@ function Product(props) {
         try {
             let payload = { ...custom, id: product._id };
             dispatch(addToCart(payload));
+            console.log(userid, product._id)
            let data = await axios.post(process.env.REACT_APP_CART + `/${userid}/${product._id}`, custom);
         } catch (error) {
             console.log(error)
