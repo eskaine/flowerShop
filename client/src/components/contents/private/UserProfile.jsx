@@ -61,7 +61,6 @@ function UserProfile() {
           <h3 className="formLabel">Profile</h3>
           <div>Username: {user.username}</div>
           <br />
-
           <Button id="submit-btn" onClick={() => handleShow(0)}>
             Change Password
           </Button>

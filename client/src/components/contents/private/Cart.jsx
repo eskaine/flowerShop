@@ -1,6 +1,5 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap";
-import axios from "axios";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { axiosAuthGet, axiosAuthPut, axiosAuthDel } from "../../../helpers/api"
@@ -23,6 +22,7 @@ function Cart() {
         quantity, user.token
       );
       getCart();
+      console.log(res.status);
       
   }
 
@@ -31,7 +31,7 @@ function Cart() {
       let res = await axiosAuthDel(
         process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`, user.token);
       getCart();
-
+        console.log(res.status);
   }
 
   function changeHandler(e) {

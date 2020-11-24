@@ -1,6 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Row, Col, Card, Form, Image, Button } from "react-bootstrap";
-import axios from "axios";
 import { useSelector } from 'react-redux';
 import { axiosAuthGet, axiosAuthPost, axiosAuthDel } from "../../../helpers/api";
 
@@ -8,7 +7,6 @@ function WishList() {
     const [wishList, setWishList] = useState([]);
     const [custom, setCustom] = useState({count: 1})
     const user = useSelector(state => state.user); 
-    console.log(user)
 
     async function fetchWishList(){
             let data = await axiosAuthGet(process.env.REACT_APP_WISHLIST + `/${user.id}`, user.token)
@@ -18,24 +16,21 @@ function WishList() {
     async function removeFromList(e){
             let data = await axiosAuthDel(process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.value}`, user.token)
             fetchWishList();
+            console.log(data.status);
     }
 
 
     async function pushToCart(e) {
         e.stopPropagation();
         let data = await axiosAuthPost(process.env.REACT_APP_CART + `/${user.id}/${e.target.value}`, custom, user.token);
+        console.log(data.status);
     }
 
 
     function changeHandler(e) {
         setCustom((custom) => ({ ...custom, [e.target.name]: e.target.value }));
     }
-    
-    console.log(custom)
 
-
-
-    console.log(wishList)
     useEffect(() => {
         fetchWishList();
     },[])

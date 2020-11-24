@@ -3,8 +3,6 @@ import PrivateRoute from "./PrivateRoute";
 import Cart from "../contents/private/Cart";
 import WishList from "../contents/private/WishList";
 import UserProfile from "../contents/private/UserProfile";
-import ChangePassword from "../contents/private/ChangePassword";
-import EditProfile from "../contents/private/EditProfile";
 
 function ProtectedRoutes() {
   return (
