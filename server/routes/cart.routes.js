@@ -80,7 +80,7 @@ router.post("/:userid/:productid", async (req, res) => {
                     }
                 });
         } else if ((item.cartItem.equals(productid) && item.ribbon !== ribbon) || (item.cartItem.equals(productid) && item.wrap !== wrap)) {
-            await addToCart(req.body, req.params);
+            await addToCart(req.body, req.params, totalPrice);
         }
         res.sendStatus(200)
     } catch (error) {

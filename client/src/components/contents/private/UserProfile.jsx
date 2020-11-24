@@ -83,5 +83,7 @@ function UserProfile() {
     </Container>
   );
 }
+    )
+};
 
 export default UserProfile;
