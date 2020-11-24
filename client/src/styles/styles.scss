@@ -48,9 +48,9 @@ img {
   text-decoration: none;
   font-family: $navFont;
   font-weight: bold;
-  div.nav-link {
+  .nav-link {
     &:hover {
-    color: $gray;
+    color: $lightBrown;
     background: $paleYellow;
     transition: all 0.5s;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
@@ -88,6 +88,15 @@ div.form-group {
     background: $pastelPink;
     transition: all 0.5s;
   }
+  &:active {
+    background: $grayBrown !important;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2) !important;
+  }
+  &:focus {
+    color: $paleYellow;
+    background-color: $lightBrown;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2) !important;
+  }
 }
 
 .cart-item {
@@ -113,6 +122,15 @@ div.form-group {
     color: $paleYellow;
     background: $red;
     transition: all 0.5s;
+  }
+  &:active {
+    background: $red !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+  }
+  &:focus {
+    color: $gray;
+    background-color: $paleYellow;
+    box-shadow: none;
   }
 }
 
@@ -178,12 +196,12 @@ a {
 }
 
 .options {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card {
   border: none;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container {

@@ -8,7 +8,6 @@ function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const user = useSelector(state => state.user); 
-  console.log(user)
 
   async function getCart() {
       let res = await axiosAuthGet(process.env.REACT_APP_CART + `/${user.id}`, user.token);
