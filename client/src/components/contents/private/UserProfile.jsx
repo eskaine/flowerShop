@@ -1,13 +1,34 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Form, Button, Row, Col, Image } from "react-bootstrap";
+import { Container, Button, Row, Col, Image } from "react-bootstrap";
 import { axiosAuthGet } from "../../../helpers/api";
 import { setUserInfo } from "../../../actions/actions";
+import SettingsModal from "./SettingsModal";
+import EditProfile from "./EditProfile";
+import ChangePassword from "./ChangePassword";
 
 function UserProfile() {
+  const [showModal, setShowModal] = useState(false);
+  const [modalForm, setModalForm] = useState(0);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+
+  function setModalData() {
+    return modalForm
+      ? {
+          title: "Update Profile",
+          component: EditProfile,
+        }
+      : {
+          title: "Change Password",
+          component: ChangePassword,
+        };
+  }
+
+  function handleShow(n) {
+    setModalForm(n);
+    setShowModal(true);
+  }
 
   async function fetch() {
     let data = await axiosAuthGet(
@@ -37,49 +58,28 @@ function UserProfile() {
         </Col>
         <Col md={6} s={12}>
           <h3 className="formLabel">Profile</h3>
-          <Form.Label>Username: {user.username}</Form.Label>
+          <div>Username: {user.username}</div>
           <br />
-          <Link
-            to={{
-              pathname: `/profile/editpassword`,
-              state: { user },
-            }}
-          >
-            <Button id="submit-btn">Change Password</Button>
-          </Link>
-
-          <Form>
-            <Form.Group controlId="formFirstname">
-              <Form.Label>First Name:</Form.Label>
-              {user.firstname}
-            </Form.Group>
-            <Form.Group controlId="formLastname">
-              <Form.Label>Last Name:</Form.Label>
-              {user.lastname}
-            </Form.Group>
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              {user.email}
-            </Form.Group>
-            <Form.Group controlId="formAddress">
-              <Form.Label>Address</Form.Label>
-              {user.address}
-            </Form.Group>
-            <Form.Group controlId="formPhone">
-              <Form.Label>Contact No.</Form.Label>
-              {user.phone}
-            </Form.Group>
-            <Link
-              to={{
-                pathname: `/profile/update`,
-                state: { user },
-              }}
-            >
-              <Button id="submit-btn">Update Profile</Button>
-            </Link>
-          </Form>
+          <Button id="submit-btn" onClick={() => handleShow(0)}>
+            Change Password
+          </Button>
+          <ul>
+            <li>First Name: {user.firstname}</li>
+            <li>Last Name: {user.lastname}</li>
+            <li>Email: {user.email}</li>
+            <li>Address: {user.address}</li>
+            <li>Contact No.: {user.phone}</li>
+          </ul>
+          <Button id="submit-btn" onClick={() => handleShow(1)}>
+            Update Profile
+          </Button>
         </Col>
       </Row>
+      <SettingsModal
+        show={showModal}
+        setShow={setShowModal}
+        data={setModalData()}
+      />
     </Container>
   );
 }
