@@ -2,9 +2,8 @@ import React, {Fragment} from 'react'
 import { Navbar, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faUser, faArrowLeft, faBookOpen, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { disableSidebar } from '../actions/actions'
+import { faShoppingCart, faUser, faArrowLeft, faBookOpen, faHome, faSignOutAlt, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { disableSidebar, isNotAuth } from '../actions/actions'
 import { useSelector, useDispatch } from "react-redux";
 
 function SideNav() {
@@ -16,6 +15,10 @@ function SideNav() {
     function sidebarHandler(){
         dispatch(disableSidebar());
     }
+
+    function logoutHandler() {
+        dispatch(isNotAuth());
+      }
 
     if (navOpen) {
         classes = "d-flex flex-column align-items-start wrapper active"
@@ -79,10 +82,10 @@ function SideNav() {
             </NavLink>
         </Row>
         <Row onClick={sidebarHandler}>
-            <NavLink
+            <NavLink onClick={logoutHandler}
                 className="nav-link nav-item" 
                 to="/" >
-                    <FontAwesomeIcon className="mx-2" icon={faSignOutAlt} />Logout
+                    <FontAwesomeIcon className="mx-2" icon={faSignOutAlt}/>Logout
             </NavLink>
         </Row>
         </Fragment> 

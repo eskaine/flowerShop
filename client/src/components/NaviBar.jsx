@@ -56,7 +56,7 @@ function Navibar() {
                 <NavLink to="/profile" className="nav-link nav-item" id="hide">
                   <FontAwesomeIcon icon={faUser} /> Account
                 </NavLink>
-                <NavLink to="/" className="nav-link nav-item" id="hide">
+                <NavLink to="/" className="nav-link nav-item" id="hide" onClick={logoutHandler}>
                 <FontAwesomeIcon icon={faSignOutAlt} /> Logout
                 </NavLink>
             </Fragment>
