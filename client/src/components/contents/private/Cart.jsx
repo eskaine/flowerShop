@@ -12,7 +12,7 @@ function Cart() {
   async function getCart() {
     try {
       let response = await axios.get(
-        process.env.REACT_APP_USER + `/${user.id}/cart`
+        process.env.REACT_APP_CART + `/${user.id}`
       );
       console.log(response.data.userCart);
       setDisplayCart(response.data.userCart);
@@ -24,7 +24,7 @@ function Cart() {
   async function updateQuantity() {
     try {
       let response = await axios.put(
-        process.env.REACT_APP_USER + `/cart/userid/updateCart`,
+        process.env.REACT_APP_CART + `/${user.id}`,
         quantity
       );
       getCart();
@@ -35,12 +35,11 @@ function Cart() {
 
   async function removeItem(e) {
     try {
-      let data = { cartid: e.target.id, userid: user.id };
-      console.log("data:",data);
-      let response = await axios.put(
-        process.env.REACT_APP_USER + `/userid/cart`,
-        data
-      );
+      // let data = { cartid: e.target.id, userid: user.id };
+      // console.log("data:",data);
+      let response = await axios.delete(
+        process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`);
+        console.log(response);
       getCart();
     } catch (error) {}
   }
