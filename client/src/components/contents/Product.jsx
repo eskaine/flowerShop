@@ -17,9 +17,19 @@ function Product(props) {
         try {
             let payload = { ...custom, id: product._id };
             dispatch(addToCart(payload));
-            // tyrone, please update the axios
            let data = await axios.post(process.env.REACT_APP_CART + `/${userid}/${product._id}`, custom);
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function addToWishlist(){
+        //to update, im unauthorised
+        try {
+            let id = product._id;
+            let data = await axios.post(process.env.REACT_APP_USER+`/wishlist/${userid}`)
+            console.log(id,data)
+        }catch (error){
             console.log(error)
         }
     }
@@ -95,6 +105,10 @@ function Product(props) {
                         <Button id="submit-btn" className="ml-3"
                             onClick={pushToCart}>
                             Add To Cart
+                        </Button>
+                        <Button id="submit-btn" className="ml-3"
+                            onClick={addToWishlist}>
+                            Add To Wishlist
                         </Button>
                     </Form>
                 </Form.Group>
