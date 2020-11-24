@@ -13,7 +13,7 @@ function SettingsModal({show, setShow, data}) {
            <Modal.Header closeButton>
              <Modal.Title>{data.title}</Modal.Title>
            </Modal.Header>
-           <Modal.Body><Component /></Modal.Body>
+           <Modal.Body><Component setShow={setShow} /></Modal.Body>
          </Modal>
     )
 };

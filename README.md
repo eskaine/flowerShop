@@ -16,9 +16,9 @@ Due to the team composition, instead of splitting roles between frontend or back
         - Frontend / CSS
 
 ### Eskaine
-    - Tech Lead / Assistant Designer
+    - Tech Lead
         - Codebase Structuring
-        - CSS
+        - Implmentation of Key Features
 
 ### Tyrone
     - Main Engineer

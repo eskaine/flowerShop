@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { axiosAuthPut } from "../../../helpers/api";
 import { setUserInfo } from "../../../actions/actions";
 
-function EditProfile() {
+function EditProfile({ setShow }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -25,7 +25,10 @@ function EditProfile() {
     e.preventDefault();
     let url = process.env.REACT_APP_USER + `/${user.id}`;
     let data = await axiosAuthPut(url, form, user.token);
-    if (data) dispatch(setUserInfo(data.updatedData));
+    if (data) {
+        dispatch(setUserInfo(data.updatedData));
+        setShow(false);
+    };
   }
 
   useEffect(() => {
