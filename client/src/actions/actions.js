@@ -1,8 +1,8 @@
 
-export const isAuth = (token) => {
+export const isAuth = (payload) => {
     return {
         type: "IS_AUTH",
-        payload: token
+        payload: payload
     }
 }
 
@@ -12,14 +12,21 @@ export const isNotAuth = () => {
     }
 }
 
+export const enableSidebar = () => {
+    return {
+        type: "ENABLE_SIDEBAR"
+    }
+}
+
 export const disableSidebar = () => {
     return {
         type: "DISABLE_SIDEBAR"
     }
 }
 
-export const enableSidebar = () => {
+export const setUserInfo = (payload) => {
     return {
-        type: "ENABLE_SIDEBAR"
+        type: "SET_USER_INFO",
+        payload: payload
     }
 }

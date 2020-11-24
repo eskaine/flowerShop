@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Card, Container } from "react-bootstrap";
-import axios from "axios";
 import { productUrl } from "../../helpers/func";
+import { axiosGet } from "../../helpers/api";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);
 
   async function getProducts() {
-    try {
-      let response = await axios.get(process.env.REACT_APP_PRODUCTS);
-      // console.log(response.data);
-      setProducts(response.data.products);
-    } catch (error) {
-      console.log(error);
-    }
+    let data = await axiosGet(process.env.REACT_APP_PRODUCTS);
+    if(data) setProducts(data.products);
   }
 
   useEffect(() => {

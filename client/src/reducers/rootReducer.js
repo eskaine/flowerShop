@@ -1,10 +1,10 @@
 
 import { combineReducers } from 'redux';
-import loginReducer from './loginReducer';
+import userReducer from './userReducer';
 import sidebarReducer from './sidebarReducer';
 
 const rootReducer = combineReducers({
-    user: loginReducer,
+    user: userReducer,
     navToggle: sidebarReducer
 });
 

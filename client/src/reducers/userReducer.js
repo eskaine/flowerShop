@@ -1,6 +1,6 @@
 import { decode } from "jsonwebtoken";
 
-const loginReducer = (state = false, action) => {
+const userReducer = (state = false, action) => {
     switch(action.type) {
         case "IS_AUTH": 
             return {
@@ -9,8 +9,10 @@ const loginReducer = (state = false, action) => {
             };
         case "IS_NOT_AUTH":
             return false;
+        case "SET_USER_INFO":
+            return {...state, ...action.payload};
         default: return state;
     }
 }
 
-export default loginReducer;
+export default userReducer;
