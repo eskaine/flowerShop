@@ -3,24 +3,56 @@ import { withRouter } from "react-router-dom";
 import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import AlertModal from '../AlertModal';
 
 function Product(props) {
     const {product} = props.location.state;
     const { ribbon, wrap } = product.customisation;
     const userid = useSelector(state => state.user.id);
     const [custom, setCustom] = useState({count: 1})
+    const [showModal, setShowModal] = useState(false);
+    const [errMsg, setErr] = useState({});
+    
+    function setModalData(x) {
+        switch(x) {
+            case 1:
+                setErr({message: "Please select a ribbon and wrap!"});
+                break;
+            case 2: 
+                setErr({message: "Please select a ribbon!"});
+                break;
+            case 3: 
+                setErr({message: "Please select a wrap!"});
+                break;
+            default:
+                setErr({});
+        }
+      }
+    
+      function handleShow(n) {
+        setModalData(n);
+        setShowModal(true);
+      }
 
     async function pushToCart(e) {
         e.stopPropagation();
-        try {
-           let data = await axios.post(process.env.REACT_APP_CART + `/${userid}/${product._id}`, custom);
-        } catch (error) {
-            console.log(error)
-        }
+
+        if (custom.wrap && custom.ribbon){
+            try {
+                let data = await axios.post(process.env.REACT_APP_CART + `/${userid}/${product._id}`, custom);
+            } catch (error) {
+                console.log(error);
+            }
+        } else if (!custom.wrap && !custom.ribbon){
+            await handleShow(1);
+        } else if (custom.ribbon === undefined){
+            await handleShow(2);
+        } else if (custom.wrap === undefined){
+            await handleShow(3);
+        } 
     }
 
     async function addToWishlist(){
-        //to update, im unauthorised
         try {
             let productid = product._id;
             console.log(productid)
@@ -61,7 +93,7 @@ function Product(props) {
                             name="ribbon"
                             onChange={changeHandler}
                         >
-                            <option>Choose a ribbon</option>
+                            <option>Choose A Ribbon</option>
                             {ribbon.map((ribbon, index) => (
                                 <option
                                     key={index}
@@ -77,7 +109,7 @@ function Product(props) {
                             name="wrap"
                             onChange={changeHandler}
                         >
-                            <option>Choose a wrap</option>
+                            <option>Choose A Wrap</option>
                             {wrap.map((wrap, index) => (
                                 <option
                                     key={index}
@@ -110,6 +142,11 @@ function Product(props) {
                     </Form>
                 </Form.Group>
             </Col>
+            <AlertModal 
+                show={showModal}
+                setShow={setShowModal}
+                data={errMsg}
+            />
         </Row>
     )
 };

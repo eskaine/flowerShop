@@ -110,7 +110,7 @@ function Cart() {
                         <p><span className="formLabel">Ribbon:</span> {cart.ribbon}</p>
                         <p><span className="formLabel">Wrapper:</span> {cart.wrap}</p>
                       </Col>
-                      <Col s={8} md={2} lg={2}>
+                      <Col s={8} md={2} lg={2} className="px-1">
                       <p><span className="formLabel">Price:</span> SGD$ {cart.totalPrice}</p>
                       </Col>
                       <Col s={8} md={2} lg={2}>
@@ -132,6 +132,8 @@ function Cart() {
             </Container>
           ))}
           </Container>
+          
+          { (displayCart.length > 5 &&
           <Row className="mt-3">
             <Col s={12} md={5}>
             </Col>
@@ -149,6 +151,8 @@ function Cart() {
               </Link>
             </Col>
           </Row>
+          )}
+      
        </Container>
     </Fragment>
   );
