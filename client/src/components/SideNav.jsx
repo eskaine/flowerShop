@@ -1,20 +1,16 @@
 import React, {Fragment} from 'react'
-import {
-    Navbar,
-    Row,
-  } from "react-bootstrap";
-  import { NavLink } from "react-router-dom";
-  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navbar, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { isAuth, disableSidebar } from '../actions/actions'
+import { disableSidebar } from '../actions/actions'
 import { useSelector, useDispatch } from "react-redux";
 
-function SideNav(props) {
+function SideNav() {
     const dispatch = useDispatch();
     const navOpen = useSelector((state) => state.navToggle);
     const auth = useSelector((state) => state.user)
-    // const { toggleNav, open } = props;
     let classes;
 
     function sidebarHandler(){
