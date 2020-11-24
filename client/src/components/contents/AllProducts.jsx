@@ -20,24 +20,27 @@ function AllProducts() {
     <Container>
       <Row>
         {products.map((product, i) => (
-          <Col key={i} md={6} lg={4} xl={3} className="mx-0 my-2">
-            <Link
-              to={{
-                pathname: `/products/${productUrl(product.productName)}`,
-                state: { product },
-              }}
-            >
-              <Card className="border card">
-                <Card.Img variant="top" src={product.img_url} />
-                <Card.Body className="p-2 mx-auto">
-                  <Card.Title id="card-title">{product.productName}</Card.Title>
-                  {/* <Card.Text>{product.desc}</Card.Text> */}
-                </Card.Body>
-                <Card.Footer>
-                  <div className="text-muted">Price: S${product.price}</div>
-                </Card.Footer>
-              </Card>
-            </Link>
+          <Col key={i} xs={12} s={9} md={6} lg={4} xl={3} className="mx-0 my-2">
+            <Container className="cart-item product-card">
+              <Link
+                to={{
+                  pathname: `/products/${productUrl(product.productName)}`,
+                  state: { product },
+                }}
+              >
+              <Row>
+                <Card.Img variant="top" className="mx-auto product-img" src={product.img_url} fluid/>
+              </Row>
+              <Row className="mt-3 mx-auto">
+                <Col xs={10} className="p-0" >
+                  <h6 className="formLabel prod-name">{product.productName}</h6>
+                </Col>
+                <Col xs={2} className="p-0">
+                  <h5 className="formLabel">S${product.price}</h5>
+                </Col>
+              </Row>
+              </Link>
+            </Container>
           </Col>
         ))}
       </Row>

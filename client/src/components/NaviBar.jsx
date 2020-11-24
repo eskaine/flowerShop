@@ -25,7 +25,7 @@ function Navibar() {
   }
 
   return (
-    <div className="d-flex m-0 p-0">
+    <div className="d-flex m-0 mt-1 p-0">
       <Navbar
         id="navi-bar"
         style={{ width: "100vw", height: "3em" }}
