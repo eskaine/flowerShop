@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { axiosAuthPut } from "../../../helpers/api";
+import { axiosPut } from "../../../helpers/api";
 import { setUserInfo } from "../../../actions/actions";
 
 function EditProfile({ setShow }) {
@@ -24,7 +24,7 @@ function EditProfile({ setShow }) {
   async function submitHandler(e) {
     e.preventDefault();
     let url = process.env.REACT_APP_USER + `/${user.id}`;
-    let data = await axiosAuthPut(url, form, user.token);
+    let data = await axiosPut(url, form, user.token);
     if (data) {
         dispatch(setUserInfo(data.updatedData));
         setShow(false);
