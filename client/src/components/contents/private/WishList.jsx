@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Row, Col, Card, Image, Button, Form, Container } from "react-bootstrap";
 import { useSelector } from 'react-redux';
-import { axiosAuthGet, axiosAuthPost, axiosAuthDel } from "../../../helpers/api";
+import { axiosGet, axiosPost, axiosDel } from "../../../helpers/api";
 import { Link } from 'react-router-dom';
 import AlertModal from '../../AlertModal';
 
@@ -28,30 +28,33 @@ function WishList() {
       }
     }
   
+  
     function handleShow(n) {
       setModalData(n);
       setShowModal(true);
     }
 
-    async function fetchWishList(){
-            let data = await axiosAuthGet(process.env.REACT_APP_WISHLIST + `/${user.id}`, user.token)
-            if(data) setWishList(data.wishList)
-    }
 
-    async function removeFromList(e){
-            let data = await axiosAuthDel(process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.value}`, user.token)
-            fetchWishList();
-            console.log(data.status);
-    }
+  async function fetchWishList() {
+    let url = process.env.REACT_APP_WISHLIST + `/${user.id}`;
+    let data = await axiosGet(url, user.token);
+    if (data) setWishList(data.wishList);
+  }
+
+
+  async function removeFromList(e) {
+    let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.value}`;
+    let data = await axiosDel(url, user.token);
+    fetchWishList();
+  }
 
 
     async function pushToCart(e) {
         e.stopPropagation();
         if (custom.wrap && custom.ribbon){
           try {
-              let data = await axiosAuthPost(process.env.REACT_APP_CART + `/${user.id}/${e.target.value}`, custom, user.token);
-              console.log(data.status);
-
+              let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.value}`;
+              let data = await axiosPost(url, custom, user.token);
           } catch (error) {
               console.log(error);
           }
@@ -277,5 +280,6 @@ function WishList() {
       </Fragment>
     )
 };
+
 
 export default WishList;

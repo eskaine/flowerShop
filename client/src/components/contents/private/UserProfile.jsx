@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Row, Col, Image } from "react-bootstrap";
-import { axiosAuthGet } from "../../../helpers/api";
+import { axiosGet } from "../../../helpers/api";
 import { setUserInfo } from "../../../actions/actions";
 import SettingsModal from "./SettingsModal";
 import EditProfile from "./EditProfile";
@@ -31,17 +31,14 @@ function UserProfile() {
   }
 
   async function fetch() {
-    let data = await axiosAuthGet(
-      process.env.REACT_APP_USER + `/${user.id}`,
-      user.token
-    );
+    let url = process.env.REACT_APP_USER + `/${user.id}`;
+    let data = await axiosGet(url, user.token);
     if (data) dispatch(setUserInfo(data.userDetails));
   }
 
   useEffect(() => {
     fetch();
   }, []);
-
 
   return (
     <Container>
@@ -81,9 +78,6 @@ function UserProfile() {
       />
     </Container>
   );
-
-
-};
-
+}
 
 export default UserProfile;

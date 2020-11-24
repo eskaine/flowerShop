@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { isAuth }  from '../../actions/actions';
+import { axiosPost } from "../../helpers/api";
+
 
 function Login() {
     const dispatch = useDispatch();
@@ -19,12 +21,16 @@ function Login() {
 
     async function submitHandler(e) {
         e.preventDefault();
-        let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
-        console.log(res);
-        if(res.status === 200) {
-          let token = res.data.token;
-            dispatch(isAuth(token));
-        }
+        let url = process.env.REACT_APP_ACC + "/login";
+        let data = await axiosPost(url, form);
+        console.log(data);
+        if(data) dispatch(isAuth(data.token));
+        // let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
+        // console.log(res);
+        // if(res.status === 200) {
+        //   let token = res.data.token;
+        //     dispatch(isAuth(token));
+        // }
     }
   return (
     <Container>
