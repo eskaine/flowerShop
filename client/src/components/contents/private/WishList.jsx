@@ -48,7 +48,7 @@ function WishList() {
           {wishList.map((wishList, index) => (
             <Row key={index} className="no-gutters">
               <Col md={6}>
-                <Image src={wishList.img_url} fluid className="img-thumbnail" />
+                <Image src={(wishList.img_url == null) ? "" : wishList.img_url} fluid className="img-thumbnail" />
               </Col>
               <Col md={6}>
                 <Card>

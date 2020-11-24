@@ -42,6 +42,7 @@ function UserProfile() {
     fetch();
   }, []);
 
+
   return (
     <Container>
       <Row>
@@ -83,6 +84,7 @@ function UserProfile() {
       />
     </Container>
   );
+
 
 };
 

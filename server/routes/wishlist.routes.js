@@ -30,7 +30,7 @@ const User = require("../models/user.models");
 
         let productid = req.body.productid;
         let userid = req.params.userid;
-        
+        console.log(productid)
         let user = await User.findById(userid);
         let item = user.wishList.find((el) => el._id.equals(productid))
 
