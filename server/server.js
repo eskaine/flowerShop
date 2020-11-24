@@ -14,16 +14,14 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 
-app.use('/', require("./routes/main.routes"));
+
 app.use('/auth', require("./routes/auth.routes"));
 app.use('/products', require("./routes/products.routes"));
+app.use('/cart', require("./routes/cart.routes"));
+app.use('/wishlist', require("./routes/wishlist.routes"));
 app.use('/user', passport.authenticate('jwt', { session: false }), require("./routes/user.routes"));
-app.post("/", async(req,res)=>{
-  let data = new User(req.body)
-  await data.save()
-})
 
-// app.use('test', require("./routes/test.routes"));
+
 
 app.get("*", (req, res) => {
   res.sendStatus(404);
