@@ -7,10 +7,11 @@ const User = require("../models/user.models");
  * @functions CART
  * ***************************************************************
  */
-async function addToCart(body, params) {
+async function addToCart(body, params, totalPrice) {
     let { count, ribbon, wrap } = body;
     let { userid, productid } = params;
-    return await User.findByIdAndUpdate(userid,
+    // return await User.findByIdAndUpdate(userid,
+    let user = await User.findByIdAndUpdate(userid,
         {
             $push: {
                 cart: {
@@ -62,11 +63,10 @@ router.post("/:userid/:productid", async (req, res) => {
 
         let user = await User.findById(userid);
 
-        let item = user.cart.find((el) => el.cartItem.equals(productid))
-
+        let item = await user.cart.find((el) => el.cartItem.equals(productid))
 
         if (item === undefined) {
-            addToCart(req.body, req.params);
+            await addToCart(req.body, req.params, totalPrice);
         } else if (item.cartItem.equals(productid) && item.ribbon == ribbon && item.wrap == wrap) {
             await User.findOneAndUpdate(
                 {
@@ -80,7 +80,7 @@ router.post("/:userid/:productid", async (req, res) => {
                     }
                 });
         } else if ((item.cartItem.equals(productid) && item.ribbon !== ribbon) || (item.cartItem.equals(productid) && item.wrap !== wrap)) {
-            addToCart(req.body, req.params);
+            await addToCart(req.body, req.params);
         }
         res.sendStatus(200)
     } catch (error) {
