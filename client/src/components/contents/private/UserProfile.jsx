@@ -42,7 +42,7 @@ function UserProfile() {
                                 pathname: `/profile/editpassword`,
                                 state: { user },
                             }} >
-                                <Button id="submit-btn">
+                                <Button className="button">
                                     Change Password
                                 </Button>
                             </Link>
@@ -73,7 +73,7 @@ function UserProfile() {
                                 pathname: `/profile/update`,
                                 state: { user },
                             }} >
-                                <Button id="submit-btn">
+                                <Button className="button">
                                     Update Profile
                                 </Button>
                             </Link>

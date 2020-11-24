@@ -48,22 +48,22 @@ function Navibar() {
 
           {token && (
             <Fragment>
-              <div className="nav-link nav-item">
+              <div className="nav-link nav-item" id="hide">
                 <NavLink to="/cart">
                   <FontAwesomeIcon icon={faShoppingCart} /> Cart
                 </NavLink>
               </div>
-              <div className="nav-link nav-item">
+              <div className="nav-link nav-item" id="hide">
                 <NavLink to="/wishlist">
                   <FontAwesomeIcon icon={faHeart} /> Wishlist
                 </NavLink>
               </div>
-              <div className="nav-link nav-item">
+              <div className="nav-link nav-item" id="hide">
                 <NavLink to="/profile">
                   <FontAwesomeIcon icon={faUser} />
                 </NavLink>
               </div>
-              <div className="nav-link nav-item" onClick={logoutHandler}>
+              <div className="nav-link nav-item" id="hide" onClick={logoutHandler}>
                 <NavLink to="/">Logout</NavLink>
               </div>
             </Fragment>
@@ -73,10 +73,10 @@ function Navibar() {
             ""
           ) : (
             <Fragment>
-              <div className="nav-link nav-item">
+              <div className="nav-link nav-item" id="hide">
                 <NavLink to="/register">Register</NavLink>
               </div>
-              <div className="nav-link nav-item">
+              <div className="nav-link nav-item" id="hide">
                 <NavLink to="/login">Login</NavLink>
               </div>
             </Fragment>
