@@ -76,7 +76,7 @@ function SideNav(props) {
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
-                to="/account/username" >
+                to="/profile" >
                      <FontAwesomeIcon className="mx-2" icon={faUser} />Account
             </NavLink>
         </Row>
