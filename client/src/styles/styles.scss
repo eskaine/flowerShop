@@ -4,6 +4,7 @@
 $paleYellow: #fffef9;
 $pastelPink: #ffebec;
 $lightBrown: #a78c7b;
+$red: rgb(255, 82, 82);
 $grayBrown: #585b56;
 $gray: #1b2326;
 
@@ -17,6 +18,10 @@ body {
   color: $gray;
   font-family: $bodyFont;
   background-color: $paleYellow;
+}
+
+p {
+  font-size: 0.92rem;
 }
 
 .container-fluid {
@@ -69,7 +74,7 @@ div.form-group {
   margin-bottom: 0.2rem;
 }
 
-#submit-btn {
+.button {
   color: $paleYellow;
   text-decoration: none;
   background-color: $lightBrown;
@@ -81,6 +86,32 @@ div.form-group {
   &:hover {
     color: $gray;
     background: $pastelPink;
+    transition: all 0.5s;
+  }
+}
+
+.cart-item {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  margin-top: 1rem
+}
+
+.del-button {
+  color: $gray;
+  text-decoration: none;
+  background-color: $paleYellow;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  padding: 3px 5px;
+  margin: auto 2rem auto auto;
+  line-height: 0.7;
+  &:hover {
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    color: $paleYellow;
+    background: $red;
     transition: all 0.5s;
   }
 }
@@ -195,6 +226,26 @@ a {
     font-size: 0.8rem;
   }
 
+  p{
+    font-size: 0.8rem;
+  }
+
+  .formLabel {
+    font-size: 1rem;
+  }
+
+  .del-button {
+    margin-right: 8px;
+  }
+
+  .cart-img {
+    width: cover;
+  }
+
+  #hide {
+    display: none;
+  }
+
   #sidebar {
     margin-left: -260px;
     min-width: 260px;
@@ -204,7 +255,7 @@ a {
 
   #navi-bar {
     width: 100%;
-    margin: 0;
+    margin: 0.5rem 0 0 0;
     padding: 0;
   }
 
