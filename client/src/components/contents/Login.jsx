@@ -23,14 +23,7 @@ function Login() {
         e.preventDefault();
         let url = process.env.REACT_APP_ACC + "/login";
         let data = await axiosPost(url, form);
-        console.log(data);
         if(data) dispatch(isAuth(data.token));
-        // let res = await axios.post(process.env.REACT_APP_ACC + "/login", form);
-        // console.log(res);
-        // if(res.status === 200) {
-        //   let token = res.data.token;
-        //     dispatch(isAuth(token));
-        // }
     }
   return (
     <Container>

@@ -25,11 +25,6 @@ function Register() {
         let url = process.env.REACT_APP_ACC + "/register";
         let data = await axiosPost(url, form);
         if(data) dispatch(isAuth(data.token));
-        // let res = await axios.post(process.env.REACT_APP_ACC + "/register", form);
-        // if(res.status === 200) {
-        //   let token = res.data.token;
-        //   dispatch(isAuth(token));
-        // }
     }
 
   return (
