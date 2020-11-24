@@ -41,7 +41,6 @@ function Product(props) {
             try {
                 let url = process.env.REACT_APP_CART + `/${user.id}/${product._id}`;
                 let data = await axiosPost(url, custom, user.token);
-                console.log(data.status);
 
             } catch (error) {
                 console.log(error);
@@ -58,7 +57,6 @@ function Product(props) {
     async function addToWishlist(){
         let url = process.env.REACT_APP_WISHLIST+`/${user.id}`;
         let data = await axiosPost(url, {productid: product._id}, user.token);
-        console.log(data.status);
     }
 
     function changeHandler(e) {
