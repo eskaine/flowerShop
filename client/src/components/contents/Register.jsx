@@ -31,6 +31,7 @@ function Register() {
     <Container>
       <Row>
       <Col md={6} s={12}
+        className="cart-item"
         style={{
           height: '60vh',
           backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`
@@ -38,7 +39,7 @@ function Register() {
           >
       </Col>
       <Col md={6} s={12}>
-        <Form onSubmit={submitHandler} >
+        <Form onSubmit={submitHandler} className="cart-item">
           <h3 className="formLabel">Register</h3>
           <Form.Group controlId="formUsername">
             <Form.Label>Username</Form.Label>
@@ -52,7 +53,7 @@ function Register() {
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" value={form.password} placeholder="Password" onChange={changeHandler} />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="button" type="submit">
               Register
           </Button>
         </Form>

@@ -80,7 +80,7 @@ div.form-group {
   background-color: $lightBrown;
   border: none;
   border-radius: 0;
-  padding: 3px 5px;
+  padding: 3px 7px;
   margin: 0.8rem 0 1rem;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
   &:hover {
@@ -238,6 +238,7 @@ a {
   width: 240px;
 }
 
+
 // Tablet
 @media only screen and (max-width: 768px) {
   body {
@@ -261,14 +262,19 @@ a {
     margin: 0 auto !important;
   }
 
+  .product-img {
+    height: 220px;
+    margin: 0 auto !important;
+  }
+
   #hide {
     display: none;
   }
 
   #sidebar {
-    margin-left: -260px;
-    min-width: 260px;
-    max-width: 260px;
+    margin-left: -220px;
+    min-width: 220px;
+    max-width: 220px;
     font-size: 0.7rem;
   }
 
