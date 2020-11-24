@@ -53,11 +53,6 @@ function Product(props) {
         } 
     }
 
-    async function pushToCart(e) {
-        e.stopPropagation();
-        let data = await axiosAuthPost(process.env.REACT_APP_CART + `/${user.id}/${product._id}`, custom, user.token);
-    }
-
     async function addToWishlist(){
         let data = await axiosAuthPost(process.env.REACT_APP_WISHLIST+`/${user.id}`, {productid: product._id}, user.token);
     }
