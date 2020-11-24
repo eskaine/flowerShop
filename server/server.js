@@ -3,7 +3,6 @@ const express = require("express");
 const passport = require('passport');
 const cors = require("cors");
 const app = express();
-const User = require("./models/user.models");
 
 require("./config/mongo.config");
 require("./config/passport.config");
@@ -14,14 +13,11 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 
-
 app.use('/auth', require("./routes/auth.routes"));
 app.use('/products', require("./routes/products.routes"));
-app.use('/cart', require("./routes/cart.routes"));
-app.use('/wishlist', require("./routes/wishlist.routes"));
+app.use('/cart', passport.authenticate('jwt', { session: false }), require("./routes/cart.routes"));
+app.use('/wishlist', passport.authenticate('jwt', { session: false }), require("./routes/wishlist.routes"));
 app.use('/user', passport.authenticate('jwt', { session: false }), require("./routes/user.routes"));
-
-
 
 app.get("*", (req, res) => {
   res.sendStatus(404);
