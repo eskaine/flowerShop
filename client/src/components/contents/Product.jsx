@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
 import axios from "axios";
-import { useSelector, useDispatch } from 'react-redux';
-import { addToCart }  from '../../actions/actions';
+import { useSelector } from 'react-redux';
 
 function Product(props) {
-    const dispatch = useDispatch();
     const {product} = props.location.state;
     const { ribbon, wrap } = product.customisation;
     const userid = useSelector(state => state.user.id);
@@ -15,9 +13,6 @@ function Product(props) {
     async function pushToCart(e) {
         e.stopPropagation();
         try {
-            let payload = { ...custom, id: product._id };
-            dispatch(addToCart(payload));
-            console.log(userid, product._id)
            let data = await axios.post(process.env.REACT_APP_CART + `/${userid}/${product._id}`, custom);
         } catch (error) {
             console.log(error)
@@ -28,8 +23,7 @@ function Product(props) {
         //to update, im unauthorised
         try {
             let id = product._id;
-            let data = await axios.post(process.env.REACT_APP_USER+`/wishlist/${userid}`)
-            console.log(id,data)
+            let data = await axios.post(process.env.REACT_APP_USER+`/wishlist/${userid}`);
         }catch (error){
             console.log(error)
         }
