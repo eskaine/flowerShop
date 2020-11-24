@@ -22,8 +22,10 @@ function Product(props) {
     async function addToWishlist(){
         //to update, im unauthorised
         try {
-            let id = product._id;
-            let data = await axios.post(process.env.REACT_APP_USER+`/wishlist/${userid}`);
+            let productid = product._id;
+            console.log(productid)
+            let data = await axios.post(process.env.REACT_APP_WISHLIST+`/${userid}`, {productid: product._id});
+            console.log(data)
         }catch (error){
             console.log(error)
         }

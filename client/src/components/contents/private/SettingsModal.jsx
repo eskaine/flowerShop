@@ -14,14 +14,6 @@ function SettingsModal({show, setShow, data}) {
              <Modal.Title>{data.title}</Modal.Title>
            </Modal.Header>
            <Modal.Body><Component /></Modal.Body>
-           <Modal.Footer>
-             <Button variant="secondary" onClick={handleClose}>
-               Close
-             </Button>
-             <Button variant="primary" onClick={handleClose}>
-               Save Changes
-             </Button>
-           </Modal.Footer>
          </Modal>
     )
 };

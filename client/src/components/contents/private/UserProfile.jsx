@@ -60,12 +60,13 @@ function UserProfile() {
           <h3 className="formLabel">Profile</h3>
           <div>Username: {user.username}</div>
           <br />
+
           <Button id="submit-btn" onClick={() => handleShow(0)}>
             Change Password
           </Button>
           <ul>
-            <li>First Name: {user.firstname}</li>
-            <li>Last Name: {user.lastname}</li>
+            <li>First Name: {user.firstName}</li>
+            <li>Last Name: {user.lastName}</li>
             <li>Email: {user.email}</li>
             <li>Address: {user.address}</li>
             <li>Contact No.: {user.phone}</li>
@@ -82,6 +83,8 @@ function UserProfile() {
       />
     </Container>
   );
-}
+
+};
+
 
 export default UserProfile;

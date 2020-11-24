@@ -9,8 +9,8 @@ function EditProfile() {
   const user = useSelector((state) => state.user);
 
   const [form, setForm] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     address: "",
@@ -36,9 +36,9 @@ function EditProfile() {
       <Form.Group controlId="formFirstname">
         <Form.Label>First Name:</Form.Label>
         <Form.Control
-          name="firstname"
+          name="firstName"
           type="text"
-          value={form.firstname}
+          value={form.firstName}
           placeholder="First Name"
           onChange={changeHandler}
         />
@@ -46,9 +46,9 @@ function EditProfile() {
       <Form.Group controlId="formLastname">
         <Form.Label>Last Name:</Form.Label>
         <Form.Control
-          name="lastname"
+          name="lastName"
           type="text"
-          value={form.lastname}
+          value={form.lastName}
           placeholder="Last Name"
           onChange={changeHandler}
         />

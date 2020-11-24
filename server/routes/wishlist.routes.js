@@ -13,7 +13,7 @@ const User = require("../models/user.models");
  router.get("/:userid",async (req,res)=>{
 
     try {
-        let wishList = await User.findOne({ _id: req.params.userid },"wishList").populate("wishList");
+        let wishList = await User.findById(req.params.userid).populate("wishList");
         res.status(200).json(wishList)
     }catch(error) {
         res.sendStatus(400);
@@ -25,6 +25,7 @@ const User = require("../models/user.models");
   * @POST PUSH TO WISHLIST
   */
   router.post("/:userid", async (req,res)=>{
+      console.log("wl HERE!")
     try {
 
         let productid = req.body.productid;
@@ -59,7 +60,6 @@ const User = require("../models/user.models");
     try {
 
         let {wishListid, userid} = req.params;
-
         await User.findByIdAndUpdate(userid,
                 {
                     $pull: {

@@ -25,7 +25,7 @@ function App() {
 			<div className={classes} onClick={sidebarHandler}/>
 				<NaviBar />
 				<MainRoutes />
-				<Footer />
+				{/* <Footer /> */}
 		</Fragment>
 	);
 }
