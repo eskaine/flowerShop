@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { Container, Form, Button, Row, Col, Image } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import {withRouter} from 'react-router-dom'
 import { authHeader } from '../../../helpers/func';
 

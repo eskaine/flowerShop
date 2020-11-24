@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card, Form, Image, Button} from "react-bootstrap";
-import axios from "axios";
 import { useSelector } from 'react-redux';
 import AlertModal from '../AlertModal';
 import { axiosAuthPost } from "../../helpers/api"
@@ -41,6 +40,7 @@ function Product(props) {
         if (custom.wrap && custom.ribbon){
             try {
                 let data = await axiosAuthPost(process.env.REACT_APP_CART + `/${user.id}/${product._id}`, custom, user.token);
+                console.log(data.status);
             } catch (error) {
                 console.log(error);
             }
@@ -55,6 +55,7 @@ function Product(props) {
 
     async function addToWishlist(){
         let data = await axiosAuthPost(process.env.REACT_APP_WISHLIST+`/${user.id}`, {productid: product._id}, user.token);
+        console.log(data.status);
     }
 
     function changeHandler(e) {

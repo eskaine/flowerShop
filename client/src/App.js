@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import NaviBar from "./components/NaviBar";
 import MainRoutes from "./components/routes/MainRoutes";
-import Footer from "./components/Footer";
 import "./styles/styles.scss";
 import SideNav from "./components/SideNav";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,7 +24,6 @@ function App() {
 			<div className={classes} onClick={sidebarHandler}/>
 				<NaviBar />
 				<MainRoutes />
-				{/* <Footer /> */}
 		</Fragment>
 	);
 }
