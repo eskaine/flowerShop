@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
 
+
 function AlertModal({show, setShow, data}) {
 
     function handleClose(){

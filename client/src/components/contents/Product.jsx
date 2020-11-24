@@ -41,6 +41,7 @@ function Product(props) {
             try {
                 let data = await axiosAuthPost(process.env.REACT_APP_CART + `/${user.id}/${product._id}`, custom, user.token);
                 console.log(data.status);
+
             } catch (error) {
                 console.log(error);
             }
