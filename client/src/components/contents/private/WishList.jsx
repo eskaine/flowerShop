@@ -43,8 +43,9 @@ function WishList() {
 
 
   async function removeFromList(e) {
-    let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.value}`;
+    let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.id}`;
     let data = await axiosDel(url, user.token);
+
     fetchWishList();
   }
 
@@ -53,7 +54,7 @@ function WishList() {
         e.stopPropagation();
         if (custom.wrap && custom.ribbon){
           try {
-              let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.value}`;
+              let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
               let data = await axiosPost(url, custom, user.token);
           } catch (error) {
               console.log(error);
@@ -166,7 +167,7 @@ function WishList() {
                               onChange={changeHandler}
                           />
                           <Button className="button"
-                              value={wishList._id}
+                              id={wishList._id}
                               onClick={pushToCart}
                               >
                               Add To Cart
