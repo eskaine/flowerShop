@@ -44,8 +44,7 @@ function WishList() {
 
   async function removeFromList(e) {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.id}`;
-    let data = await axiosDel(url, user.token);
-
+    await axiosDel(url, user.token);
     fetchWishList();
   }
 
@@ -55,7 +54,7 @@ function WishList() {
         if (custom.wrap && custom.ribbon){
           try {
               let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
-              let data = await axiosPost(url, custom, user.token);
+              await axiosPost(url, custom, user.token);
           } catch (error) {
               console.log(error);
           }

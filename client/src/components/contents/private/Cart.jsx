@@ -21,14 +21,14 @@ function Cart() {
   
   async function updateQuantity() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
-    let res = await axiosPut(url, quantity, user.token);
+    await axiosPut(url, quantity, user.token);
     getCart();
   }
 
   
   async function removeItem(e) { 
     let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
-    let res = await axiosDel(url, user.token);
+    await axiosDel(url, user.token);
     getCart();
   }
 
