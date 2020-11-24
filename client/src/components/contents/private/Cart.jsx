@@ -3,46 +3,35 @@ import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap"
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { axiosAuthGet, axiosAuthPut, axiosAuthDel } from "../../../helpers/api"
 
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const user = useSelector(state => state.user); 
-
+  console.log(user)
 
   async function getCart() {
-    try {
-      let response = await axios.get(
-        process.env.REACT_APP_CART + `/${user.id}`
-      );
-      // console.log(response.data.userCart);
-      setDisplayCart(response.data.userCart);
-    } catch (error) {
-      console.log(error);
-    }
+      let res = await axiosAuthGet(process.env.REACT_APP_CART + `/${user.id}`, user.token);
+      setDisplayCart(res.userCart);
   }
 
   async function updateQuantity() {
-    try {
-      let response = await axios.put(
+
+      let res = await axiosAuthPut(
         process.env.REACT_APP_CART + `/${user.id}`,
-        quantity
+        quantity, user.token
       );
       getCart();
-    } catch (error) {
-      console.log(error);
-    }
+      
   }
 
   async function removeItem(e) {
-    try {
-      // let data = { cartid: e.target.id, userid: user.id };
-      // console.log("data:",data);
-      let response = await axios.delete(
-        process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`);
-        console.log(response);
+
+      let res = await axiosAuthDel(
+        process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`, user.token);
       getCart();
-    } catch (error) {}
+
   }
 
   function changeHandler(e) {

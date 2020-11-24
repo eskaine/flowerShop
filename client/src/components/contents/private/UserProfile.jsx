@@ -21,34 +21,6 @@ function UserProfile() {
     fetch();
   }, []);
 
-  return (
-    <Container>
-      <Row>
-        <Col
-          md={6}
-          s={12}
-          id="profile"
-          // style={{backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`}}
-        >
-          <Image
-            src="https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg"
-            fluid
-          />
-        </Col>
-        <Col md={6} s={12}>
-          <h3 className="formLabel">Profile</h3>
-          <Form.Label>Username: {user.username}</Form.Label>
-          <br />
-          <Link
-            to={{
-              pathname: `/profile/editpassword`,
-              state: { user },
-            }}
-          >
-            <Button id="submit-btn">Change Password</Button>
-          </Link>
-
-
     return (
         <Container>
             <Row>
