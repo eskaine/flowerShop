@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { response } = require("express");
 const Product = require("../models/product.models");
 /**
  * @objective to display all products
@@ -13,6 +14,17 @@ router.get("/", async (req, res) => {
         res.sendStatus(400);
     }
 });
+
+
+router.post("/",async (req,res)=>{
+    try {
+        let { productName } = req.body;
+        let product = await Product.find({"productName": new RegExp("^"+ productName+ "$", "i")})
+        res.status(200).json({product})
+    }catch (error){
+
+    }
+})
 
 
 
