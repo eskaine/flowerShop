@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import AllProducts from "../contents/AllProducts";
@@ -10,7 +10,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 
 function MainRoutes() {
   return (
-    <Container className="border px-0 mt-5">
+    <Fragment className="border px-0 mt-5">
     <Switch>
       <Route exact path="/">
         <Home />
@@ -29,7 +29,7 @@ function MainRoutes() {
       </Route>
       <ProtectedRoutes />
     </Switch>
-    </Container>
+    </Fragment>
   );
 }
 

@@ -1,52 +1,62 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Container, Row } from 'react-bootstrap';
 // import { saveState, loadState } from '../../helpers/localStorage';
 
 
 function Home() {
     // console.log("home state", loadState());
     return (
-        <div>
+        <div className="mt-2 mx-2">
             <Carousel>
-                <Carousel.Item interval={8000}>
-                    <img
-                    className="d-block w-100"
-                    src="https://media.karousell.com/media/photos/products/2020/01/01/wedding_bridesmaids_bouquets_artificial_flowers_1577869583_e29ed926_progressive.jpg"
-                    alt="First slide"
-                    style={{height: '80vh', objectFit: 'cover'}}
-                    />
-                    <Carousel.Caption>
-                    <h3>Flower Power</h3>
-                    <p>We use a carousell for carousell items lolol find out more about us yay.</p>
-                    </Carousel.Caption>
+               <Carousel.Item interval={8000}>
+                    <div className="w-100 text-center d-flex align-middle"
+                        style={{
+                            backgroundImage: "url(https://res.cloudinary.com/dfqx6m8lw/image/upload/v1606290888/mumsworkshop/product-images/website/jenny-smith-FfeYgPKBgqY-unsplash_smb5y8.jpg)",
+                            height: '93vh', 
+                            backgroundSize: 'cover',
+                            opacity: '50%',                                
+                        }}
+                    >     
+                    <Container fluid style={{background: 'none'}}> 
+                        <Row className="d-flex justify-content-center">
+                            <Link to="/products">
+                                <h1 className="car-heading">mumsworkshop</h1>
+                            </Link>
+                        </Row>
+                    </Container>
+
+                    </div>
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
-                    <Link to="/products">
-                        <img
-                        className="d-block w-100"
-                        src="https://media.karousell.com/media/photos/products/2018/08/11/wedding_bouquet__fresh_and_dried_flowers_1533925063_d3ac757c_progressive.jpg"
-                        alt="Third slide"
-                        style={{height: '80vh', objectFit: 'cover'}}
-                        />
-                        <Carousel.Caption>
-                        <h3>Browse Our Catalogue</h3>
-                        <p>Link here i guess</p>
-                        </Carousel.Caption>
-                    </Link>
+                    <div className="w-100 text-center"
+                        style={{
+                            backgroundImage: "url(https://res.cloudinary.com/dfqx6m8lw/image/upload/v1606290888/mumsworkshop/product-images/website/ivonne-adame-6Hu3aJNdEV4-unsplash_nsnpof.jpg)",
+                            height: '93vh', 
+                            backgroundSize: 'cover',
+                            opacity: '50%',                                
+                        }}
+                    >     
+                        <Link to="/products">
+                            <h1 className="car-heading">browse our catalogue</h1>  
+                        </Link>
+                    </div>
                 </Carousel.Item>
+
                 <Carousel.Item interval={8000}>
-                    <img
-                    className="d-block w-100"
-                    src="https://media.karousell.com/media/photos/products/2019/03/29/wedding_flowers_calla_lily_and_rose_bouquet_1553861072_e1397ce3_progressive.jpg"
-                    alt="Third slide"
-                    style={{height: '80vh', objectFit: 'cover'}}
-                    />
-                    <Carousel.Caption>
-                    <h3>Contact Us</h3>
-                    <p>We don't have to do this lol</p>
-                    </Carousel.Caption>
+                <div className="w-100 text-center"
+                        style={{
+                            backgroundImage: "url(https://res.cloudinary.com/dfqx6m8lw/image/upload/v1606290888/mumsworkshop/product-images/website/veri-ivanova-whOkVvf0_hU-unsplash_uam1og.jpg)",
+                            height: '93vh', 
+                            backgroundSize: 'cover',
+                            opacity: '50%',                                
+                        }}
+                    >     
+                        <Link to="/products">
+                            <h1 className="car-heading">contact us</h1>  
+                        </Link>
+                    </div>
                 </Carousel.Item>
             </Carousel>
         </div>

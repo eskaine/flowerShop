@@ -5,7 +5,7 @@ $paleYellow: #fffef9;
 $pastelPink: #ffebec;
 $lightBrown: #a78c7b;
 $gold: rgb(255, 217, 0);
-$red: rgb(255, 82, 82);
+$red: rgb(77, 0, 23);
 $grayBrown: #585b56;
 $gray: #1b2326;
 
@@ -14,15 +14,21 @@ $bodyFont: 'Poiret One', cursive;
 $logoFont: 'Euphoria Script', cursive;
 $navFont: 'Poiret One', cursive;
 
-
 body {
+  margin: 0 !important;
   color: $gray;
   font-family: $bodyFont;
-  background-color: $paleYellow;
+  background-color: transparent;
 }
 
 p {
   font-size: 0.92rem;
+}
+
+.car-heading {
+  font-family: $logoFont;
+  font-size: 10vh;
+  color: $red;
 }
 
 .container-fluid {
@@ -252,6 +258,11 @@ a {
 
   p{
     font-size: 0.8rem;
+  }
+
+  .car-heading {
+    font-size: 2em;
+    padding: 3em 10px 0 10px;;
   }
 
   .form-control {
