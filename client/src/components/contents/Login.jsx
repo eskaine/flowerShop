@@ -33,8 +33,7 @@ function Login() {
               <div className="mx-auto p-0">
                 <Image src="https://res.cloudinary.com/dfqx6m8lw/image/upload/v1606290888/mumsworkshop/product-images/website/frantz-eric-celestin-SUa1Y8Md608-unsplash_j0tc8n.jpg" fluid />
               </div>
-            </Col>
-            
+            </Col>  
           </Container>
         </Col>
         <Col xs={6} s={6} md={6} className="d-flex align-middle m-0 p-0">
