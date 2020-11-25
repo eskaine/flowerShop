@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const Product = require("../models/product.models");
 const User = require("../models/user.models");
+const { validationResult } = require("express-validator");
+const { checkObjectID } = require("../auth/validate");
+
 
 /**
  * @functions WISHLIST
@@ -24,7 +26,12 @@ const User = require("../models/user.models");
  /**
   * @POST PUSH TO WISHLIST
   */
-  router.post("/:userid", async (req,res)=>{
+  router.post("/:userid", [checkObjectID('productid')], async (req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
 
         let productid = req.body.productid;

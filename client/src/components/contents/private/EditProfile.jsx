@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosPut } from "../../../helpers/api";
@@ -9,12 +9,12 @@ function EditProfile({ setShow }) {
   const user = useSelector((state) => state.user);
 
   const [form, setForm] = useState({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    username: user.username,
-    email: user.email,
-    address: user.address,
-    phone: user.phone,
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    address: '',
+    phone: '',
   });
 
   function changeHandler(e) {
@@ -30,6 +30,11 @@ function EditProfile({ setShow }) {
         setShow(false);
     };
   }
+
+  useEffect(() =>{
+    console.log(user)
+    setForm({...user});
+  }, []);
 
   return (
     <Form onSubmit={submitHandler}>
