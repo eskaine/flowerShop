@@ -37,8 +37,8 @@ function Login() {
             
           </Container>
         </Col>
-        <Col xs={6} s={6} md={6} className="d-flex align-middle py-2 pl-0">
-          <Container className="my-auto p-0">
+        <Col xs={6} s={6} md={6} className="d-flex align-middle m-0 p-0">
+          <Container className="my-auto">
             <Form onSubmit={submitHandler} >
               <h3 className="formLabel">Log In</h3>
               <Form.Group controlId="formEmail">
