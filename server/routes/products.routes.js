@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { response } = require("express");
 const Product = require("../models/product.models");
 /**
  * @objective to display all products
