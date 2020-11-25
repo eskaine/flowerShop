@@ -20,7 +20,7 @@ function AllProducts() {
     <Container>
       <Row>
         {products.map((product, i) => (
-          <Col key={i} xs={12} s={9} md={6} lg={4} xl={3} className="mx-0 my-2">
+          <Col key={i} xs={12} s={9} md={6} lg={4} xl={3} className="mx-0 my-2 animate__animated animate__zoomIn">
             <Container className="cart-item product-card">
               <Link
                 to={{
