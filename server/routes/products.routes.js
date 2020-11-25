@@ -19,7 +19,7 @@ router.post("/",async (req,res)=>{
     try {
         let { productName } = req.body;
         let product = await Product.find({"productName": new RegExp("^"+ productName+ "$", "i")})
-        res.status(200).json({product})
+        res.status(200).json({product:product[0]})
     }catch (error){
 
     }
