@@ -4,6 +4,7 @@
 $paleYellow: #fffef9;
 $pastelPink: #ffebec;
 $lightBrown: #a78c7b;
+$gold: rgb(255, 217, 0);
 $red: rgb(255, 82, 82);
 $grayBrown: #585b56;
 $gray: #1b2326;
@@ -253,6 +254,11 @@ a {
     font-size: 0.8rem;
   }
 
+  .form-control {
+    height: 1.5rem !important;
+    font-size: 0.8rem !important;    
+  }
+
   .formLabel {
     font-size: 1rem;
   }
@@ -271,6 +277,9 @@ a {
     margin: 0 auto !important;
   }
 
+  .button {
+    font-size: 0.8rem;
+  }
 
 
   #hide {
