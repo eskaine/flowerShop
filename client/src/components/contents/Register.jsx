@@ -24,7 +24,6 @@ function Register() {
         e.preventDefault();
         let url = process.env.REACT_APP_ACC + "/register";
         let data = await axiosPost(url, form);
-        console.log('data', data);
         if(data) {
           dispatch(showAlert({ variant: "success", message: "Registration Successful!"}));
           dispatch(isAuth(data.token));

@@ -56,7 +56,7 @@ function WishList() {
               let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
               await axiosPost(url, custom, user.token);
           } catch (error) {
-              console.log(error);
+
           }
       } else if (!custom.wrap && !custom.ribbon){
           await handleShow(1);

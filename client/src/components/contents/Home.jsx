@@ -6,7 +6,6 @@ import { Carousel } from 'react-bootstrap';
 
 
 function Home() {
-    // console.log("home state", loadState());
     return (
         <div className="mt-2 mx-2">
             <Carousel>

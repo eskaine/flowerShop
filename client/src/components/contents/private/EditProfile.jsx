@@ -36,7 +36,6 @@ function EditProfile({ setShow }) {
   }
 
   useEffect(() =>{
-    // console.log(user)
     setForm({...user});
   }, []);
 

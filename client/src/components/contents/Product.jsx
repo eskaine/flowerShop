@@ -63,7 +63,7 @@ function Product(props) {
         await axiosPost(url, custom, user.token);
         dispatch(showAlert({ variant: "success", message: "Item added to Cart!"}));
       } catch (error) {
-        console.log(error);
+        dispatch(showAlert({ variant: "danger", message: "Something went wrong."}))
       }
     } else if (!custom.wrap && !custom.ribbon) {
       await handleShow(1);
