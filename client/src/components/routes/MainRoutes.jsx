@@ -25,6 +25,12 @@ function MainRoutes() {
           Nina Warriors
         </h1>
       </Route>
+      <Route exact path="/contact">
+        <h1>
+          The real flower shop is here: <br />
+          <a href="https://www.carousell.sg/mumsworkshop/" rel="noopener noreferrer" target="_blank">https://www.carousell.sg/mumsworkshop/</a>
+        </h1>
+      </Route>
       <Route exact path="/disclaimer">
         <h1>
           This site is only half done. Don't tell anyone.
