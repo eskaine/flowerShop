@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import AllProducts from "../contents/AllProducts";
 import Home from "../contents/Home";
 import Product from "../contents/Product";
