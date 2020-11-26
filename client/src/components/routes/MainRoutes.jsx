@@ -30,10 +30,10 @@ function MainRoutes() {
       <Route exact path="/login">
         <Login />
       </Route>
-      <Route exact path="/products">
+      <Route exact path="/browse">
         <AllProducts />
       </Route>
-      <Route exact path="/products/:productName">
+      <Route exact path="/browse/:productName">
         <Product />
       </Route>
       <ProtectedRoutes />

@@ -50,7 +50,7 @@ function SideNav() {
         <Row onClick={sidebarHandler}>
             <NavLink
                 className="nav-link nav-item" 
-                to="/products" >
+                to="/browse" >
                     <FontAwesomeIcon className="mx-2" icon={faBookOpen} />Products
             </NavLink>
         </Row>
