@@ -34,7 +34,7 @@ function Home() {
                             height: '93vh', 
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            // opacity: '50%',                                
+                             
                         }}
                     >     
                         <Link to="/browse">
