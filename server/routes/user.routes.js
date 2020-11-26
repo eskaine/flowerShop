@@ -32,7 +32,6 @@ router.get("/:userid", async (req, res) => {
 router.put("/:userid", verifyProfile(), async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-      console.log(errors);
     return res.status(400).json({ errors: errors.array() });
   }
 
