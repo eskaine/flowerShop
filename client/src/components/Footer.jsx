@@ -18,8 +18,10 @@ function Footer() {
               <FontAwesomeIcon icon={faInstagram} />
             </Col>
             <Col xs={4} s={4} md={2} lg={2} className="footer-icons d-flex justify-content-around my-auto">
-              <FontAwesomeIcon icon={faComment} />
-              <FontAwesomeIcon icon={faEnvelope} />
+              {/* <FontAwesomeIcon icon={faComment} /> */}
+              <a href="mailto:debsgenes@gmail.com">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </a>
             </Col>
             <Col xs={12} s={12} md={6} lg={6} className="d-flex p-3">
               <Form.Group>
@@ -39,12 +41,12 @@ function Footer() {
                   <p className="mt-2">Deborah</p>
                 </Col>
                 <Col md={6} className="d-flex align-middle justify-content-around">
-                  <Link className="footer-icons p-0" to="https://github.com/debjeanlee">
+                  <a className="footer-icons p-0" href="https://github.com/debjeanlee" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faGithubSquare} />
-                  </Link>
-                  <Link className="footer-icons p-0" to="https://www.linkedin.com/in/debjeanlee/">
+                  </a>
+                  <a className="footer-icons p-0" href="https://www.linkedin.com/in/debjeanlee/" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faLinkedin} />
-                  </Link>
+                  </a>
                 </Col>
             </Col>
             <Col md={4} className="d-flex justify-content-around">
@@ -52,12 +54,12 @@ function Footer() {
                   <p className="mt-2">Eskaine</p>
                 </Col>
                 <Col md={6} className="d-flex align-middle justify-content-around">
-                  <Link className="footer-icons p-0" to="https://github.com/eskaine">
+                  <a className="footer-icons p-0" href="https://github.com/eskaine" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faGithubSquare} />
-                  </Link>
-                  <Link className="footer-icons p-0" to="https://www.linkedin.com/in/eskaine/">
+                  </a>
+                  <a className="footer-icons p-0" href="https://www.linkedin.com/in/eskaine/" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faLinkedin} />
-                  </Link>
+                  </a>
                 </Col>
             </Col>
             <Col md={4} className="d-flex justify-content-around">
@@ -65,23 +67,38 @@ function Footer() {
                   <p className="mt-2">Tyrone</p>
                 </Col>
                 <Col md={6} className="d-flex align-middle justify-content-around">
-                  <Link className="footer-icons p-0" to="https://github.com/TyroneTang">
+                  <a className="footer-icons p-0" href="https://github.com/TyroneTang" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faGithubSquare} />
-                  </Link>
-                  <Link className="footer-icons p-0" to="https://www.linkedin.com/in/tyronetangxi/">
+                  </a>
+                  <a className="footer-icons p-0" href="https://www.linkedin.com/in/tyronetangxi/" rel="noopener noreferrer" target="_blank">
                     <FontAwesomeIcon icon={faLinkedin} />
-                  </Link>
+                  </a>
                 </Col>
             </Col>
         </Row>
       </Container>
       <Row className="footer mx-auto" style={{width: "100vw"}}/>
-        <Container className="d-flex justify-content-around p-0" >
-          <p className="nav-link nav-item p-2 mb-0">Copyright mumsworkshop</p>
-          <Link to="/about" className="nav-link nav-item">About</Link>
-          <Link to="/about" className="nav-link nav-item">Disclaimer</Link>
-          <Link to="/about" className="nav-link nav-item">F.A.Q.</Link>
-          <Link to="/about" className="nav-link nav-item">Privacy Policy</Link>
+        <Container>
+          <Row className="d-flex justify-content-around p-0 footer-btm">
+            <Col xs={4} md={2} lg={2}>
+              <div className="nav-link nav-item p-2 mb-0">Copyright mumsworkshop</div>
+            </Col>
+            <Col xs={4} md={2} lg={2}>
+              <Link to="/about" className="nav-link nav-item">About</Link>
+            </Col>
+            <Col xs={4} md={2} lg={2}>
+              <Link to="/disclaimer" className="nav-link nav-item">Disclaimer</Link>
+            </Col>
+            <Col xs={4} md={2} lg={2}>
+              <Link to="/faq" className="nav-link nav-item">F.A.Q.</Link>
+            </Col>
+            <Col xs={4} md={2} lg={2}>
+              <Link to="/privacypolicy" className="nav-link nav-item">Privacy Policy</Link>
+            </Col>
+            <Col xs={4} md={2} lg={2}>
+              <Link to="/admin" className="nav-link nav-item">Admin</Link>
+            </Col>
+          </Row>
         </Container>
       </Row>
   );

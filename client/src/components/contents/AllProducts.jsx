@@ -24,7 +24,7 @@ function AllProducts() {
             <Container className="cart-item product-card">
               <Link
                 to={{
-                  pathname: `/products/${productUrl(product.productName)}`,
+                  pathname: `/browse/${productUrl(product.productName)}`,
                   state: { product },
                 }}
               >

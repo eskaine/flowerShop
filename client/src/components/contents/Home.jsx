@@ -37,7 +37,7 @@ function Home() {
                             // opacity: '50%',                                
                         }}
                     >     
-                        <Link to="/products">
+                        <Link to="/browse">
                             <h1 className="car-heading">
                                 browse our catalogue
                                 <p className="car-subhead">check out our latest pickings</p>    

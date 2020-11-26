@@ -68,7 +68,7 @@ function Cart() {
             >
               Check Out
             </Link> }
-            <Link className="button ml-5" to={{ pathname: `/products` }}>
+            <Link className="button ml-5" to={{ pathname: `/browse` }}>
               Continue Browsing
             </Link>
           </Col>
@@ -158,12 +158,8 @@ function Cart() {
                     <Row>
                       <Col s={10} md={6} lg={6}>
                       </Col>
-                      <Col s={8} md={2} lg={2}>
-                      </Col>
-                      <Col s={8} md={2} lg={2} >
-                        <p><span className="font-weight-bold">Grand Total:</span> <br/>SGD$ {total}</p>
-                      </Col>
-                      <Col s={8} md={2} lg={2}>
+                      <Col s={8} md={6} lg={6} >
+                        <p><span className="font-weight-bold">Grand Total:</span> SGD$ {total}</p>
                       </Col>
                     </Row>
                   </Col>
@@ -173,7 +169,7 @@ function Cart() {
           :
           <Container className="cart-item mt-5 p-5 text-center">
             <h2 className="my-5">Your cart is empty!</h2>
-            <Link className="button" to={{ pathname: `/products` }}>
+            <Link className="button" to={{ pathname: `/browse` }}>
                 Browse Products
             </Link>
           </Container>
@@ -192,7 +188,7 @@ function Cart() {
               >
                 Check Out
               </Link>
-              <Link className="button ml-5" to={{ pathname: `/products` }}>
+              <Link className="button ml-5" to={{ pathname: `/browse` }}>
                 Continue Browsing
               </Link>
             </Col>

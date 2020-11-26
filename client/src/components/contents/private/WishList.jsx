@@ -80,7 +80,7 @@ function WishList() {
           </Col>
           <Col xs={6} s={6} md={7} className="d-flex justify-content-center">
             <Link className="button"
-              to={{ pathname: `/products` }} >
+              to={{ pathname: `/browse` }} >
                     Continue Browsing
             </Link>
           </Col>
