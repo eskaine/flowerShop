@@ -15,14 +15,10 @@ function App() {
 		dispatch(disableSidebar());
 	}
 	
-	let classes;
-
-	( navOpen ? classes = "overlay active" : classes = "overlay" );
-	
 	return (
-		<Fragment>
+		<Fragment className="m-0">
 			<SideNav />
-			<div className={classes} onClick={sidebarHandler}/>
+			<div className={navOpen ? "overlay active" : "overlay"} onClick={sidebarHandler}/>
 				<NaviBar />
 				<Alerts />
 				<MainRoutes />

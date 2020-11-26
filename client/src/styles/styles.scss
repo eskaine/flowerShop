@@ -4,7 +4,8 @@
 $paleYellow: #fffef9;
 $pastelPink: #ffebec;
 $lightBrown: #a78c7b;
-$red: rgb(255, 82, 82);
+$gold: rgb(255, 217, 0);
+$red: rgb(77, 0, 23);
 $grayBrown: #585b56;
 $gray: #1b2326;
 
@@ -13,15 +14,34 @@ $bodyFont: 'Poiret One', cursive;
 $logoFont: 'Euphoria Script', cursive;
 $navFont: 'Poiret One', cursive;
 
-
 body {
+  margin: 0 !important;
   color: $gray;
   font-family: $bodyFont;
-  background-color: $paleYellow;
+  background-color: transparent;
 }
 
 p {
   font-size: 0.92rem;
+}
+
+a {
+  .car-heading {
+    font-family: $logoFont;
+    font-size: 10vh;
+    text-shadow:2px 2px 5px white, -2px -2px 3px white;
+    padding: 3.35em 0 4em 0;
+    color: $red;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.car-subhead {
+  font-family: $titleFont;
+  font-size: 1rem;
+  text-shadow: none;
 }
 
 .container-fluid {
@@ -102,7 +122,7 @@ div.form-group {
 .cart-item {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  margin-top: 1rem
+  margin-top: 1rem;
 }
 
 .del-button {
@@ -153,6 +173,16 @@ div.form-group {
       cursor: pointer;
     }
   }
+  a {
+    width: 320px;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    &:hover {
+      color: $lightBrown;
+      background: $paleYellow;
+    }
+  }
 }
 
 #sidebar.active {
@@ -166,19 +196,6 @@ a {
     text-decoration: none;
     transition: all 0.3s;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2)
-  }
-}
-
-#sidebar {
-  a {
-    width: 320px;
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-    &:hover {
-      color: $lightBrown;
-      background: $paleYellow;
-    }
   }
 }
 
@@ -253,6 +270,24 @@ a {
     font-size: 0.8rem;
   }
 
+  .car-heading {
+    font-size: 5.5vh !important;
+    padding: 6em 10px 5em 10px !important;
+  }
+
+  .car-subhead {
+    font-size: 10px;
+  }
+
+  .carousel-inner {
+    height: 88vh !important;
+  }
+
+  .form-control {
+    height: 1.5rem !important;
+    font-size: 0.8rem !important;    
+  }
+
   .formLabel {
     font-size: 1rem;
   }
@@ -271,6 +306,9 @@ a {
     margin: 0 auto !important;
   }
 
+  .button {
+    font-size: 0.8rem;
+  }
 
 
   #hide {
@@ -278,10 +316,19 @@ a {
   }
 
   #sidebar {
-    margin-left: -220px;
+    margin-left: -330px;
     min-width: 220px;
     max-width: 220px;
     font-size: 0.7rem;
+    a{
+      &:hover &:focus {
+        color: $lightBrown;
+        background-color: none;
+        text-decoration: none;
+        transition: none;
+        box-shadow: none;
+      }
+    }
   }
 
   #navi-bar {

@@ -86,71 +86,71 @@ function Product(props) {
 
   return (
     <Row>
-      <Container>
+      <Container className="cart-item">
         <Row>
           <Col xs={12} s={4} md={4} lg={4}>
             <Row>
               <Image src={product.img_url} fluid className="product-img" />
             </Row>
           </Col>
-          <Col xs={11} s={8} md={8} lg={8} className="mx-auto">
-            <Container className="cart-item py-auto">
+          <Col xs={11} s={8} md={8} lg={8} className="mx-auto d-flex align-middle">
+            <Container className="my-auto">
               <h3 className="formLabel">{product.productName}</h3>
               <p>{product.desc}</p>
               <Row className="mx-auto">
-                <Col xs={12} s={12} md={12} lg={10}>
-                  <Form.Group>
-                    <Form className="mt-3" inline>
-                      <Form.Control
-                        as="select"
-                        className="my-1 mr-sm-2 options"
-                        id="inlineFormCustomSelectPref"
-                        custom
-                        name="ribbon"
-                        onChange={changeHandler}
-                      >
-                        <option>Choose A Ribbon</option>
-                        {ribbon.map((ribbon, index) => (
-                          <option key={index} value={ribbon}>
-                            {ribbon}
-                          </option>
-                        ))}
-                      </Form.Control>
-                      <Form.Control
-                        as="select"
-                        className="my-1 mr-sm-2 options"
-                        id="inlineFormCustomSelectPref"
-                        custom
-                        name="wrap"
-                        onChange={changeHandler}
-                      >
-                        <option>Choose A Wrap</option>
-                        {wrap.map((wrap, index) => (
-                          <option key={index} value={wrap}>
-                            {wrap}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Form>
+                <Col xs={12} s={12} md={12} lg={10} >
+                    <Form.Group>
+                      <Form className="mt-3" inline>
+                        <Form.Control
+                          as="select"
+                          className="my-1 mr-sm-2 options"
+                          id="inlineFormCustomSelectPref"
+                          custom
+                          name="ribbon"
+                          onChange={changeHandler}
+                        >
+                          <option>Choose A Ribbon</option>
+                          {ribbon.map((ribbon, index) => (
+                            <option key={index} value={ribbon}>
+                              {ribbon}
+                            </option>
+                          ))}
+                        </Form.Control>
+                        <Form.Control
+                          as="select"
+                          className="my-1 mr-sm-2 options"
+                          id="inlineFormCustomSelectPref"
+                          custom
+                          name="wrap"
+                          onChange={changeHandler}
+                        >
+                          <option>Choose A Wrap</option>
+                          {wrap.map((wrap, index) => (
+                            <option key={index} value={wrap}>
+                              {wrap}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Form>
 
-                    <Form inline>
-                      <Form.Control
-                        className="mx-2 options"
-                        type="Number"
-                        name="count"
-                        min={1}
-                        max={20}
-                        value={custom.count}
-                        onChange={changeHandler}
-                      />
-                      <Button className="button ml-3" onClick={pushToCart}>
-                        Add To Cart
-                      </Button>
-                      <Button className="button ml-3" onClick={addToWishlist}>
-                        Add To Wishlist
-                      </Button>
-                    </Form>
-                  </Form.Group>
+                      <Form inline>
+                        <Form.Control
+                          className="mx-2 options"
+                          type="Number"
+                          name="count"
+                          min={1}
+                          max={20}
+                          value={custom.count}
+                          onChange={changeHandler}
+                        />
+                        <Button className="button ml-3" onClick={pushToCart}>
+                          Add To Cart
+                        </Button>
+                        <Button className="button ml-3" onClick={addToWishlist}>
+                          Add To Wishlist
+                        </Button>
+                      </Form>
+                    </Form.Group>
                 </Col>
               </Row>
             </Container>
