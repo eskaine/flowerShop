@@ -1,10 +1,12 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { axiosGet, axiosPut, axiosDel } from "../../../helpers/api";
+import { showAlert } from "../../../helpers/actions";
 
 function Cart() {
+  const dispatch = useDispatch();
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0)
@@ -19,14 +21,16 @@ function Cart() {
   
   async function updateQuantity() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
-    await axiosPut(url, quantity, user.token);
+    let res = await axiosPut(url, quantity, user.token);
     getCart();
+    (res !== null) && dispatch(showAlert({ variant: "success", message: "Quantity updated"}));
   }
   
   async function removeItem(e) { 
     let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
     await axiosDel(url, user.token);
     getCart();
+    dispatch(showAlert({ variant: "success", message: "Item removed from cart"}));
   }
 
   function calcCart(price){
