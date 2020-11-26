@@ -27,8 +27,8 @@ function verifyRegister() {
 function verifyCart() {
     return [
         checkCount(),
-        body('ribbon').matches(/([a-zA-Z]\s)+/g).isLength({ max: 12 }),
-        body('wrap').matches(/([a-zA-Z]\s)+/g).isLength({ max: 12 })
+        body('ribbon').isLength({ max: 12 }),
+        body('wrap').isLength({ max: 12 })
     ];
 }
 
@@ -41,7 +41,7 @@ function verifyIDs() {
 
 function verifyProductName() {
     return [
-        body('productName').matches(/([a-zA-Z]\s)+/g)
+        body('productName').matches(/([a-zA-Z])+\s?/g)
     ];
 }
 

@@ -73,6 +73,11 @@ function UserProfile() {
           </Container>
         </Col>
       </Row>
+      <SettingsModal
+        show={showModal}
+        setShow={setShowModal}
+        data={setModalData()}
+      />
     </Container>
   );
 }
