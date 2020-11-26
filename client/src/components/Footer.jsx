@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram, faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faComment, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 function Footer() {
   return (   
@@ -18,7 +18,6 @@ function Footer() {
               <FontAwesomeIcon icon={faInstagram} />
             </Col>
             <Col xs={4} s={4} md={2} lg={2} className="footer-icons d-flex justify-content-around my-auto">
-              {/* <FontAwesomeIcon icon={faComment} /> */}
               <a href="mailto:debsgenes@gmail.com">
                 <FontAwesomeIcon icon={faEnvelope} />
               </a>
