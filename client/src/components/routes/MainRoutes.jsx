@@ -38,7 +38,7 @@ function MainRoutes() {
       </Route>
       <Route exact path="/faq">
         <h1>
-          If you want to buy some flowers head <a href="https://www.carousell.sg/mumsworkshop/" rel="noopener noreferrer" target="_blank">here</a>.
+          If you want to buy some flowers head <a href="https://www.carousell.sg/mumsworkshop/" rel="noopener noreferrer" target="_blank">HERE</a>.
         </h1>
       </Route>
       <Route exact path="/disclaimer">
