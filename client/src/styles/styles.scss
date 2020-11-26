@@ -4,9 +4,11 @@
 $paleYellow: #fffef9;
 $pastelPink: #ffebec;
 $lightBrown: #a78c7b;
+$lightGray: #dee2e6;
 $gold: rgb(255, 217, 0);
 $red: rgb(77, 0, 23);
 $grayBrown: #585b56;
+$darkGray: #b4b4b4;
 $gray: #1b2326;
 
 $titleFont: "Lato", sans-serif;
@@ -36,6 +38,32 @@ a {
       box-shadow: none;
     }
   }
+}
+
+#newsletter {
+  border-color: $lightGray !important;
+}
+
+.footer-top {
+  border-top: 1px solid $lightGray;
+  width: 100vw;
+  color: $grayBrown;
+  background-color: $lightGray;
+}
+
+.footer {
+  border-top: 1px solid $paleYellow;
+  width: 80vw;
+  color: $grayBrown
+}
+
+.footer-btm {
+  background-color: $darkGray;
+  padding: 0.5em;
+}
+
+.footer-icons {
+  font-size: 1.5em;
 }
 
 .car-subhead {
