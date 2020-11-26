@@ -50,7 +50,7 @@ function verifyProfile() {
         checkEmail().optional(),
         checkName('firstname').optional(),
         checkName('lastname').optional(),
-        body('address').matches(/(\w\s)+/g).optional(),
+        body('address').matches(/(\w\s\w)+/g).optional(),
         body('phone').isMobilePhone('en-SG').optional()
     ];
 }

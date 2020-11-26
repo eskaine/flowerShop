@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosPut } from "../../../helpers/api";
-import { setUserInfo } from "../../../helpers/actions";
+import { setUserInfo, showAlert } from "../../../helpers/actions";
 
 function EditProfile({ setShow }) {
   const dispatch = useDispatch();
@@ -26,9 +26,12 @@ function EditProfile({ setShow }) {
     let url = process.env.REACT_APP_USER + `/${user.id}`;
     let data = await axiosPut(url, form, user.token);
     if (data) {
-        dispatch(setUserInfo(data.updatedData));
-        setShow(false);
-    };
+      dispatch(showAlert({ variant: "success", message: "Update Successful!"}));
+      dispatch(setUserInfo(data.updatedData));
+      setShow(false);
+    } else {
+      dispatch(showAlert({ variant: "danger", message: "Update Unsuccessful. Please try again."}))
+    }
   }
 
   useEffect(() =>{
