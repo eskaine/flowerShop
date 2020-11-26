@@ -77,7 +77,7 @@ function Product(props) {
   async function addToWishlist() {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}`;
     let res = await axiosPost(url, { productid: product._id }, user.token);
-    dispatch(showAlert({ variant: "success", message: "Item added to Wishlist!"}));
+    (res !== null) && dispatch(showAlert({ variant: "success", message: "Item added to Wishlist!"}));
   }
 
   function changeHandler(e) {

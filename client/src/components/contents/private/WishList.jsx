@@ -1,11 +1,14 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Row, Col, Card, Image, Button, Form, Container } from "react-bootstrap";
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { axiosGet, axiosPost, axiosDel } from "../../../helpers/api";
 import { Link } from 'react-router-dom';
+import { showAlert } from "../../../helpers/actions";
 import AlertModal from '../../AlertModal';
 
+
 function WishList() {
+    const dispatch = useDispatch();
     const [wishList, setWishList] = useState([]);
     const [custom, setCustom] = useState({count: 1})
     const user = useSelector(state => state.user); 
@@ -42,6 +45,7 @@ function WishList() {
   async function removeFromList(e) {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.id}`;
     await axiosDel(url, user.token);
+    dispatch(showAlert({ variant: "success", message: "Item removed from wishlist"}));
     fetchWishList();
   }
 
@@ -51,7 +55,8 @@ function WishList() {
           try {
               let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
               await axiosPost(url, custom, user.token);
-          } catch (error) {
+              dispatch(showAlert({ variant: "success", message: "Item added to Cart!"}));
+            } catch (error) {
 
           }
       } else if (!custom.wrap && !custom.ribbon){
