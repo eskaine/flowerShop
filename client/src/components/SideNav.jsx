@@ -3,7 +3,7 @@ import { Navbar, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faUser, faArrowLeft, faBookOpen, faHome, faSignOutAlt, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { disableSidebar, isNotAuth } from '../actions/actions'
+import { disableSidebar, isNotAuth } from '../helpers/actions'
 import { useSelector, useDispatch } from "react-redux";
 
 function SideNav() {
