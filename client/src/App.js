@@ -4,7 +4,8 @@ import MainRoutes from "./components/routes/MainRoutes";
 import "./styles/styles.scss";
 import SideNav from "./components/SideNav";
 import { useSelector, useDispatch } from "react-redux";
-import { disableSidebar } from "./actions/actions"
+import { disableSidebar } from "./helpers/actions"
+import Alerts from "./components/Alerts";
 
 function App() {
 	const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
 			<SideNav />
 			<div className={navOpen ? "overlay active" : "overlay"} onClick={sidebarHandler}/>
 				<NaviBar />
+				<Alerts />
 				<MainRoutes />
 		</Fragment>
 	);

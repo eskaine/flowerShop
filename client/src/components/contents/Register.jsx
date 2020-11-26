@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Button, Row, Col, Image } from "react-bootstrap";
-import { isAuth }  from '../../actions/actions';
+import { isAuth, showAlert }  from '../../helpers/actions';
 import { axiosPost } from "../../helpers/api";
 
 
@@ -15,6 +15,7 @@ function Register() {
         password: ''
     });
 
+
     function changeHandler(e) {
         setForm({...form, [e.target.name]: e.target.value});
     }
@@ -23,7 +24,13 @@ function Register() {
         e.preventDefault();
         let url = process.env.REACT_APP_ACC + "/register";
         let data = await axiosPost(url, form);
-        if(data) dispatch(isAuth(data.token));
+        console.log('data', data);
+        if(data) {
+          dispatch(showAlert({ variant: "success", message: "Registration Successful!"}));
+          dispatch(isAuth(data.token));
+        } else {
+          dispatch(showAlert({ variant: "danger", message: "Registration Unsuccessful. Please try again."}))
+        }
     }
 
   return (

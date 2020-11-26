@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Button, Row, Col, Image } from "react-bootstrap";
-import { isAuth }  from '../../actions/actions';
+import { isAuth, showAlert }  from '../../helpers/actions';
 import { axiosPost } from "../../helpers/api";
-
 
 function Login() {
     const dispatch = useDispatch();
@@ -22,7 +21,12 @@ function Login() {
         e.preventDefault();
         let url = process.env.REACT_APP_ACC + "/login";
         let data = await axiosPost(url, form);
-        if(data) dispatch(isAuth(data.token));
+        if(data) {
+          dispatch(showAlert({ variant: "success", message: "Login Successful!"}));
+          dispatch(isAuth(data.token));
+        } else {
+          dispatch(showAlert({ variant: "danger", message: "Login Unsuccessful. Please try again."}))
+        }
     }
   return (
     <Container className="cart-item">

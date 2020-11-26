@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Row, Col, Image } from "react-bootstrap";
 import { axiosGet } from "../../../helpers/api";
-import { setUserInfo } from "../../../actions/actions";
+import { setUserInfo } from "../../../helpers/actions";
 import SettingsModal from "./SettingsModal";
 import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
