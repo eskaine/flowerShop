@@ -1,12 +1,14 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap";
-
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { axiosGet, axiosPut, axiosDel } from "../../../helpers/api";
+import AlertModal from "../../AlertModal";
+import { showAlert } from "../../../helpers/actions";
 
 
 function Cart() {
+  const dispatch = useDispatch()
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0)

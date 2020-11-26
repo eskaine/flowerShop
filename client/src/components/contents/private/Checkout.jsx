@@ -60,6 +60,7 @@ function Checkout() {
 
     return (
         <Fragment>
+          <Container>
             <Accordion defaultActiveKey="1">
                     <Accordion.Toggle 
                     as={Card.Header} 
@@ -269,6 +270,7 @@ function Checkout() {
             </Link>
           </Col>
         </Row>
+        </Container>
         </Fragment>
     )
 };

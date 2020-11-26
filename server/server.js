@@ -1,8 +1,10 @@
 require("dotenv").config();
+const path = require ("path");
 const express = require("express");
 const passport = require('passport');
 const cors = require("cors");
 const app = express();
+
 
 require("./config/mongo.config");
 require("./config/passport.config");
@@ -20,7 +22,7 @@ app.use('/wishlist', passport.authenticate('jwt', { session: false }), require("
 app.use('/user', passport.authenticate('jwt', { session: false }), require("./routes/user.routes"));
 
 app.get("*", (req, res) => {
-  res.sendStatus(404);
+  res.sendFile(path.join(__dirname, "build", "index.html"))
 });
 
 app.listen(process.env.PORT, () => {
