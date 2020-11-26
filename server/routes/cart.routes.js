@@ -11,7 +11,6 @@ const { checkCount, verifyCart, verifyIDs } = require("../auth/validate");
 async function addToCart(body, params, totalPrice) {
   let { count, ribbon, wrap } = body;
   let { userid, productid } = params;
-  // return await User.findByIdAndUpdate(userid,
   let user = await User.findByIdAndUpdate(userid, {
     $push: {
       cart: {
@@ -53,7 +52,6 @@ router.get("/:userid", async (req, res) => {
 router.post("/:userid/:productid", verifyCart(), async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-      console.log('errors', errors);
     return res.status(400).json({ errors: errors.array() });
   }
 
