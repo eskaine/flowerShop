@@ -16,7 +16,7 @@ function MainRoutes() {
       </Route>
       <Route exact path="/about">
         <div>
-          about us
+          about us 
         </div>
       </Route>
       <Route exact path="/contact">

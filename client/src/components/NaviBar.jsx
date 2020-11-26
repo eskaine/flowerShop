@@ -30,7 +30,7 @@ function Navibar() {
         id="navi-bar"
         style={{ width: "100vw", height: "3em" }}
         className="justify-content-end bg-light p-2"
-      >
+        >
         <div className="container-fluid">
           <div className="mr-auto d-flex">
               <div className="nav-link nav-item"
@@ -43,7 +43,6 @@ function Navibar() {
               <span>mumsworkshop</span>
               </NavLink>
           </div>
-
 
           {token && (
             <Fragment>
