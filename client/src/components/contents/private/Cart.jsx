@@ -64,12 +64,13 @@ function Cart() {
   
   return (
     <Fragment>
-      <Container>
+      <Container className="mt-5">
         <Row>
           <Col s={12} md={5} className="d-flex justify justify-content-center">
             <h3 className="formLabel">Your Cart</h3>
           </Col>
           <Col s={12} md={7} className="d-flex justify-content-center">
+            {displayCart.length > 0 && 
             <Link
               className="button"
               to={{
@@ -78,7 +79,7 @@ function Cart() {
               }}
             >
               Check Out
-            </Link>
+            </Link> }
             <Link className="button ml-5" to={{ pathname: `/products` }}>
               Continue Browsing
             </Link>
@@ -158,7 +159,8 @@ function Cart() {
               </Container>
             </Container>
           ))}
-            <Container className="cart-item mb-5">
+          {displayCart.length > 0 ?
+            <Container className="cart-item mt-5">
               <Container className="my-auto">
                 <Row>
                   <Col xs={12} s={10} md={2} lg={2}>
@@ -183,7 +185,15 @@ function Cart() {
                   </Col>
                 </Row>
               </Container>
-            </Container>
+          </Container> 
+          :
+          <Container className="cart-item mt-5 p-5 text-center">
+            <h2 className="my-5">Your cart is empty!</h2>
+            <Link className="button" to={{ pathname: `/products` }}>
+                Browse Products
+            </Link>
+          </Container>
+          }
 
 
 
@@ -201,6 +211,7 @@ function Cart() {
           <Row className="mt-3">
             <Col s={12} md={5}></Col>
             <Col s={12} md={7} className="d-flex justify-content-center">
+
               <Link
                 className="button"
                 to={{
@@ -210,6 +221,7 @@ function Cart() {
               >
                 Check Out
               </Link>
+
               <Link className="button ml-5" to={{ pathname: `/products` }}>
                 Continue Browsing
               </Link>
