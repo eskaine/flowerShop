@@ -22,7 +22,7 @@ function MainRoutes() {
       <Route exact path="/about">
         <h1>
           About Us: <br />
-          Nina Warriors
+          Ninja Warriors
         </h1>
       </Route>
       <Route exact path="/contact">
