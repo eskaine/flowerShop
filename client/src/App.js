@@ -16,7 +16,7 @@ function App() {
 	}
 	
 	return (
-		<Fragment className="m-0">
+		<Fragment>
 			<SideNav />
 			<div className={navOpen ? "overlay active" : "overlay"} onClick={sidebarHandler}/>
 				<NaviBar />
