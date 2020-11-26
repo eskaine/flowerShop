@@ -1,10 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Card, Accordion, Col, Container, Row, Image, Form } from "react-bootstrap";
+import { Card, Accordion, Col, Container, Row, Image, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { showAlert } from "../../../helpers/actions"
 import { axiosGet } from "../../../helpers/api";
 
 function Checkout() {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const [orders, setOrders] = useState([]);
     const [total, setTotal] = useState(0);
@@ -35,13 +37,17 @@ function Checkout() {
 
     function clickState(e){
       let id = e.target.id
-      if(id === 1) {  
+      if(id == 1) {  
         (accHeader.header1 === true) ? setAccHeader({...accHeader, header1: false}) : setAccHeader({...accHeader, header1: true})
-      } else if ( id === 2) {
+      } else if ( id == 2) {
         (accHeader.header2 === true) ? setAccHeader({...accHeader, header2: false}) : setAccHeader({...accHeader, header2: true})
-      } else if ( id === 3) {
+      } else if ( id == 3) {
         (accHeader.header3 === true) ? setAccHeader({...accHeader, header3: false}) : setAccHeader({...accHeader, header3: true})
       }
+    }
+
+    function submitHandler(){
+      dispatch(showAlert({ variant: "success", message: "Thank you for your order!"}));
     }
 
     useEffect(() => {
@@ -76,28 +82,19 @@ function Checkout() {
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
                         <Card.Body className="border">
-                        <Container className="cart-item p-0">
-                                    <Container className="my-auto no-gutters px-0">
-                                      <Row className="pt-0">
-                                      <Col s={8} md={2} lg={2}>
-                                            </Col>
-                                        <Col s={10} md={10} lg={10}>
-                                          <Row>
-                                            <Col s={10} md={6} lg={6}>
-                                            </Col>
-                                            <Col s={8} md={2} lg={2}>
-                                            </Col>
-                                            <Col s={8} md={4} lg={4} className="p-0 align-items-center">
-                                              <div className=" mb-0"><text className="font-weight-bold">Grand Total:</text><br/> SGD$ {total}</div>
-                                          
-                                            </Col>
+                        <Container className="cart-item">
+                                    <Container className="my-auto px-0">
+                                      <Row>
+                                      <Col s={10} md={6} lg={6}>
+                                      </Col>
+                                      <Col s={8} md={6} lg={6} >
+                                        <p className="m-0"><span className="font-weight-bold">Grand Total:</span> SGD${total}</p>
+                                      </Col>
                                           </Row>
-                                        </Col>
-                                      </Row>
                                     </Container>
                                   </Container>
-                            {orders.map(order=>(
-                                            <Container className="cart-item">
+                            {orders.map((order, i)=>(
+                                            <Container className="cart-item" key={i}>
                                             <Container className="my-auto">
                                               <Row>
                                                 <Col xs={12} s={10} md={2} lg={2} >
@@ -233,7 +230,6 @@ function Checkout() {
                         id="inlineFormCustomSelectPref"
                         custom
                         name="ribbon"
-                        // onChange={changeHandler}
                       >
                         <option>Choose Shipping</option>
                         {shipping.map((shipping, index) => (
@@ -250,8 +246,9 @@ function Checkout() {
           <Col s={12} md={5} className="d-flex justify justify-content-center">
           </Col>
           <Col s={12} md={7} className="d-flex justify-content-center">
-            <Link
-              className="button"
+            <Link onClick={submitHandler}
+            to="/profile"
+              className="button nav-item nav-link"
             >
               Place Order
             </Link>

@@ -158,12 +158,8 @@ function Cart() {
                     <Row>
                       <Col s={10} md={6} lg={6}>
                       </Col>
-                      <Col s={8} md={2} lg={2}>
-                      </Col>
-                      <Col s={8} md={2} lg={2} >
-                        <p><span className="font-weight-bold">Grand Total:</span> <br/>SGD$ {total}</p>
-                      </Col>
-                      <Col s={8} md={2} lg={2}>
+                      <Col s={8} md={6} lg={6} >
+                        <p><span className="font-weight-bold">Grand Total:</span> SGD$ {total}</p>
                       </Col>
                     </Row>
                   </Col>

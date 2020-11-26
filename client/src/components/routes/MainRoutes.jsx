@@ -14,15 +14,36 @@ function MainRoutes() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/about">
-        <div>
-          about us 
-        </div>
+      <Route exact path="/admin">
+        <h1>
+          Admin Login - coming soon
+        </h1>
       </Route>
-      <Route exact path="/contact">
-        <div>
-          contact us
-        </div>
+      <Route exact path="/about">
+        <h1>
+          About Us: <br />
+          Nina Warriors
+        </h1>
+      </Route>
+      <Route exact path="/disclaimer">
+        <h1>
+          This site is only half done. Don't tell anyone.
+        </h1>
+      </Route>
+      <Route exact path="/faq">
+        <h1>
+          If you want to buy some flowers head <a href="https://www.carousell.sg/mumsworkshop/" rel="noopener noreferrer" target="_blank">here</a>.
+        </h1>
+      </Route>
+      <Route exact path="/disclaimer">
+        <h1>
+          This site is only half done. Don't tell anyone.
+        </h1>
+      </Route>
+      <Route exact path="/privacypolicy">
+        <h1>
+          There is nothing private on the internet.
+        </h1>
       </Route>
       <Route exact path="/register">
         <Register />
