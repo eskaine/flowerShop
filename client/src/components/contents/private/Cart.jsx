@@ -9,13 +9,15 @@ import { axiosGet, axiosPut, axiosDel } from "../../../helpers/api";
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
+  const [total, setTotal] = useState(0)
   const user = useSelector(state => state.user); 
 
-
+  
   async function getCart() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
     let res = await axiosGet(url, user.token);
     setDisplayCart(res.userCart);
+    calcCart(res.userCart);
   }
 
   
@@ -32,7 +34,19 @@ function Cart() {
     getCart();
   }
 
-        
+  
+  function calcCart(price){
+    let sum = 0;
+    price.forEach(item=>(
+      sum += item.totalPrice
+    ))
+    setTotal(sum)
+  }
+
+
+
+
+
   function changeHandler(e) {
     setQuantity((quantity) => ({
       ...quantity,
@@ -144,6 +158,43 @@ function Cart() {
               </Container>
             </Container>
           ))}
+            <Container className="cart-item mb-5">
+              <Container className="my-auto">
+                <Row>
+                  <Col xs={12} s={10} md={2} lg={2}>
+                  </Col>
+                  <Col s={10} md={10} lg={10}>
+                    <Row className="p-2">
+                      <Col xs={10} s={10} className="justify-content-start">
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col s={10} md={6} lg={6}>
+                      </Col>
+                      <Col s={8} md={2} lg={2}>
+                      </Col>
+                      <Col s={8} md={2} lg={2} >
+                        <p><span className="font-weight-bold">Grand Total:</span> <br/>SGD$ {total}</p>
+
+                      </Col>
+                      <Col s={8} md={2} lg={2}>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Container>
+            </Container>
+
+
+
+
+
+
+
+
+
+
+
         </Container>
 
         {displayCart.length > 5 && (
