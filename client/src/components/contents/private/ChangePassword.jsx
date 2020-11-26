@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { axiosPut } from "../../../helpers/api";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { showAlert } from "../../../helpers/actions";
 
 function ChangePassword({ setShow }) {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [passwords, setPasswords] = useState({
     oldPassword: "",
@@ -20,13 +22,16 @@ function ChangePassword({ setShow }) {
     let url = process.env.REACT_APP_USER + `/${user.id}/password`;
     let data = await axiosPut(url, passwords, user.token);
     if (data) {
+      dispatch(showAlert({ variant: "success", message: "Password Change Successful!"}));
       setShow(false);
+    } else {
+      dispatch(showAlert({ variant: "danger", message: "Password Change Unsuccessful. Please try again."}))
     }
   }
 
   return (
     <Form onSubmit={passwordHandler}>
-      <Form.Group controlId="formPassword">
+      <Form.Group controlId="formOldPassword">
         <Form.Label>Old Password</Form.Label>
         <Form.Control
           name="oldPassword"
@@ -38,7 +43,7 @@ function ChangePassword({ setShow }) {
       </Form.Group>
       <Row>
         <Col md={6}>
-          <Form.Group controlId="formPassword">
+          <Form.Group controlId="formNewPassword">
             <Form.Label>New Password</Form.Label>
             <Form.Control
               name="newPassword"
@@ -50,7 +55,7 @@ function ChangePassword({ setShow }) {
           </Form.Group>
         </Col>
         <Col md={6}>
-          <Form.Group controlId="formPassword">
+          <Form.Group controlId="formConPassword">
             <Form.Label>Confirm New Password</Form.Label>
             <Form.Control
               name="confirmPassword"

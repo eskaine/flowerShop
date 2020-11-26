@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosPut } from "../../../helpers/api";
-import { setUserInfo } from "../../../actions/actions";
+import { setUserInfo, showAlert } from "../../../helpers/actions";
 
 function EditProfile({ setShow }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   const [form, setForm] = useState({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    username: user.username,
-    email: user.email,
-    address: user.address,
-    phone: user.phone,
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    address: '',
+    phone: '',
   });
 
   function changeHandler(e) {
@@ -26,10 +26,19 @@ function EditProfile({ setShow }) {
     let url = process.env.REACT_APP_USER + `/${user.id}`;
     let data = await axiosPut(url, form, user.token);
     if (data) {
-        dispatch(setUserInfo(data.updatedData));
-        setShow(false);
-    };
+      dispatch(showAlert({ variant: "success", message: "Update Successful!"}));
+      dispatch(setUserInfo(data.updatedData));
+      setShow(false);
+    } else {
+      setShow(false);
+      dispatch(showAlert({ variant: "danger", message: "Update Unsuccessful. Please try again."}))
+    }
   }
+
+  useEffect(() =>{
+    console.log(user)
+    setForm({...user});
+  }, []);
 
   return (
     <Form onSubmit={submitHandler}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Row, Col, Image } from "react-bootstrap";
 import { axiosGet } from "../../../helpers/api";
-import { setUserInfo } from "../../../actions/actions";
+import { setUserInfo } from "../../../helpers/actions";
 import SettingsModal from "./SettingsModal";
 import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
@@ -41,41 +41,38 @@ function UserProfile() {
   }, []);
 
   return (
-    <Container>
+
+    <Container className="cart-item">
       <Row>
-        <Col
-          md={6}
-          s={12}
-          id="profile"
-          // style={{backgroundImage: `url(https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg)`}}
-        >
-          <Image
-            src="https://media.karousell.com/media/photos/products/2017/08/30/wedding_bridal_bouquet_fresh_flowers_hydrangeas_and_roses_1504082166_c902161b.jpg"
-            fluid
-          />
+        <Col md={6} xs={6} >
+          <Container className="d-flex justify-content-center m-0 p-0">
+            <Col md={12} xs={12} className="p-0">
+              <div className="mx-auto p-0">
+                <Image src="https://res.cloudinary.com/dfqx6m8lw/image/upload/v1606290888/mumsworkshop/product-images/website/frantz-eric-celestin-SUa1Y8Md608-unsplash_j0tc8n.jpg" fluid />
+              </div>
+            </Col>  
+          </Container>
         </Col>
-        <Col md={6} s={12}>
-          <h3 className="formLabel">Profile</h3>
-          <div>Username: {user.username}</div>
-          <div>First Name: {user.firstName}</div>
-          <div>Last Name: {user.lastName}</div>
-          <div>Email: {user.email}</div>
-          <div>Address: {user.address}</div>
-          <div>Contact No.: {user.phone}</div>
-          <Button className="button" onClick={() => handleShow(1)}>
-            Update Profile
-          </Button>
-          <br />
-          <Button className="button" onClick={() => handleShow(0)}>
-            Change Password
-          </Button>
+        <Col xs={6} s={6} md={6} className="d-flex align-middle m-0 p-0">
+          <Container className="my-auto">
+            <h2 className="formLabel">Profile</h2>
+            <h5>Username: {user.username}</h5>
+            <h5>First Name: {user.firstName}</h5>
+            <h5>Last Name: {user.lastName}</h5>
+            <h5>Email: {user.email}</h5>
+            <h5>Address: {user.address}</h5>
+            <h5>Contact No.: {user.phone}</h5>
+            <Row className="d-flex justify-content-around">
+              <Button className="button" onClick={() => handleShow(1)}>
+                Update Profile
+              </Button>
+              <Button className="button" onClick={() => handleShow(0)}>
+                Change Password
+              </Button>
+            </Row>
+          </Container>
         </Col>
       </Row>
-      <SettingsModal
-        show={showModal}
-        setShow={setShowModal}
-        data={setModalData()}
-      />
     </Container>
   );
 }

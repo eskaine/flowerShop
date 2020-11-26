@@ -1,22 +1,67 @@
-const { body, oneOf, validationResult } = require("express-validator");
+const { body, check } = require("express-validator");
 
 function checkEmail() {
     return body('email').isEmail();
 }
 
-function verifyEmail() {
-    return [checkEmail()];
+function checkCount() {
+    return body('count').isInt({ min: 1, max: 20 });
+}
+
+function checkObjectID(str) {
+    return body(str).isMongoId();
+}
+
+function checkName(str) {
+    return body(str).isAlpha();
 }
 
 function verifyRegister() {
     return [
-        body('username').isLength({ min: 5 }),
         checkEmail(),
+        body('username').isAlphanumeric().isLength({ min: 5 }),
         body('password').isLength({ min: 6 })
     ];
 }
 
+function verifyCart() {
+    return [
+        checkCount(),
+        body('ribbon').matches(/([a-zA-Z]\s)+/g).isLength({ max: 12 }),
+        body('wrap').matches(/([a-zA-Z]\s)+/g).isLength({ max: 12 })
+    ];
+}
+
+function verifyIDs() {
+    return [
+        checkObjectID('userid'),
+        checkObjectID('cartid'),
+    ];
+}
+
+function verifyProductName() {
+    return [
+        body('productName').matches(/([a-zA-Z]\s)+/g)
+    ];
+}
+
+function verifyProfile() {
+    return [
+        checkEmail().optional(),
+        checkName('firstname').optional(),
+        checkName('lastname').optional(),
+        body('address').matches(/(\w\s\w)+/g).optional(),
+        body('phone').isMobilePhone('en-SG').optional()
+    ];
+}
+
 module.exports = {
-    verifyEmail,
-    verifyRegister
+    checkEmail,
+    checkCount,
+    checkObjectID,
+    verifyRegister,
+    verifyCart,
+    verifyIDs,
+    verifyProductName,
+    verifyProfile
 }

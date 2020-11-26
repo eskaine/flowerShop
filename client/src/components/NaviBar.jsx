@@ -10,7 +10,7 @@ import {
   faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { enableSidebar, isNotAuth } from "../actions/actions";
+import { enableSidebar, isNotAuth } from "../helpers/actions";
 
 function Navibar() {
   const dispatch = useDispatch();

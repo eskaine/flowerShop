@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const { validationResult } = require("express-validator");
 const { createToken } = require("../auth/auth");
-const { verifyEmail, verifyRegister } = require("../auth/validate");
+const { checkEmail, verifyRegister } = require("../auth/validate");
 require("dotenv").config();
 
 //TO UPDATE
@@ -41,7 +41,7 @@ router.post("/register", verifyRegister(), async (req, res, next) => {
  * @returns sucessful sign up
  */
 
-router.post("/login", verifyEmail(), async (req, res, next) => {
+router.post("/login", [checkEmail()], async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
