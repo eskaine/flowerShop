@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { Carousel, Container, Row } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 
 
 

@@ -78,7 +78,7 @@ function WishList() {
     
     return (
       <Fragment>
-        <Container>
+        <Container className="mt-5">
           <Row>
           <Col xs={6} s={6} md={5} className="d-flex justify justify-content-center">
             <h3 className="formLabel" >Wishlist</h3>

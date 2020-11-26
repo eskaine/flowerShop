@@ -64,7 +64,7 @@ function Cart() {
   
   return (
     <Fragment>
-      <Container>
+      <Container className="mt-5">
         <Row>
           <Col s={12} md={5} className="d-flex justify justify-content-center">
             <h3 className="formLabel">Your Cart</h3>
