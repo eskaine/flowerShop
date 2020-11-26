@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookSquare, faInstagram, faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faComment, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 function Footer() {
@@ -32,20 +32,48 @@ function Footer() {
             </Col>
           </Row>
         </Container>
-          <Row className="footer mt-2 mx-auto p-3">
-          </Row>
-          <Container>
+          <Row className="footer mx-auto"/>
+          <Container className="mt-3">
             <Row>
-              <Col md={12}>
-                <Row className="d-flex">
-                  <Link className="nav-link" to="https://github.com/debjeanlee">deborah</Link>
-                  <Link className="nav-link" to="https://github.com/eskaine">eskaine</Link>
-                  <Link className="nav-link" to="https://github.com/TyroneTang">tyrone</Link> 
-                  <Link className="nav-link" to="https://github.com/eskaine/flowerShop">
-                    github repo
-                  </Link>
-                </Row>
-              </Col>
+                <Col md={4} className="d-flex justify-content-around">
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <p className="mt-2">Deborah</p>
+                    </Col>
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <Link className="footer-icons p-0" to="https://github.com/debjeanlee">
+                        <FontAwesomeIcon icon={faGithubSquare} />
+                      </Link>
+                      <Link className="footer-icons p-0" to="https://www.linkedin.com/in/debjeanlee/">
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </Link>
+                    </Col>
+                </Col>
+                <Col md={4} className="d-flex justify-content-around">
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <p className="mt-2">Eskaine</p>
+                    </Col>
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <Link className="footer-icons p-0" to="https://github.com/eskaine">
+                        <FontAwesomeIcon icon={faGithubSquare} />
+                      </Link>
+                      <Link className="footer-icons p-0" to="#">
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </Link>
+                    </Col>
+                </Col>
+                <Col md={4} className="d-flex justify-content-around">
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <p className="mt-2">Tyrone</p>
+                    </Col>
+                    <Col md={6} className="d-flex align-middle justify-content-around">
+                      <Link className="footer-icons p-0" to="https://github.com/TyroneTang">
+                        <FontAwesomeIcon icon={faGithubSquare} />
+                      </Link>
+                      <Link className="footer-icons p-0" to="#">
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </Link>
+                    </Col>
+                </Col>
             </Row>
           </Container>
           <Col md={12} className="footer-btm d-flex justify-content-around">
