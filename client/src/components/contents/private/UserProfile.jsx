@@ -41,7 +41,6 @@ function UserProfile() {
   }, []);
 
   return (
-
     <Container className="cart-item">
       <Row>
         <Col md={6} xs={6} >

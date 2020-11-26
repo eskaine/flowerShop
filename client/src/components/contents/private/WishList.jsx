@@ -28,12 +28,10 @@ function WishList() {
       }
     }
   
-  
     function handleShow(n) {
       setModalData(n);
       setShowModal(true);
     }
-
 
   async function fetchWishList() {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}`;
@@ -41,13 +39,11 @@ function WishList() {
     if (data) setWishList(data.wishList);
   }
 
-
   async function removeFromList(e) {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.id}`;
     await axiosDel(url, user.token);
     fetchWishList();
   }
-
 
     async function pushToCart(e) {
         e.stopPropagation();
@@ -66,7 +62,6 @@ function WishList() {
           await handleShow(3);
       } 
     }
-
 
     function changeHandler(e) {
         setCustom((custom) => ({ ...custom, [e.target.name]: e.target.value }));
@@ -90,7 +85,6 @@ function WishList() {
             </Link>
           </Col>
           </Row>
-
           <Container>
             {wishList.map((wishList, index) => (
               <Container key={index} className="cart-item">
@@ -120,6 +114,7 @@ function WishList() {
                         <p><span className="formLabel">Price:</span> SGD$ {wishList.price}</p>
                       </Col>
                     </Row>
+                    <Container>
                     <Row>
                       <Form.Group className="mx-auto">
                       <Form className="mt-3" inline>
@@ -174,6 +169,7 @@ function WishList() {
                           </Form>
                           </Form.Group>
                     </Row>
+                    </Container>
                   </Col>
                   </Row>
                 </Container>
@@ -186,97 +182,6 @@ function WishList() {
                 data={errMsg}
             />      
         </Container>
-
-{/* 
-        <Row className="no-gutters">
-          <Col md={8}>
-            Wishlist
-            {wishList.map((wishList, index) => (
-              <Row key={index} className="no-gutters">
-                <Col md={6}>
-                  <Image src={(wishList.img_url == null) ? "" : wishList.img_url} fluid className="img-thumbnail" />
-                </Col>
-                <Col md={6}>
-                  <Card>
-                    <Card.Title>{wishList.productName}</Card.Title>
-                    <Card.Body>
-                      <Card.Text>{wishList.desc}</Card.Text>
-                      <Card.Text>
-                        Price : S${wishList.price} <br />
-                      </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                  <Form.Group>
-                      <Form className="mt-3" inline>
-                          <Form.Control
-                              as="select"
-                              className="my-1 mr-sm-2 options"
-                              id="inlineFormCustomSelectPref"
-                              custom
-                              name="ribbon"
-                              onChange={changeHandler}
-                          >
-                              <option>Choose a ribbon</option>
-                              {wishList.customisation.ribbon.map((ribbon, index) => (
-                                  <option
-                                      key={index}
-                                      value={ribbon}
-                                  >{ribbon}</option>
-                              ))}
-                          </Form.Control>
-                          <Form.Control
-                              as="select"
-                              className="my-1 mr-sm-2 options"
-                              id="inlineFormCustomSelectPref"
-                              custom
-                              name="wrap"
-                              onChange={changeHandler}
-                          >
-                              <option>Choose a wrap</option>
-                              {wishList.customisation.wrap.map((wrap, index) => (
-                                  <option
-                                      key={index}
-                                      value={wrap}
-                                  >{wrap}</option>
-                              ))}
-                          </Form.Control>
-                      </Form>
-                      <Form inline>
-                          <Form.Control
-                              className="mx-2 options"
-                              type="Number"
-                              name="count"
-                              min={1}
-                              max={20}
-                              value={custom.count}
-                              onChange={changeHandler}
-                          />
-
-
-                          <Button id="submit-btn" className="ml-3"
-                              value={wishList._id}
-                              onClick={pushToCart}
-                              >
-                              Add To Cart
-                          </Button>
-                          <Button id="submit-btn" className="ml-3"
-                              value={wishList._id}
-                              onClick={removeFromList}
-                              >
-                              Remove from Wishlist
-                          </Button>
-                      </Form>
-                  </Form.Group>
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              </Row>
-            ))}
-          </Col>
-          <Col md={4} className="border">
-            <Button>Continue Browsing</Button>
-          </Col>
-        </Row> */}
       </Fragment>
     )
 };

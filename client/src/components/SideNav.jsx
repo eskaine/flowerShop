@@ -56,7 +56,6 @@ function SideNav() {
         </Row>
         <div style={{height: '2rem'}} />
 
-
         { auth ?  
         <Fragment>
         <Row onClick={sidebarHandler}>
@@ -107,7 +106,6 @@ function SideNav() {
         </Row>
         </Fragment> }
     </Navbar>
-
     )
 }
 

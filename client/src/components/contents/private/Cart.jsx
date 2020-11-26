@@ -1,17 +1,14 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Row, Col, Card, Form, Image, Button, Container } from "react-bootstrap";
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { axiosGet, axiosPut, axiosDel } from "../../../helpers/api";
-
 
 function Cart() {
   const [displayCart, setDisplayCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0)
   const user = useSelector(state => state.user); 
-
   
   async function getCart() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
@@ -19,14 +16,12 @@ function Cart() {
     setDisplayCart(res.userCart);
     calcCart(res.userCart);
   }
-
   
   async function updateQuantity() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
     await axiosPut(url, quantity, user.token);
     getCart();
   }
-
   
   async function removeItem(e) { 
     let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
@@ -34,7 +29,6 @@ function Cart() {
     getCart();
   }
 
-  
   function calcCart(price){
     let sum = 0;
     price.forEach(item=>(
@@ -43,10 +37,6 @@ function Cart() {
     setTotal(sum)
   }
 
-
-
-
-
   function changeHandler(e) {
     setQuantity((quantity) => ({
       ...quantity,
@@ -54,13 +44,11 @@ function Cart() {
       [e.target.name]: e.target.value,
       userid: user.id,
     }));
-
   }
 
   useEffect(() => {
     getCart();
   }, []);
-
   
   return (
     <Fragment>
@@ -85,7 +73,6 @@ function Cart() {
             </Link>
           </Col>
         </Row>
-
         <Container>
           {displayCart.map((cart, index) => (
             <Container key={index} className="cart-item">
@@ -131,10 +118,8 @@ function Cart() {
                           {cart.wrap}
                         </p>
                       </Col>
-
                       <Col s={8} md={2} lg={2}>
                         <p><span className="formLabel">Price:</span> SGD$ {cart.totalPrice}</p>
-
                       </Col>
                       <Col s={8} md={2} lg={2}>
                         <p>
@@ -177,7 +162,6 @@ function Cart() {
                       </Col>
                       <Col s={8} md={2} lg={2} >
                         <p><span className="font-weight-bold">Grand Total:</span> <br/>SGD$ {total}</p>
-
                       </Col>
                       <Col s={8} md={2} lg={2}>
                       </Col>
@@ -194,24 +178,11 @@ function Cart() {
             </Link>
           </Container>
           }
-
-
-
-
-
-
-
-
-
-
-
         </Container>
-
         {displayCart.length > 5 && (
           <Row className="mt-3">
             <Col s={12} md={5}></Col>
             <Col s={12} md={7} className="d-flex justify-content-center">
-
               <Link
                 className="button"
                 to={{
@@ -221,7 +192,6 @@ function Cart() {
               >
                 Check Out
               </Link>
-
               <Link className="button ml-5" to={{ pathname: `/products` }}>
                 Continue Browsing
               </Link>

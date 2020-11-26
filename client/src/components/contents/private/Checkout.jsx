@@ -4,8 +4,6 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { axiosGet } from "../../../helpers/api";
 
-
-
 function Checkout() {
     const user = useSelector(state => state.user);
     const [orders, setOrders] = useState([]);
@@ -20,8 +18,6 @@ function Checkout() {
     
     let shipping = ["Self-pickup", "SingPost", "Ninja-van"];
     
-
-
     async function fetchCheckOut(){
         let url = process.env.REACT_APP_CART + `/${user.id}`;
         let res = await axiosGet(url, user.token);
@@ -37,7 +33,6 @@ function Checkout() {
       setTotal(sum)
     }
 
-
     function clickState(e){
       let id = e.target.id
       if(id === 1) {  
@@ -49,14 +44,9 @@ function Checkout() {
       }
     }
 
-
-
     useEffect(() => {
         fetchCheckOut();
     },[])
-
-
-
 
     return (
         <Fragment>
@@ -253,8 +243,6 @@ function Checkout() {
                         ))}
                       </Form.Control>
                             </Form>
-
-
                         </Card.Body>
                     </Accordion.Collapse>
             </Accordion>

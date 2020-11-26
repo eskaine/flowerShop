@@ -108,7 +108,6 @@ function Product(props) {
                         <Form.Control
                           as="select"
                           className="my-1 mr-sm-2 options"
-                          // id="inlineFormCustomSelectPref"
                           custom
                           name="ribbon"
                           onChange={changeHandler}
@@ -123,7 +122,6 @@ function Product(props) {
                         <Form.Control
                           as="select"
                           className="my-1 mr-sm-2 options"
-                          // id="inlineFormCustomSelectPref"
                           custom
                           name="wrap"
                           onChange={changeHandler}
@@ -136,7 +134,6 @@ function Product(props) {
                           ))}
                         </Form.Control>
                       </Form>
-
                       <Form inline>
                         <Form.Control
                           className="mx-2 options"

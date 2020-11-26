@@ -45,7 +45,6 @@ function AllProducts() {
         ))}
       </Row>
     </Container>
-
   );
 }
 
