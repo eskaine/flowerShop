@@ -126,7 +126,6 @@ function WishList() {
                           <Form.Control
                               as="select"
                               className="my-1 mr-sm-2 options"
-                              // id="inlineFormCustomSelectPref"
                               custom
                               name="ribbon"
                               onChange={changeHandler}
@@ -142,7 +141,6 @@ function WishList() {
                           <Form.Control
                               as="select"
                               className="my-1 mr-sm-2 options"
-                              // id="inlineFormCustomSelectPref"
                               custom
                               name="wrap"
                               onChange={changeHandler}
