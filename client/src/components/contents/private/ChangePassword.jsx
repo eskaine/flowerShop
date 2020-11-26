@@ -26,6 +26,7 @@ function ChangePassword({ setShow }) {
       setShow(false);
     } else {
       dispatch(showAlert({ variant: "danger", message: "Password Change Unsuccessful. Please try again."}))
+      setShow(false);
     }
   }
 

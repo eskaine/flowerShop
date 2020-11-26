@@ -40,11 +40,11 @@ function Checkout() {
 
     function clickState(e){
       let id = e.target.id
-      if(id == 1) {  
+      if(id === 1) {  
         (accHeader.header1 === true) ? setAccHeader({...accHeader, header1: false}) : setAccHeader({...accHeader, header1: true})
-      } else if ( id == 2) {
+      } else if ( id === 2) {
         (accHeader.header2 === true) ? setAccHeader({...accHeader, header2: false}) : setAccHeader({...accHeader, header2: true})
-      } else if ( id == 3) {
+      } else if ( id === 3) {
         (accHeader.header3 === true) ? setAccHeader({...accHeader, header3: false}) : setAccHeader({...accHeader, header3: true})
       }
     }

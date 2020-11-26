@@ -88,7 +88,7 @@ function Cart() {
 
         <Container>
           {displayCart.map((cart, index) => (
-            <Container className="cart-item">
+            <Container key={index} className="cart-item">
               <Container className="my-auto">
                 <Row>
                   <Col xs={12} s={10} md={2} lg={2} >
