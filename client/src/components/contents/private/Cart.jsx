@@ -22,15 +22,15 @@ function Cart() {
   async function updateQuantity() {
     let url = process.env.REACT_APP_CART + `/${user.id}`;
     let res = await axiosPut(url, quantity, user.token);
-    getCart();
     (res !== null) && dispatch(showAlert({ variant: "success", message: "Quantity updated"}));
+    getCart();
   }
   
   async function removeItem(e) { 
     let url = process.env.REACT_APP_CART + `/${user.id}/${e.target.id}`;
     await axiosDel(url, user.token);
-    getCart();
     dispatch(showAlert({ variant: "success", message: "Item removed from cart"}));
+    getCart();
   }
 
   function calcCart(price){

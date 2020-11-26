@@ -45,8 +45,8 @@ function WishList() {
   async function removeFromList(e) {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}/${e.target.id}`;
     await axiosDel(url, user.token);
-    fetchWishList();
     dispatch(showAlert({ variant: "success", message: "Item removed from wishlist"}));
+    fetchWishList();
   }
 
     async function pushToCart(e) {
