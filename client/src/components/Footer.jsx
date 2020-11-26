@@ -56,7 +56,7 @@ function Footer() {
                       <Link className="footer-icons p-0" to="https://github.com/eskaine">
                         <FontAwesomeIcon icon={faGithubSquare} />
                       </Link>
-                      <Link className="footer-icons p-0" to="#">
+                      <Link className="footer-icons p-0" to="https://www.linkedin.com/in/eskaine/">
                         <FontAwesomeIcon icon={faLinkedin} />
                       </Link>
                     </Col>
@@ -69,7 +69,7 @@ function Footer() {
                       <Link className="footer-icons p-0" to="https://github.com/TyroneTang">
                         <FontAwesomeIcon icon={faGithubSquare} />
                       </Link>
-                      <Link className="footer-icons p-0" to="#">
+                      <Link className="footer-icons p-0" to="https://www.linkedin.com/in/tyronetangxi/">
                         <FontAwesomeIcon icon={faLinkedin} />
                       </Link>
                     </Col>
