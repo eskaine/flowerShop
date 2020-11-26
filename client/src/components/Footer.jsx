@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, NavLink, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram, faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faComment, faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -76,13 +76,16 @@ function Footer() {
                 </Col>
             </Row>
           </Container>
-          <Col md={12} className="footer-btm d-flex justify-content-around">
-            <a href="#">Copyright mumsworkshop</a>
-            <a href="#">About</a>
-            <a href="#">Disclaimer</a>
-            <a href="#">F.A.Q.</a>
-            <a href="#">Privacy Policy</a>
-          </Col>
+          <Row className="footer mx-auto" style={{width: "100vw"}}/>
+            <Container className="d-flex justify-content-around p-0" >
+              <p className="nav-link nav-item p-2 mb-0">Copyright mumsworkshop</p>
+              <Link to="/about" className="nav-link nav-item">About</Link>
+              <Link to="/about" className="nav-link nav-item">Disclaimer</Link>
+              <Link to="/about" className="nav-link nav-item">F.A.Q.</Link>
+              <Link to="/about" className="nav-link nav-item">Privacy Policy</Link>
+            </Container>
+    
+
       </Row>
   );
 }
