@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, withRouter } from "react-router-dom";
 import { Row, Col, Form, Image, Button, Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AlertModal from "../AlertModal";
 import { axiosPost } from "../../helpers/api";
+import { showAlert } from "../../helpers/actions";
 
 function Product(props) {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({
     customisation: {
         ribbon: [],
@@ -59,6 +61,7 @@ function Product(props) {
       try {
         let url = process.env.REACT_APP_CART + `/${user.id}/${product._id}`;
         await axiosPost(url, custom, user.token);
+        dispatch(showAlert({ variant: "success", message: "Item added to Cart!"}));
       } catch (error) {
         console.log(error);
       }
@@ -73,7 +76,8 @@ function Product(props) {
 
   async function addToWishlist() {
     let url = process.env.REACT_APP_WISHLIST + `/${user.id}`;
-    await axiosPost(url, { productid: product._id }, user.token);
+    let res = await axiosPost(url, { productid: product._id }, user.token);
+    dispatch(showAlert({ variant: "success", message: "Item added to Wishlist!"}));
   }
 
   function changeHandler(e) {

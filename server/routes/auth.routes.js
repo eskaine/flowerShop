@@ -25,7 +25,7 @@ router.post("/register", verifyRegister(), async (req, res, next) => {
     "register",
     { session: false },
     async (err, user, info) => {
-      if (err) res.sendStatus(403);
+      if (err) return res.sendStatus(403);
 
       const token = await createToken({ id: user._id });
       res.status(200).json({ token });

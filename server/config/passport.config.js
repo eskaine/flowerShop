@@ -28,7 +28,7 @@ passport.use(
         const user = await User.create(req.body);
         return done(null, user);
       } catch (error) {
-        done(null, error);
+        return done(error);
       }
     }
   )
