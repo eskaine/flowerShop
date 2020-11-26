@@ -25,10 +25,23 @@ p {
   font-size: 0.92rem;
 }
 
-.car-heading {
-  font-family: $logoFont;
-  font-size: 10vh;
-  color: $red;
+a {
+  .car-heading {
+    font-family: $logoFont;
+    font-size: 10vh;
+    text-shadow:2px 2px 5px white, -2px -2px 3px white;
+    padding: 3.35em 0 4em 0;
+    color: $red;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.car-subhead {
+  font-family: $titleFont;
+  font-size: 1rem;
+  text-shadow: none;
 }
 
 .container-fluid {
@@ -261,8 +274,12 @@ a {
   }
 
   .car-heading {
-    font-size: 5.5vh;
-    padding: 3em 10px 0 10px;;
+    font-size: 5.5vh !important;
+    padding: 6em 10px 5em 10px !important;
+  }
+
+  .car-subhead {
+    font-size: 10px;
   }
 
   .carousel-inner {

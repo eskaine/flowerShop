@@ -15,6 +15,16 @@ function MainRoutes() {
       <Route exact path="/">
         <Home />
       </Route>
+      <Route exact path="/about">
+        <div>
+          about us
+        </div>
+      </Route>
+      <Route exact path="/contact">
+        <div>
+          contact us
+        </div>
+      </Route>
       <Route exact path="/register">
         <Register />
       </Route>
