@@ -29,7 +29,7 @@ function AllProducts() {
                 }}
               >
               <Row>
-                <Card.Img variant="top" className="mx-auto product-img" src={product.img_url} fluid/>
+                <Card.Img variant="top" className="mx-auto product-img" src={product.img_url} />
               </Row>
               <Row className="mt-3 mx-auto">
                 <Col xs={10} className="p-0" >
