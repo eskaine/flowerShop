@@ -93,7 +93,7 @@ function WishList() {
 
           <Container>
             {wishList.map((wishList, index) => (
-              <Container className="cart-item">
+              <Container key={index} className="cart-item">
                 <Container className="my-auto">
                   <Row>
                   <Col xs={12} s={10} md={2} lg={2} >
@@ -126,7 +126,7 @@ function WishList() {
                           <Form.Control
                               as="select"
                               className="my-1 mr-sm-2 options"
-                              id="inlineFormCustomSelectPref"
+                              // id="inlineFormCustomSelectPref"
                               custom
                               name="ribbon"
                               onChange={changeHandler}
@@ -142,7 +142,7 @@ function WishList() {
                           <Form.Control
                               as="select"
                               className="my-1 mr-sm-2 options"
-                              id="inlineFormCustomSelectPref"
+                              // id="inlineFormCustomSelectPref"
                               custom
                               name="wrap"
                               onChange={changeHandler}
