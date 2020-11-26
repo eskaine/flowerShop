@@ -30,6 +30,7 @@ function EditProfile({ setShow }) {
       dispatch(setUserInfo(data.updatedData));
       setShow(false);
     } else {
+      setShow(false);
       dispatch(showAlert({ variant: "danger", message: "Update Unsuccessful. Please try again."}))
     }
   }
