@@ -19,7 +19,7 @@ function Alerts({ alert }) {
   }, [alert]);
 
   return (
-    <Alert variant={alert.variant} show={alert.show}>
+    <Alert variant={alert.variant} show={alert.show} >
       {alert.message}
     </Alert>
   );
