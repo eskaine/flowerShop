@@ -5,7 +5,6 @@ import { Container, Form, Button, Row, Col, Image } from "react-bootstrap";
 import { isAuth, showAlert }  from '../../helpers/actions';
 import { axiosPost } from "../../helpers/api";
 
-
 function Register() {
     const dispatch = useDispatch();
     const authState = useSelector(state => state.user.token);
@@ -14,7 +13,6 @@ function Register() {
         email: '',
         password: ''
     });
-
 
     function changeHandler(e) {
         setForm({...form, [e.target.name]: e.target.value});
