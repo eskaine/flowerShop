@@ -173,6 +173,16 @@ div.form-group {
       cursor: pointer;
     }
   }
+  a {
+    width: 320px;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    &:hover {
+      color: $lightBrown;
+      background: $paleYellow;
+    }
+  }
 }
 
 #sidebar.active {
@@ -186,19 +196,6 @@ a {
     text-decoration: none;
     transition: all 0.3s;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2)
-  }
-}
-
-#sidebar {
-  a {
-    width: 320px;
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-    &:hover {
-      color: $lightBrown;
-      background: $paleYellow;
-    }
   }
 }
 
@@ -319,10 +316,19 @@ a {
   }
 
   #sidebar {
-    margin-left: -220px;
+    margin-left: -330px;
     min-width: 220px;
     max-width: 220px;
     font-size: 0.7rem;
+    a{
+      &:hover &:focus {
+        color: $lightBrown;
+        background-color: none;
+        text-decoration: none;
+        transition: none;
+        box-shadow: none;
+      }
+    }
   }
 
   #navi-bar {
