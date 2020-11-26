@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosPut } from "../../../helpers/api";
-import { setUserInfo } from "../../../actions/actions";
+import { setUserInfo } from "../../../helpers/actions";
 
 function EditProfile({ setShow }) {
   const dispatch = useDispatch();
