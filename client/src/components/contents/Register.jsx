@@ -5,7 +5,6 @@ import { Container, Form, Button, Row, Col, Image } from "react-bootstrap";
 import { isAuth, showAlert }  from '../../helpers/actions';
 import { axiosPost } from "../../helpers/api";
 
-
 function Register() {
     const dispatch = useDispatch();
     const authState = useSelector(state => state.user.token);
@@ -15,7 +14,6 @@ function Register() {
         password: ''
     });
 
-
     function changeHandler(e) {
         setForm({...form, [e.target.name]: e.target.value});
     }
@@ -24,7 +22,6 @@ function Register() {
         e.preventDefault();
         let url = process.env.REACT_APP_ACC + "/register";
         let data = await axiosPost(url, form);
-        console.log('data', data);
         if(data) {
           dispatch(showAlert({ variant: "success", message: "Registration Successful!"}));
           dispatch(isAuth(data.token));
