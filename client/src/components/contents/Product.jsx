@@ -87,14 +87,14 @@ function Product(props) {
   return (
     <Row>
       <Container className="cart-item">
-        <Row>
-          <Col xs={12} s={4} md={4} lg={4}>
+        <Row className="justify-content-center">
+          <Col xs={6} s={4} md={4} lg={4}>
             <Row>
-              <Image src={product.img_url} fluid className="product-img" />
+              <Image src={product.img_url} fluid className="product-img" className="ml-2" />
             </Row>
           </Col>
           <Col xs={11} s={8} md={8} lg={8} className="mx-auto d-flex align-middle">
-            <Container className="my-auto">
+            <Container className="my-auto product-text">
               <h3 className="formLabel">{product.productName}</h3>
               <p>{product.desc}</p>
               <Row className="mx-auto">

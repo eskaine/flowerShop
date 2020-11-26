@@ -9,7 +9,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 
 function MainRoutes() {
   return (
-    <Fragment className="border px-0 mt-5">
+    <Fragment>
     <Switch>
       <Route exact path="/">
         <Home />

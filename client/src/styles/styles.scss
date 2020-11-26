@@ -288,6 +288,11 @@ a {
     font-size: 0.8rem !important;    
   }
 
+  select {
+    height: 1.5rem !important;
+    font-size: 0.6rem !important;    
+  }
+
   .formLabel {
     font-size: 1rem;
   }
@@ -299,6 +304,11 @@ a {
   .cart-img {
     height: 100px;
     margin: 0 auto !important;
+  }
+
+  .product-text {
+    margin-top: 1em !important;
+    text-align: center;
   }
 
   .product-img {
