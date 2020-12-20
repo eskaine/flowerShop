@@ -62,6 +62,3 @@ Mobile
 
 ###### Wishlist
 ![Wishlist](/wireframes/Wishlist.png)
-
-
-## Elevator Pitch
